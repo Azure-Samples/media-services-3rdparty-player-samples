@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Video.js Demo</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
+  <link rel="shortcut icon" type="image/png" href="../images/ams.png">
+  <link href="https://vjs.zencdn.net/7.8.2/video-js.css" rel="stylesheet" />
+</head>
+
+<body>
+  <header class="h-16 px-4 flex items-center justify-between bg-black">
+    <a href="#default" class="flex items-center no-underline">
+      <img src="../images/ams.png">
+      <span class="px-4 text-gray-500">Azure Media Services</span>
+    </a>
+    <img src="../images/microsoft.png" class="h-full">
+  </header>
+
+  <main class="container px-4 mx-auto font-sans">
+    <form method='GET'>
+
+      <input type="hidden" name="loglevel" id="loglevelInput">
+      <h1 class="my-4 text-center text-2xl font-bold">Video.js player with Azure Media Services</h1>
+
+      <div class="my-4 p-4 bg-gray-200 rounded shadow">
+        <video id="video" class="video-js vjs-default-skin vjs-16-9" controls data-setup="{}">
+        </video>
+      </div>
+
+      <div class="my-4 p-4 bg-gray-200 rounded shadow">
+        <h3 class="my-0 mb-2 text-xl font-bold">Manifest</h3>
+
+        <div class="selectUrl">
+          <label for="selectFormat">Choose a formats:</label>
+
+          <select id="selectFormat" name="format" class="rounded shadow border-0" onchange="chooseFormat();">
+
+            <option id="selectHls" value="hls">HLS</option>
+            <option id="selectDash" value="dash">DASH</option>
+          </select>
+        </div>
+
+        <input name="manifest" id="manifestInput" class="w-full h-8 px-2 rounded shadow border-0" required
+          placeholder="URL">
+        <p class="mt-2 text-sm text-gray-500 italic">HLS and DASH are supported</p>
+
+        <h3 class="my-2 text-xl font-bold">Advanced Options</h3>
+
+        <div>
+          <div class="my-2 flex flex-col md:flex-row md:items-center">
+            <span class="md:w-1/4 mb-2 md:mb-0 flex items-center text-sm">
+              <input type="checkbox" id="captionCheckbox" class="mr-2">
+              Captions
+            </span>
+            <input name="caption" id="captionInput" class="md:w-3/4 h-8 px-2 rounded shadow border-0" placeholder="URL"
+              disabled>
+          </div>
+
+          <div class="my-2 flex flex-col md:flex-row md:items-center">
+            <span class="md:w-1/4 mb-2 md:mb-0 flex items-center text-sm">
+              <input type="checkbox" id="tokenCheckbox" class="mr-2">
+              Token
+            </span>
+            <input name="token" id="tokenInput" class="md:w-3/4 h-8 px-2 rounded shadow border-0" placeholder="JWT"
+              disabled>
+          </div>
+
+          <div class="my-2 flex flex-col md:flex-row md:items-center">
+            <span class="md:w-1/4 mb-2 md:mb-0 flex items-center text-sm">
+              <input type="checkbox" id="widevineCheckbox" class="mr-2">
+              Widevine License
+            </span>
+            <input name="widevine" id="widevineInput" class="md:w-3/4 h-8 px-2 rounded shadow border-0"
+              placeholder="URL" disabled>
+          </div>
+
+          <div class="my-2 flex flex-col md:flex-row md:items-center">
+            <span class="md:w-1/4 mb-2 md:mb-0 flex items-center text-sm">
+              <input type="checkbox" id="playReadyCheckbox" class="mr-2">
+              PlayReady License
+            </span>
+            <input name="playReady" id="playReadyInput" class="md:w-3/4 h-8 px-2 rounded shadow border-0"
+              placeholder="URL" disabled>
+          </div>
+
+          <div class="my-2 flex flex-col md:flex-row md:items-center">
+            <span class="md:w-1/4 mb-2 md:mb-0 flex items-center text-sm">
+              <input type="checkbox" id="fairPlayCheckbox" class="mr-2">
+              FairPlay License
+            </span>
+            <input name="fairPlay" id="fairPlayInput" class="md:w-3/4 h-8 px-2 rounded shadow border-0"
+              placeholder="URL" disabled>
+          </div>
+
+          <div class="my-2 flex flex-col md:flex-row md:items-center">
+            <span class="md:w-1/4 mb-2 md:mb-0 flex items-center text-sm">
+              <input type="checkbox" id="fairPlayCertificateCheckbox" class="mr-2">
+              FairPlay Certificate
+            </span>
+            <input name="fairPlayCertificate" id="fairPlayCertificateInput" class="md:w-3/4 h-8 px-2 rounded shadow border-0"
+              placeholder="URL" disabled>
+          </div>
+
+        </div>
+
+        <p class="text-right mt-4">
+          <button class="h-8 px-2 text-white bg-indigo-500 rounded shadow cursor-pointer" type="submit">Load Stream</button>
+        </p>
+      </div>
+    </form>
+
+    <div id="result" class="my-4 p-4 bg-gray-200 rounded shadow">
+      <h3 class="my-0 mb-2 text-xl font-bold">Player Events</h3>
+      <div id="playerEvents" class="w-full h-64 bg-white border-0 rounded shadow overflow-y-scroll"></div>
+    </div>
+  </main>
+
+  <footer class="h-16 flex items-center justify-center bg-black">
+    <p class="text-gray-500">© Microsoft Corporation 2020</p>
+  </footer>
+  <script src="https://vjs.zencdn.net/7.8.2/video.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-contrib-eme@3.7.0/dist/videojs-contrib-eme.min.js"></script>
+  <script type="text/javascript" src="../js/common.js"></script>
+
+  <script type="text/javascript" src="index.js"></script>
+</body>
+
+</html>
