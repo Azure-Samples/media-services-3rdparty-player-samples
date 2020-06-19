@@ -1,0 +1,103 @@
+{
+  "ResourceGroup": "amsplayerresource",
+  "StorageAccount": "amsplayerstorage",
+  "MediaServiceAccount": "amsplayeraccount",
+  "Location": "westus2",
+  "CKP": {
+    "DRMOpen": {
+      "name": "drmopen",
+      "options": [
+        {
+          "name": "widevineopen",
+          "type": "--widevine-template",
+          "typeValue": "\"{}\""
+        },
+        {
+          "name": "playreadyopen",
+          "type": "--play-ready-template",
+          "typeValue": "@payload/playreadylicense.json"
+        }
+      ],
+      "disabled-options": [
+        {
+          "name": "fairplayopen",
+          "type": "--fair-play-pfx",
+          "typeValue": "@payload/Fairplay-out.pfx",
+          "ask": "ask-32-chars-hex-string",
+          "fairPlayPfxPassword": "pfxPassword",
+          "rentalAndLeaseKeyType": "PersistentUnlimited",
+          "rentalDuration": "5000"
+        }
+      ]
+    },
+    "DRMToken": {
+      "name": "drmtokenized",
+      "options": [
+        {
+          "name": "widevinetoken",
+          "type": "--widevine-template",
+          "typeValue": "\"{}\""
+        },
+        {
+          "name": "playreadytoken",
+          "type": "--play-ready-template",
+          "typeValue": "@payload/playreadylicense.json"
+        }
+      ],
+      "disabled-options": [
+        {
+          "name": "fairplaytoken",
+          "type": "--fair-play-pfx",
+          "typeValue": "@payload/Fairplay-out.pfx",
+          "ask": "ask-32-chars-hex-string",
+          "fairPlayPfxPassword": "pfxPassword",
+          "rentalAndLeaseKeyType": "PersistentUnlimited",
+          "rentalDuration": "5000"
+        }
+      ]
+    },
+    "encryptionOpen": {
+      "name": "clearkeyopen",
+      "options": [
+        {
+          "name": "clearkeyopen",
+          "type": "--clear-key-configuration",
+          "typeValue": ""
+        }
+      ]
+    },
+    "encryptionToken": {
+      "name": "clearkeytoken",
+      "options": [
+        {
+          "name": "clearkeytoken",
+          "type": "--clear-key-configuration",
+          "typeValue": ""
+        }
+      ]
+    }
+  },
+  "token": {
+    "type": "Jwt",
+    "keyType": "Symmetric",
+    "key": "dgYJUdft2j5d2dKuf6hc049dIBHFhKh1lQvz4mEI",
+    "issuer": "randomissuer",
+    "audience": "randomaudience",
+    "duration": "604800"
+  },
+  "VOD": {
+    "video": "sample-vod.mp4",
+    "preset": "AdaptiveStreaming"
+  },
+  "liveStream": {
+    "liveEventName": "liveeventname",
+    "assetName": "liveassetname",
+    "encodingType": "Standard",
+    "presetName": "Default720p",
+    "liveOutputName": "liveoutput",
+    "mode": "default"
+  },
+  "samples": {
+    "path": "..\\players\\"
+  }
+}
