@@ -1,0 +1,31 @@
+{
+  "licenses": [
+    {
+      "allowTestDevices": false,
+      "beginDate": null,
+      "expirationDate": null,
+      "relativeBeginDate": null,
+      "relativeExpirationDate": null,
+      "gracePeriod": null,
+      "playRight": {
+        "firstPlayExpiration": null,
+        "scmsRestriction": null,
+        "agcAndColorStripeRestriction": null,
+        "explicitAnalogTelevisionOutputRestriction": null,
+        "digitalVideoOnlyContentRestriction": false,
+        "imageConstraintForAnalogComponentVideoRestriction": false,
+        "imageConstraintForAnalogComputerMonitorRestriction": false,
+        "allowPassingVideoContentToUnknownOutput": "Allowed",
+        "uncompressedDigitalVideoOpl": null,
+        "compressedDigitalVideoOpl": null,
+        "analogVideoOpl": null,
+        "compressedDigitalAudioOpl": null,
+        "uncompressedDigitalAudioOpl": null
+      },
+      "licenseType": "NonPersistent",
+      "contentKeyLocation": {},
+      "contentType": "Unspecified"
+    }
+  ],
+  "responseCustomData": null
+}

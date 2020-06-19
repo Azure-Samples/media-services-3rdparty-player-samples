@@ -1,0 +1,46 @@
+{
+  "properties": {
+    "description": "",
+    "input": {
+      "streamingProtocol": "RTMP",
+      "accessControl": {
+        "ip": {
+          "allow": [
+            {
+              "name": "Allow All",
+              "address": "0.0.0.0",
+              "subnetPrefixLength": 0
+            }
+          ]
+        }
+      }
+    },
+    "preview": {
+      "accessControl": {
+        "ip": {
+          "allow": [
+            {
+              "name": "Allow All",
+              "address": "0.0.0.0",
+              "subnetPrefixLength": 0
+            }
+          ]
+        }
+      }
+    },
+    "encoding": {
+      "encodingType": "Standard",
+      "presetName": "Default720p"
+    },
+    "transcriptions": [
+      {
+        "language": "en-US"
+      }
+    ],
+    "vanityUrl": true,
+    "streamOptions": [
+      "Default"
+    ]
+  },
+  "location": "West US 2"
+}

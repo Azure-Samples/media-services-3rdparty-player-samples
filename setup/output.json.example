@@ -1,0 +1,28 @@
+{
+  "VOD": {
+    "clear": [],
+    "DRMOpen": [],
+    "DRMToken": [],
+    "encryptionOpen": [],
+    "encryptionToken": [],
+    "subtitle": "",
+    "DRMOpenKID": "",
+    "DRMTokenKID": ""
+  },
+  "LiveStream": {
+    "mode": "",
+    "ingestURLs": [],
+    "clear": [],
+    "DRMOpen": [],
+    "DRMToken": [],
+    "encryptionOpen": [],
+    "encryptionToken": [],
+    "DRMOpenKID": "",
+    "DRMTokenKID": ""
+  },
+  "WidevineLicenseURL": "",
+  "PlayReadyLicenseURL": "",
+  "FairPlayLicenseURL": "",
+  "FairPlayCertificateURL": "",
+  "Token": ""
+}
