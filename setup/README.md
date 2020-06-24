@@ -18,13 +18,13 @@
       - [Requirements](#requirements-2)
       - [Run](#run-1)
     + [setup-live.ps1](#setup-liveps1)
-        * [What this script does](#what-this-script-does-2)
-        * [Requirements](#requirements-3)
-        * [Run](#run-2)
+      - [What this script does](#what-this-script-does-2)
+      - [Requirements](#requirements-3)
+      - [Run](#run-2)
     + [start-live.ps1](#start-liveps1)
       - [What this script does](#what-this-script-does-3)
       - [Requirements](#requirements-4)
-        * [Run](#run-3)
+      - [Run](#run-3)
     + [stop-live.ps1](#stop-liveps1)
       - [What this script does](#what-this-script-does-4)
       - [Requirements](#requirements-5)
@@ -58,7 +58,7 @@ The resource creation process can be configured through a `config.json` file, an
 *If we run a script and there is no config.json, it will create it from the example.*
 
 config.json
-```
+```javascript
 "ResourceGroup": "amsplayerresource", // Name of the resource group
 "StorageAccount": "amsplayerstorage", // Name of the storage account. Supports only lowercase letters between 4-40 characters
 "MediaServiceAccount": "amsplayeraccount", // Name of the media service account. Supports only lowercase letters between 4-40 characters
@@ -103,20 +103,22 @@ config.json
 },
 "samples": {
   "path": "..\\players\\" // Path to the folder that will be uploaded as a static site
-}
+},
+"fairPlayCertificate": "" // Path to Public FairPlay Certificate
 ```
 
 #### Options of the Content Key Policy
 
 The Content Key policies can have more than one option.
 Each option must have the fields
-- name: Name of the option
-- type: Parameter to configure the DRM or encryption option (--widevine-template /--play-ready-template / -fair-play-pfx / --clear-key-configuration)
-- typeValue: Value of the type, a path to the json license file, json string (Widevine works with an empty json), empty for encryption or the filepath to a FairPlay certificate file in PKCS 12 (pfx) format (including private key).
-- ask: The key that must be used as FairPlay Application Secret Key, which is a 32 character hex string.
-- fairPlayPfxPassword: The password encrypting FairPlay certificate in PKCS 12 (pfx) format.
-- rentalAndLeaseKeyType: The rental and lease key type. Available values: Undefined, DualExpiry, PersistentUnlimited, PersistentLimited.
-- rentalDuration: The rental duration. Must be greater than or equal to 0.
+
+- `name`: Name of the option
+- `type`: Parameter to configure the DRM or encryption option (--widevine-template /--play-ready-template / -fair-play-pfx / --clear-key-configuration)
+- `typeValue`: Value of the type, a path to the json license file, json string (Widevine works with an empty json), empty for encryption or the filepath to a FairPlay certificate file in PKCS 12 (pfx) format (including private key).
+- `ask`: The key that must be used as FairPlay Application Secret Key, which is a 32 character hex string.
+- `fairPlayPfxPassword`: The password encrypting FairPlay certificate in PKCS 12 (pfx) format.
+- `rentalAndLeaseKeyType`: The rental and lease key type. Available values: Undefined, DualExpiry, PersistentUnlimited, PersistentLimited.
+- `rentalDuration`: The rental duration. Must be greater than or equal to 0.
 
 In this sample, the Content key Policy with DRM and token protection will be created with Widevine and PlayReady options:
 ```json
@@ -160,18 +162,19 @@ az account set --subscription "subscription name"
 ```
 4. Navigate to the directory where the scripts are
 5. Execute the following scripts to configure both VOD and live stream and to upload the samples to a static website in Azure: 
-  - [setup.ps1](#setupps1)
-  - [setup-vod.ps1](#setup-vodps1)
-  - [setup-live.ps1](#setup-liveps1)
-  - [start-live.ps1](#start-liveps1)
-  - [upload-sample.ps1](#upload-samplesps1)
+   - [setup.ps1](#setupps1)
+   - [setup-vod.ps1](#setup-vodps1)
+   - [setup-live.ps1](#setup-liveps1)
+   - [start-live.ps1](#start-liveps1)
+   - [upload-sample.ps1](#upload-samplesps1)
 6. To stop both live stream and VOD:
-  - [stop-live.ps1](#stop-liveps1)
-  - [stop-endpoint.ps1](#stop-endpointps1)
+   - [stop-live.ps1](#stop-liveps1)
+   - [stop-endpoint.ps1](#stop-endpointps1)
 
 ------
 
 ### setup.ps1
+
 #### What this script does
 1. Creates (if they don't exist) a **Resource Group**, a **Storage Account** and an **Azure Media Services Account** with the names specified in the `config.json` file
 2. Creates (if they don't exist) the **Content Key Policies** with the options specified in the `CKP` section of the `config.json` for:
@@ -250,6 +253,7 @@ The following fields must be filled in the `config.json` file:
         - `liveEventName`
         - `encodingType`
         - `presetName`
+        - `mode` (in order to change the mode, run `setup-live.ps1` again with the new configuration)
 ##### Run
 ```powershell
 .\setup-live.ps1
@@ -258,6 +262,7 @@ The following fields must be filled in the `config.json` file:
 ------
 
 ### start-live.ps1
+
 #### What this script does
 1. Creates a new asset
 2. Creates a new live output
@@ -269,8 +274,8 @@ The following fields must be filled in the `config.json` file:
     - Tokenized ClearKey Live stream
 4. Starts the default streaming endpoint
 5. Starts the live event
-6. Saves the ingest URLs
-7. Waits for the user to connect to an ingest URL
+6. Saves the ingest URLs. These are to be used in your streaming software of choice, were you'll need to provide them in order to start livestreaming. If your software awaits for a password, enter `default`
+7. The script now waits for the user to connect to an ingest URL
 8. Saves the playback URLs in the `output.json` file
 
 #### Requirements
@@ -283,8 +288,9 @@ The following fields must be filled in the `config.json` file:
     - `liveStream`
         - `liveEventName`
         - `assetName`
+        - `encodingType`
         - `liveOutputName`
-        - `liveTranscription`
+        - `mode`
 
 ##### Run
 ```powershell
@@ -384,8 +390,13 @@ The following fields must be filled in the `config.json` file:
 
 #### What this script does
 1. Enables the storage account specified in `config.json` file to host static website.
-2. Uploads to the blob storage the files in the path indicated in the `config.json`
+2. Uploads to the blob storage the files in the path indicated in the `config.json`.
 3. Prints the URL to access the static website.
+4. Extracts license URLs from manifest. To extract them, it performs the following steps:
+   - Downloads the DASH DRM protected manifest from the generated URL 
+   - Opens the manifest and finds the XPath /MPD/Period/AdaptationSet/ContentProtection/laurl/licenseUrl. This node contains the license URL for Widevine
+   - The license URLs for PlayReady are generated with the host of Widevine’s license URL, plus /PlayReady/
+   - The license URLs for FairPlay are generated with the host of Widevine’s license URL, plus /FairPlay/
 
 #### Requirements
 - `setup.ps1` executed beforehand

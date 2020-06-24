@@ -6,13 +6,13 @@ xmlhttp.onreadystatechange = function () {
     var live = config.LiveStream;
     var categories = [
       { data: vod.clear, label: "VOD Clear: ", subtitle: true },
-      { data: vod.DRMOpen, label: "VOD DRM Open: ", drm: true, kid: vod.DRMOpenKID },
-      { data: vod.DRMToken, label: "VOD DRM Token: ", token: true, drm: true, kid: vod.DRMTokenKID },
+      { data: vod.DRMOpen, label: "VOD DRM Open: ", drm: true, kidcenc: vod.DRMOpenKIDCENC, kidcbcs: vod.DRMOpenKIDCBCS },
+      { data: vod.DRMToken, label: "VOD DRM Token: ", token: true, drm: true, kidcenc: vod.DRMTokenKIDCENC, kidcbcs: vod.DRMTokenKIDCBCS },
       { data: vod.encryptionOpen, label: "VOD Encryption Open: " },
       { data: vod.encryptionToken, label: "VOD Encryption Token: ", token: true },
       { data: live.clear, label: `Live stream (${live.mode}) Clear: ` },
-      { data: live.DRMOpen, label: `Live stream (${live.mode}) DRM Open: `, drm: true, kid: live.DRMOpenKID },
-      { data: live.DRMToken, label: `Live stream (${live.mode}) DRM Token: `, token: true, drm: true, kid: live.DRMTokenKID },
+      { data: live.DRMOpen, label: `Live stream (${live.mode}) DRM Open: `, drm: true, kidcenc: live.DRMOpenKIDCENC, kidcbcs: live.DRMOpenKIDCBCS },
+      { data: live.DRMToken, label: `Live stream (${live.mode}) DRM Token: `, token: true, drm: true, kidcenc: live.DRMTokenKIDCENC, kidcbcs: live.DRMTokenKIDCBCS },
       { data: live.encryptionOpen, label: `Live stream (${live.mode}) Encryption Open: `, },
       { data: live.encryptionToken, label: `Live stream (${live.mode}) Encryption Token: `, token: true },
     ];
@@ -48,6 +48,14 @@ function generateLinkElement(config, category, path, links) {
       htmlLinkElement.href += `&format=dash`;
     }
     
+    if (category.drm) {
+      htmlLinkElement.href += `&widevine=${config.WidevineLicenseURL}?kid=${category.kidcenc}`;
+      htmlLinkElement.href += `&playReady=${config.PlayReadyLicenseURL}`;
+      if (stream.url.includes('m3u8') > 0) {
+        htmlLinkElement.href += `&fairPlay=${config.FairPlayLicenseURL}?kid=${category.kidcbcs}`;
+        htmlLinkElement.href += `&fairPlayCertificate=${window.location}${config.FairPlayCertificate}`;
+      }
+    }
 
     if (category.token) {
       htmlLinkElement.href += `&token=${config.Token}`;
@@ -55,13 +63,6 @@ function generateLinkElement(config, category, path, links) {
 
     if (category.subtitle) {
       htmlLinkElement.href += `&caption=${window.location}transcript.vtt`;
-    }
-
-    if (category.drm) {
-      htmlLinkElement.href += `&widevine=${config.WidevineLicenseURL}?kid=${category.kid}`;
-      htmlLinkElement.href += `&playReady=${config.PlayReadyLicenseURL}`;
-      htmlLinkElement.href += `&fairPlay=${config.FairPlayLicenseURL}`;
-      htmlLinkElement.href += `&fairPlayCertificate=${config.FairPlayCertificateURL}`;
     }
 
     htmlLinkElement.target = "_blank";

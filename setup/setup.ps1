@@ -45,6 +45,21 @@ if (!$mediaServiceAccount) {
 }
 SuccessMessage  "Accounts properly selected: $($config.ResourceGroup), $($config.StorageAccount), $($config.MediaServiceAccount)"
 
+ActivityMessage "Setting up Streaming Policy..."
+$streamingPolicies = az ams streaming-policy list `
+--account-name $config.MediaServiceAccount `
+--resource-group $config.ResourceGroup | ConvertFrom-Json
+$allProtocolsAllDRMsPolicy = $streamingPolicies  | Where-Object { $_.name -eq "allProtocolsAllDRMsPolicy" }
+if (!$allProtocolsAllDRMsPolicy) {
+    $allProtocolsAllDRMsPolicy = az ams streaming-policy create `
+    --account-name $config.MediaServiceAccount `
+    --name allProtocolsAllDRMsPolicy `
+    --resource-group $config.ResourceGroup `
+    --cbcs-protocols HLS `
+    --cenc-protocols Dash HLS
+}
+SuccessMessage "Streaming Policy configured"
+
 ActivityMessage "Setting up Content Key Policies..."
 
 #open DRM Policy

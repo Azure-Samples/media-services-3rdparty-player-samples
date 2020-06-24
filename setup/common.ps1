@@ -84,20 +84,25 @@ function urlOutput ($urlTest) {
   $list = @()
   $urlTest| ForEach-Object -Process {
     if($_.streamingProtocol -eq 'Hls'){
-      $hls_ts = $_.url
-      $hls_cmaf = $hls_ts.replace('m3u8-aapl', 'm3u8-cmaf')
-      $list += @{"streamingProtocol"="HLS-TS";"url"=$hls_ts;}
-      SuccessMessage "Protocol: HLS TS"
-      SuccessMessage $hls_ts
-      $list += @{"streamingProtocol"="HLS-CMAF";"url"=$hls_cmaf;}
-      SuccessMessage "Protocol: HLS CMAF"
-      SuccessMessage $hls_cmaf
+      $encCenc = $_.url | Select-String -Pattern 'cenc'
+      $cbcsAapl = $_.url | Select-String -Pattern 'cbcs-aapl'
+      $HLSV4 = $_.url | Select-String -Pattern 'm3u8-aapl'
+      $tipoHLS = if ($HLSV4) {"HLS TS"} else {"HLS CMAF"}
+      $tipoEnc = if ($encCenc) {"CENC"} else {if($cbcsAapl){"CBCS"} else{""}}
+      $list += @{"streamingProtocol"="$($tipoHLS) $($tipoEnc)";"url"=$_.url;}
+      WarningMessage "Protocol: $($tipoHLS) $($tipoEnc)"
+      SuccessMessage $_.url
     }
     if($_.streamingProtocol -eq 'Dash'){
-      $dash_cmaf = $_.url.replace('mpd-time-csf','mpd-time-cmaf')
-      $list += @{"streamingProtocol"="DASH-CMAF";"url"=$dash_cmaf}
-      SuccessMessage "Protocol: DASH CMAF"
-      SuccessMessage $dash_cmaf
+      $DASHCMAF = $_.url | Select-String -Pattern 'mpd-time-cmaf'
+      if ($DASHCMAF) {
+        $encCenc = $_.url | Select-String -Pattern 'cenc'
+        $cbcsAapl = $_.url | Select-String -Pattern 'cbcs-aapl'
+        $tipoEnc = if ($encCenc) {"CENC"} else {if($cbcsAapl){"CBCS"} else{""}}
+        $list += @{"streamingProtocol"="DASH-CMAF $($tipoEnc)";"url"=$_.url}
+        WarningMessage "Protocol: DASH CMAF $($tipoEnc)"
+        SuccessMessage $_.url
+      }
     }
   }
   return $list
@@ -185,11 +190,14 @@ function AddVODURLsToOutputJSON () {
     --name "clearvod" | ConvertFrom-Json
   } While (!$pathsClear.streamingPaths[0].paths)
   $pathsClear.streamingPaths | ForEach-Object -Process {
-    $obj = New-Object PSObject -Property @{
-      url = "https://$($hostName)$($_.paths)"
-      streamingProtocol = $_.streamingProtocol
+    $actual = $_
+    $_.paths | ForEach-Object -Process {
+      $obj = New-Object PSObject -Property @{
+        url= "https://$($hostName)$($_)"
+        streamingProtocol = $actual.streamingProtocol
+      }
+      $output.VOD.clear += $obj
     }
-    $output.VOD.clear += $obj
   }
 
   $pathsOpenDRM = az ams streaming-locator get-paths `
@@ -198,11 +206,25 @@ function AddVODURLsToOutputJSON () {
   --name "opendrmvod" | ConvertFrom-Json
   $output.VOD.DRMOpen = @()
   $pathsOpenDRM.streamingPaths | ForEach-Object -Process {
-    $obj = New-Object PSObject -Property @{
-      url= "https://$($hostName)$($_.paths)"
-      streamingProtocol = $_.streamingProtocol
+    $actual = $_
+    $_.paths | ForEach-Object -Process {
+      $obj = New-Object PSObject -Property @{
+        url= "https://$($hostName)$($_)"
+        streamingProtocol = $actual.streamingProtocol
+      }
+      $output.VOD.DRMOpen += $obj
     }
-    $output.VOD.DRMOpen += $obj
+  }
+  $kidsOpenDRM = az ams streaming-locator list-content-keys `
+  --account-name $config.MediaServiceAccount `
+  --name "opendrmvod" `
+  --resource-group $config.ResourceGroup | ConvertFrom-Json
+  $kidsOpenDRM | ForEach-Object -Process {
+    if ($_.type -eq "CommonEncryptionCenc") {
+      $output.VOD.DRMOpenKIDCENC = $_.id
+    } else {
+      $output.VOD.DRMOpenKIDCBCS = $_.id
+    }
   }
 
   $pathsTokenDRM = az ams streaming-locator get-paths `
@@ -211,11 +233,25 @@ function AddVODURLsToOutputJSON () {
   --name "tokendrmvod" | ConvertFrom-Json
   $output.VOD.DRMToken = @()
   $pathsTokenDRM.streamingPaths | ForEach-Object -Process {
-    $obj = New-Object PSObject -Property @{
-      url= "https://$($hostName)$($_.paths)"
-      streamingProtocol = $_.streamingProtocol
+    $actual = $_
+    $_.paths | ForEach-Object -Process {
+      $obj = New-Object PSObject -Property @{
+        url= "https://$($hostName)$($_)"
+        streamingProtocol = $actual.streamingProtocol
+      }
+      $output.VOD.DRMToken += $obj
     }
-    $output.VOD.DRMToken += $obj
+  }
+  $kidsTokenDRM = az ams streaming-locator list-content-keys `
+  --account-name $config.MediaServiceAccount `
+  --name "tokendrmvod" `
+  --resource-group $config.ResourceGroup | ConvertFrom-Json
+  $kidsTokenDRM | ForEach-Object -Process {
+    if ($_.type -eq "CommonEncryptionCenc") {
+      $output.VOD.DRMTokenKIDCENC = $_.id
+    } else {
+      $output.VOD.DRMTokenKIDCBCS = $_.id
+    }
   }
 
   $pathsOpenClearKey = az ams streaming-locator get-paths `
@@ -224,11 +260,14 @@ function AddVODURLsToOutputJSON () {
   --name "openclearkeyvod" | ConvertFrom-Json
   $output.VOD.encryptionOpen = @()
   $pathsOpenClearKey.streamingPaths | ForEach-Object -Process {
-    $obj = New-Object PSObject -Property @{
-      url = "https://$($hostName)$($_.paths)"
-      streamingProtocol = $_.streamingProtocol
+    $actual = $_
+    $_.paths | ForEach-Object -Process {
+      $obj = New-Object PSObject -Property @{
+        url= "https://$($hostName)$($_)"
+        streamingProtocol = $actual.streamingProtocol
+      }
+      $output.VOD.encryptionOpen += $obj
     }
-    $output.VOD.encryptionOpen += $obj
   }
 
   $pathsTokenClearKey = az ams streaming-locator get-paths `
@@ -237,11 +276,14 @@ function AddVODURLsToOutputJSON () {
   --name "tokenclearkeyvod" | ConvertFrom-Json
   $output.VOD.encryptionToken = @()
   $pathsTokenClearKey.streamingPaths | ForEach-Object -Process {
-    $obj = New-Object PSObject -Property @{
-      url= "https://$($hostName)$($_.paths)"
-      streamingProtocol = $_.streamingProtocol
+    $actual = $_
+    $_.paths | ForEach-Object -Process {
+      $obj = New-Object PSObject -Property @{
+        url= "https://$($hostName)$($_)"
+        streamingProtocol = $actual.streamingProtocol
+      }
+      $output.VOD.encryptionToken += $obj
     }
-    $output.VOD.encryptionToken += $obj
   }
 
   $output.token = ""
@@ -264,11 +306,14 @@ function AddLiveStreamURLsToOutputJSON () {
   --resource-group $config.ResourceGroup `
   --name "clearlivestream" | ConvertFrom-Json
   $pathsClear.streamingPaths | ForEach-Object -Process {
-    $obj = New-Object PSObject -Property @{
-      url= "https://$($hostName)$($_.paths)"
-      streamingProtocol = $_.streamingProtocol
+    $actual = $_
+    $_.paths | ForEach-Object -Process {
+      $obj = New-Object PSObject -Property @{
+        url= "https://$($hostName)$($_)"
+        streamingProtocol = $actual.streamingProtocol
+      }
+      $output.LiveStream.clear += $obj
     }
-    $output.LiveStream.clear += $obj
   }
 
   $pathsOpenDRM = az ams streaming-locator get-paths `
@@ -277,11 +322,25 @@ function AddLiveStreamURLsToOutputJSON () {
   --name "operdrmlivestream" | ConvertFrom-Json
   $output.LiveStream.DRMOpen = @()
   $pathsOpenDRM.streamingPaths | ForEach-Object -Process {
-    $obj = New-Object PSObject -Property @{
-      url= "https://$($hostName)$($_.paths)"
-      streamingProtocol = $_.streamingProtocol
+    $actual = $_
+    $_.paths | ForEach-Object -Process {
+      $obj = New-Object PSObject -Property @{
+        url= "https://$($hostName)$($_)"
+        streamingProtocol = $actual.streamingProtocol
+      }
+      $output.LiveStream.DRMOpen += $obj
     }
-    $output.LiveStream.DRMOpen += $obj
+  }
+  $kidsOpenDRM = az ams streaming-locator list-content-keys `
+  --account-name $config.MediaServiceAccount `
+  --name "operdrmlivestream" `
+  --resource-group $config.ResourceGroup | ConvertFrom-Json
+  $kidsOpenDRM | ForEach-Object -Process {
+    if ($_.type -eq "CommonEncryptionCenc") {
+      $output.liveStream.DRMOpenKIDCENC = $_.id
+    } else {
+      $output.liveStream.DRMOpenKIDCBCS = $_.id
+    }
   }
 
   $pathsTokenDRM = az ams streaming-locator get-paths `
@@ -290,11 +349,25 @@ function AddLiveStreamURLsToOutputJSON () {
   --name "tokendrmlivestream" | ConvertFrom-Json
   $output.LiveStream.DRMToken = @()
   $pathsTokenDRM.streamingPaths | ForEach-Object -Process {
-    $obj = New-Object PSObject -Property @{
-      url= "https://$($hostName)$($_.paths)"
-      streamingProtocol = $_.streamingProtocol
+    $actual = $_
+    $_.paths | ForEach-Object -Process {
+      $obj = New-Object PSObject -Property @{
+        url= "https://$($hostName)$($_)"
+        streamingProtocol = $actual.streamingProtocol
+      }
+      $output.LiveStream.DRMToken += $obj
     }
-    $output.LiveStream.DRMToken += $obj
+  }
+  $kidsTokenDRM = az ams streaming-locator list-content-keys `
+  --account-name $config.MediaServiceAccount `
+  --name "tokendrmlivestream" `
+  --resource-group $config.ResourceGroup | ConvertFrom-Json
+  $kidsTokenDRM | ForEach-Object -Process {
+    if ($_.type -eq "CommonEncryptionCenc") {
+      $output.liveStream.DRMTokenKIDCENC = $_.id
+    } else {
+      $output.liveStream.DRMTokenKIDCBCS = $_.id
+    }
   }
 
   $pathsOpenClearKey = az ams streaming-locator get-paths `
@@ -303,11 +376,14 @@ function AddLiveStreamURLsToOutputJSON () {
   --name "openclearkeylivestream" | ConvertFrom-Json
   $output.LiveStream.encryptionOpen = @()
   $pathsOpenClearKey.streamingPaths | ForEach-Object -Process {
-    $obj = New-Object PSObject -Property @{
-      url = "https://$($hostName)$($_.paths)"
-      streamingProtocol = $_.streamingProtocol
+    $actual = $_
+    $_.paths | ForEach-Object -Process {
+      $obj = New-Object PSObject -Property @{
+        url= "https://$($hostName)$($_)"
+        streamingProtocol = $actual.streamingProtocol
+      }
+      $output.LiveStream.encryptionOpen += $obj
     }
-    $output.LiveStream.encryptionOpen += $obj
   }
 
   $pathsTokenClearKey = az ams streaming-locator get-paths `
@@ -316,13 +392,16 @@ function AddLiveStreamURLsToOutputJSON () {
   --name "tokenclearkeylivestream" | ConvertFrom-Json
   $output.LiveStream.encryptionToken = @()
   $pathsTokenClearKey.streamingPaths | ForEach-Object -Process {
-    $obj = New-Object PSObject -Property @{
-      url = "https://$($hostName)$($_.paths)"
-      streamingProtocol = $_.streamingProtocol
+    $actual = $_
+    $_.paths | ForEach-Object -Process {
+      $obj = New-Object PSObject -Property @{
+        url= "https://$($hostName)$($_)"
+        streamingProtocol = $actual.streamingProtocol
+      }
+      $output.LiveStream.encryptionToken += $obj
     }
-    $output.LiveStream.encryptionToken += $obj
   }
-
+  $output.LiveStream.mode = $config.liveStream.mode
   $output.token = @()
   $token = generateJWTToken $config.token.issuer $config.token.audience $config.token.key
   $output.token = $token
@@ -381,4 +460,41 @@ function generateJWTToken {
 
   $Token = $ToBeSigned + "." + $Signature
   return $Token
+}
+
+function getLicenseURLs($manifestUrl){
+  Write-Host $manifestUrl
+  [xml]$doc = (New-Object System.Net.WebClient).DownloadString($manifestUrl)
+  $licenseUrl = [System.Uri]$doc.MPD.Period.AdaptationSet.ContentProtection.laurl.licenseUrl[0]
+
+  $output.WidevineLicenseURL = $licenseUrl.Scheme + "://" + $licenseUrl.Host + "/Widevine/"
+  $output.PlayReadyLicenseURL = $licenseUrl.Scheme + "://" + $licenseUrl.Host + "/PlayReady/"
+  $output.FairPlayLicenseURL = $licenseUrl.Scheme + "://" + $licenseUrl.Host + "/FairPlay/"
+  if ($config.fairPlayCertificate){
+    $output.FairPlayCertificate = Split-Path $config.fairPlayCertificate -leaf
+  }
+}
+
+function updateLicenseURLs(){
+  $output = Get-Content -Raw -Path "..\players\output.json" | ConvertFrom-Json
+
+  if ($output.VOD.DRMOpen) {
+    $output.VOD.DRMOpen | ForEach-Object -Process {
+      $isDASH = $_.streamingProtocol | Select-String -Pattern 'DASH'
+      if ($isDASH) {
+        getLicenseURLs $_.url
+      }
+    } 
+  }
+
+  if ($output.LiveStream.DRMOpen) {
+    $output.LiveStream.DRMOpen | ForEach-Object -Process {
+      $isDASH = $_.streamingProtocol | Select-String -Pattern 'DASH'
+      if ($isDASH) {
+        getLicenseURLs $_.url
+      }
+    }
+  }
+
+  $output | ConvertTo-Json -Depth 10 | Out-File "..\players\output.json"
 }

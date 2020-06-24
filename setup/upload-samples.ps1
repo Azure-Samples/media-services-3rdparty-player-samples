@@ -35,6 +35,10 @@ uploadFile "*.html"
 uploadFile "*.vtt"
 uploadFile "*.json"
 
+if (Test-Path -Path $config.fairPlayCertificate){
+  uploadFile $config.fairPlayCertificate
+}
+
 ActivityMessage "Getting URL ..."
 $storageAccountURL = az storage account show `
 --name $config.StorageAccount `
