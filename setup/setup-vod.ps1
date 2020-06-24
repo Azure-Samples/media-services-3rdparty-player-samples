@@ -41,7 +41,10 @@ if ($asset) {
   --resource-group $config.ResourceGroup | ConvertFrom-Json
   SuccessMessage "vtt Output asset Created"
   ActivityMessage "Analyzing audio..."  
-  
+  $vttassetData = az ams asset show `
+  --account-name $config.MediaServiceAccount `
+  --resource-group $config.ResourceGroup `
+  --name "vttoutputasset" | ConvertFrom-Json
   $vttJob = az ams job start `
   --output-assets "vttoutputasset=" `
   --account-name $config.MediaServiceAccount `
@@ -59,7 +62,7 @@ if ($asset) {
   } While ($vttJob.state -ne "Finished")
   $vttFile = az storage blob download `
   --account-name $config.StorageAccount `
-  --container-name $vttOutputAsset.container `
+  --container-name $vttassetData.container `
   --name "transcript.vtt" `
   --file "..\players\transcript.vtt"
   SuccessMessage "VTT file downloaded"
@@ -117,7 +120,7 @@ if (!$openDRMLocator) {
   $openDRMLocator = az ams streaming-locator create `
   --name "opendrmvod" `
   --asset-name defaultoutputasset `
-  --streaming-policy-name "Predefined_MultiDrmCencStreaming" `
+  --streaming-policy-name "allProtocolsAllDRMsPolicy" `
   --resource-group $config.ResourceGroup `
   --account-name $config.MediaServiceAccount `
   --content-key-policy-name $config.CKP.DRMOpen.name
@@ -131,7 +134,7 @@ if (!$tokenDRMLocator) {
   $tokenDRMLocator = az ams streaming-locator create `
   --name "tokendrmvod" `
   --asset-name defaultoutputasset `
-  --streaming-policy-name "Predefined_MultiDrmCencStreaming" `
+  --streaming-policy-name "allProtocolsAllDRMsPolicy" `
   --resource-group $config.ResourceGroup `
   --account-name $config.MediaServiceAccount `
   --content-key-policy-name $config.CKP.DRMToken.name

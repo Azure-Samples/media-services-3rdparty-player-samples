@@ -1,4 +1,4 @@
-# Media Services v3 Player Frameworks Tests - Video.js
+# Media Services v3 Player Frameworks Tests - Shaka Player
 
 [Overview](#overview)
 
@@ -7,23 +7,24 @@
   * [Basic usage of sample](#basic-usage-of-sample)
   * [Custom setup of player](#custom-setup-of-player)
     + [Setup VOD captions](#setup-vod-captions)
+    + [Setup Live stream captions](#setup-live-stream-captions)
     + [Setup Token Authentication](#setup-token-authentication)
     + [Setup AES-128 encryption](#setup-aes-128-encryption)
     + [Setup DRM Protection](#setup-drm-protection)
-      - [Acquiring the License URL](#acquiring-the-license-url)
-      - [Using tokenized DRM](#using-tokenized-drm)
 - [Test results](#test-results)
-  * [Windows 10](#windows-10---v1909-)
-  * [macOS](#macos---v10155-)
-  * [Ubuntu](#ubuntu---v18043-lts-)
-  * [Android](#android---v8-)
-  * [iOS](#ios---v1351-)
+    * [Windows 10](#windows-10---v1909+)
+    * [macOS](#macos---v10.15.5+)
+    * [Ubuntu](#ubuntu---v18.04.3-LTS+)
+    * [Android](#android---v8+)
+    * [iOS](#ios---v13.5.1+)
 
 # Overview
 
-Video.js is a web video player built from the ground up for an HTML5 world. It plays adaptive media formats (such as DASH and HLS) in a browser, without using plugins or Flash. Instead, Video.js uses the open web standards MediaSource Extensions and Encrypted Media Extensions. Moreover, It supports video playback on desktops and mobile devices.
+Shaka Player is an open-source JavaScript library for adaptive media. It plays adaptive media formats (such as DASH and HLS) in a browser, without using plugins or Flash. Instead, Shaka Player uses the open web standards MediaSource Extensions and Encrypted Media Extensions.
 
-Its official documentation can be found [here](https://docs.videojs.com/ "Video.js documentation").
+We recommend using it with [Mux.js](https://github.com/videojs/mux.js/) in order to maximize HLS compatibility.
+
+Its official documentation can be found [here](https://shaka-player-demo.appspot.com/docs/api/tutorial-welcome.html "Shaka player documentation").
 
 ------------
 
@@ -36,131 +37,113 @@ Its official documentation can be found [here](https://docs.videojs.com/ "Video.
 1. Clone this repository
 2. Navigate through the console to the example's folder (players/) and run `npx http-server`
 3. Open the browser of your choice, and go to `http://localhost:8080/`
-4. Copy the link to your manifest URL, and paste it in the `Manifest URL` field and click `Load Stream`. Your video is now loaded.
+4. Copy the link to your manifest URL, and paste it in the `Manifest URL` field and click `Load Stream`
+
+**Your video is now loaded.**
 
 ## Custom setup of player
+Follow these instructions if you need to setup your own instance of the player.
 
 1. Create an `index.html` file where you'll host the player. Add the following lines of code (you can replace the versions for newer if applicable):
 
-```xml
+```html
 <html>
   <head>
-    <link href="https://vjs.zencdn.net/7.8.2/video-js.css" rel="stylesheet" />
+    <script src="//cdn.jsdelivr.net/npm/shaka-player@3.0.0/dist/shaka-player.compiled.debug.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/mux.js@5.6.2/dist/mux.js"></script>
+    <script src="/myscript.js"></script>
   </head>
   <body>
-    <video id="video" class="video-js vjs-default-skin vjs-16-9" controls data-setup="{}">
-    </video>
-  
-    <script src="https://vjs.zencdn.net/7.8.2/video.js"></script>
-    <script src="index.js"></script>
+    <video id="video" controls></video>
   </body>
-<html>
+</html>
 ```
 
-2. Add an `index.js` file with the following code:
+2. Add a JavaScript file with the following code:
 
 ```javascript
-var videoJS = videojs("video");
-videoJS.src({
-  src: "manifestUrl",
-  type: "protocolType",
+// myScript.js
+shaka.polyfill.installAll();
+
+var video = document.getElementById('video');
+var player = new shaka.Player(video);
+window.player = player;
+
+var manifestUrl = 'https://amsplayeraccount-usw22.streaming.media.azure.net/00000000-0000-0000-0000-000000000000/sample-vod.ism/manifest(format=m3u8-aapl)';
+player.load(manifestUrl);
+```
+
+3. Replace `manifestUrl` with the manifest URL of your choice.
+4. Run a server (for example with `npx http-server` ) and your player should be working.
+
+### Setup VOD captions
+Run the following lines of code, and replace `captionUrl` with your .vtt directory, `lang` with the two letter code for language, and `type` with either `caption` or `subtitle`:
+
+```javascript
+player.configure('streaming.alwaysStreamText', true)
+player.load(manifestUrl).then(function(){
+        player.addTextTrack(captionUrl, lang, type, 'text/vtt');
+        var tracks = player.getTextTracks();
+        player.selectTextTrack(tracks[0]);
+});
+```
+### Setup Live stream captions
+
+Enable captions in live stream is configured adding the following line of code:
+
+```javascript
+player.setTextTrackVisibility(true)
+```
+
+### Setup Token Authentication
+Run the following lines of code, and replace `token` with your token string:
+
+```javascript
+player.getNetworkingEngine().registerRequestFilter(function (type, request) {
+  if (type === shaka.net.NetworkingEngine.RequestType.LICENSE) {
+    request.headers['Authorization'] = 'Bearer ' + token;
+  }
+});
+```
+
+### Setup AES-128 encryption
+Shaka Player does not currently support AES-128 encryption.
+
+[Source](https://github.com/google/shaka-player/issues/850)
+
+### Setup DRM Protection
+
+Shaka Player uses Encrypted Media Extensions (EME), which requires a secure URL to use. It means that for testing any DRM protected content it's necessary to use https. Also, because of mixed content requirements, if the site is using https, then the manifest and every segment will also need to use https too.
+
+The order of preference for Shaka management of the URL(s) of its license server(s):
+
+1. Clear Key config, used for debugging, should override everything else. (The application can still specify a clearkey license server.)
+2. Application-configured servers, if any are present, should override anything from the manifest.
+3. Manifest-provided license servers are only used if nothing else is specified.
+
+To specify the license server URL for Widevine or PlayReady we can use the following code:
+
+```javascript
+player.configure({
+  drm: {
+    servers: {
+      "com.widevine.alpha": "YOUR WIDEVINE LICENSE URL",
+      "com.microsoft.playready": "YOUR PLAYREADY LICENSE URL"
+    }
+  }
 });
 
 ```
 
-3. Replace `manifestUrl` with the manifest URL of your choice.
-
-4. Replace `protocolType` with the folowin options:
-
-- "application/x-mpegURL" for HLS protocols
-- "application/dash+xml" for DASH protocols
-
-### Setup VOD captions 
-
-Run the `addRemoteTextTrack` method, and replace:
-
-- `subtitleKind` with either `"captions"`, `"subtitles"`,`"descriptions"`,  or `"metadata"`  
-- `caption` with the .vtt file path
-- `subtitleLang` with the BCP 47 code for language, e.g. `"eng"` for English or `"es"` Spanish
-- `subtitleLabel` with your desired display name of caption
-
-```javascript
-    videojs.players.video.addRemoteTextTrack({
-      kind: subtitleKind,
-      src: caption,
-      srclang: subtitleLang,
-      label: subtitleLabel
-    });
+All FairPlay content requires setting a server certificate. This is set in the Player configuration:
 
 ```
-
-### Setup Token Authentication
-
-The token must be set in the authorization field of the request's header. In order to avoid problems with CORS, this token must be set only in those requests with `'keydeliver'` in its URL. The following code lines should do the work:
-
-```javascript
-setupTokenForDecrypt = function (options) {
-  if (options.uri.includes("keydeliver")) {
-    options.headers = options.headers || {};
-    options.headers.Authorization = "Bearer=" + '<REPLACE YOUR TOKEN HERE>';
-}
-  return options;
-};
+const req = await fetch("YOUR FAIRPLAY CERTIFICATE URL");
+const cert = await req.arrayBuffer();
+player.configure('drm.advanced.com\\.apple\\.fps\\.1_0.serverCertificate', new Uint8Array(cert));
 ```
 
-Then, the above function must be attached to the `videojs.Hls.xhr.beforeRequest` event.
-
-```javascript
-videojs.Hls.xhr.beforeRequest = setupTokenForDecrypt; 
-```
-### Setup AES-128 encryption
-
-Video.js supports AES-128 encryption without any additional configuration. Please note that there's currently [an issue](https://github.com/videojs/video.js/issues/6717) with encryption and HLS/DASH CMAF content, which are not playable. 
-
-### Setup DRM Protection
-
-In order to support DRM protection, you must add the [videojs-contrib-eme](https://github.com/videojs/videojs-contrib-eme) official extension; a CDN version of it works as well. 
-
-1. In the `index.js` file detailed above, you must initialize the EME extension by adding `videoJS.eme();` *before* adding the source of the video:
-
-   ```javascript
-    videoJS.eme();
-    videoJS.src({...
-   ```
-
-2. Now you can define the URLs of the DRM services, and the URLs of the corresponding licenses as follows:
-
-   ```javascript
-   videoJS.src({
-       keySystems: {
-          	"com.microsoft.playready": "YOUR PLAYREADY LICENSE URL",
-          	"com.widevine.alpha": "YOUR WIDEVINE LICENSE URL",
-          	"com.apple.fps.1_0": {
-          		certificateUri: "YOUR FAIRPLAY CERTIFICATE URL",
-          		licenseUri: "YOUR FAIRPLAY LICENSE URL"
-           }
-         }
-       })
-   
-   ```
-
-#### Acquiring the License URL
-
-In order to acquire the license URL you can:
-
-- Consult your DRM provider configuration
-- or, consult the `output.json` document generated when you previously ran the [setup-vod.ps1](https://github.com/southworks/media-services-v3-player-frameworks-tests/tree/master/setup#setup-vodps1) for VODs, or [start-live.ps1](https://github.com/southworks/media-services-v3-player-frameworks-tests/tree/master/setup#start-liveps1) for live streams; you'll also find the KIDs inside this file.
-
-#### Using tokenized DRM
-
-In order to support tokenized DRM protection, you have to add the following line to the `src` property of the player:
-
-```javascript
-videoJS.src({
-src: ...,
-emeHeaders: {'Authorization': "Bearer=" + "YOUR TOKEN"},
-keySystems: {...
-```
+##### Documentation: [here](https://shaka-player-demo.appspot.com/docs/api/tutorial-drm-config.html "Shaka player DRM protection documentation")
 
 ------
 

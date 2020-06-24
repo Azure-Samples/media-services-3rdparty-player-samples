@@ -90,7 +90,7 @@ if ($openDRMLocator) {
   --resource-group $config.ResourceGroup `
   --account-name $config.MediaServiceAccount `
   --asset-name $config.liveStream.assetName `
-  --streaming-policy-name "Predefined_MultiDrmCencStreaming" `
+  --streaming-policy-name "allProtocolsAllDRMsPolicy" `
   --content-key-policy-name $config.CKP.DRMOpen.name
   SuccessMessage "DRM Open Live Stream locator created."
 }
@@ -105,7 +105,7 @@ if ($tokenDRMLocator) {
   --resource-group $config.ResourceGroup `
   --account-name $config.MediaServiceAccount `
   --asset-name $config.liveStream.assetName `
-  --streaming-policy-name "Predefined_MultiDrmCencStreaming" `
+  --streaming-policy-name "allProtocolsAllDRMsPolicy" `
   --content-key-policy-name $config.CKP.DRMToken.name
   SuccessMessage "DRM Token Live Stream locator created."
 }
@@ -153,6 +153,8 @@ $liveEventData = az ams live-event start `
 --resource-group $config.ResourceGroup `
 --account-name $config.MediaServiceAccount | ConvertFrom-Json
 
+$output.LiveStream.ingestURLs = @()
+
 $liveEventData.input.endpoints | ForEach-Object -Process {
   SuccessMessage ("Ingest URL: " + $_.url)
   $output.LiveStream.ingestURLs += $_.url
@@ -163,5 +165,7 @@ $null = Read-Host -Prompt "Start streaming to an Ingest URL and press enter to g
 AddLiveStreamURLsToOutputJSON
 
 generateURLs
+
+updateLicenseURLs
 
 SuccessMessage "Live Stream started"

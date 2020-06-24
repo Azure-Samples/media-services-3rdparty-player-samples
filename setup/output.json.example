@@ -6,8 +6,10 @@
     "encryptionOpen": [],
     "encryptionToken": [],
     "subtitle": "",
-    "DRMOpenKID": "",
-    "DRMTokenKID": ""
+    "DRMOpenKIDCENC": "",
+    "DRMOpenKIDCBCS": "",
+    "DRMTokenKIDCENC": "",
+    "DRMTokenKIDCBCS": ""
   },
   "LiveStream": {
     "mode": "",
@@ -17,12 +19,14 @@
     "DRMToken": [],
     "encryptionOpen": [],
     "encryptionToken": [],
-    "DRMOpenKID": "",
-    "DRMTokenKID": ""
+    "DRMOpenKIDCENC": "",
+    "DRMOpenKIDCBCS": "",
+    "DRMTokenKIDCENC": "",
+    "DRMTokenKIDCBCS": ""
   },
   "WidevineLicenseURL": "",
   "PlayReadyLicenseURL": "",
   "FairPlayLicenseURL": "",
-  "FairPlayCertificateURL": "",
+  "FairPlayCertificate": "",
   "Token": ""
 }
