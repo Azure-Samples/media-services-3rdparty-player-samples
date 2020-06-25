@@ -20,9 +20,10 @@ $enabling = az storage blob service-properties update `
 SuccessMessage "Static website hosting enabled."
 
 function uploadFile ($typeFile) {
-ActivityMessage "Uploading files from $($config.samples.path) ..."
+$samplesPath = "..\\players\\"
+ActivityMessage "Uploading files from $($samplesPath) ..."
 az storage blob upload-batch `
---source $config.samples.path `
+--source $samplesPath `
 --destination '$web' `
 --pattern $typeFile `
 --account-name $config.StorageAccount
@@ -35,8 +36,8 @@ uploadFile "*.html"
 uploadFile "*.vtt"
 uploadFile "*.json"
 
-if (Test-Path -Path $config.fairPlayCertificate){
-  uploadFile $config.fairPlayCertificate
+if ($config.FairPlayCertificate -and (Test-Path -Path $config.FairPlayCertificate)){
+  uploadFile $config.FairPlayCertificate
 }
 
 ActivityMessage "Getting URL ..."

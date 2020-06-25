@@ -6,9 +6,9 @@
   * [Table of contents](#table-of-contents)
   * [Overview](#overview)
   * [Requirements](#requirements)
+  * [Steps to setup and start the streams](#steps-to-setup-and-start-the-streams)
   * [Configuration](#configuration)
     + [Options of the Content Key Policy](#options-of-the-content-key-policy)
-    + [Steps to setup VOD and Live streams](#steps-to-setup-vod-and-live-streams)
     + [setup.ps1](#setupps1)
       - [What this script does](#what-this-script-does)
       - [Requirements](#requirements-1)
@@ -52,6 +52,92 @@ This file documents the scripts used to setup test content in Azure Media Servic
 ## Requirements
 - Azure CLI: [link](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
 - PowerShell 5.1+:  [link](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-core-on-windows?view=powershell-7)
+
+## Steps to setup and start the streams
+
+### Common configuration
+
+1. Clone the repository
+```powershell
+git clone https://github.com/Azure-Samples/media-services-3rdparty-player-samples.git
+```
+2. Launch a PowerShell terminal 
+
+3. Login into your Azure account
+```powershell
+az login
+```
+3. Select a subscription
+```powershell
+az account set --subscription "subscription name"
+```
+5. Navigate to the `setup` folder in the cloned directory
+```powershell
+cd .\media-services-3rdparty-player-samples\setup
+```
+7. Copy the example configuration
+
+Configuration without FairPlay:
+```powershell
+Copy-Item .\config.json.example .\config.json
+```
+Configuration with FairPlay (This configuration requires a FairPlay Private key and public certificate):
+```powershell
+Copy-Item .\config.json.fairplay.example .\config.json
+```
+8. Configuration
+
+Open the `config.json` and update the names of the resources you'll use. If these don't exist, the script will create them:
+```json
+"ResourceGroup": "amsplayerresource",
+"StorageAccount": "amsplayerstorage",
+"MediaServiceAccount": "amsplayeraccount"
+```
+Additional configurations [here](#configuration)
+
+if you are configuring Fairplay in the `config.json` replace `fairplay.pfx` with the path of your private key and `fairplay.cer` with the path of your public certificate.
+
+9. Run Setup scripts. More information [here](#setupps1)
+```powershell
+.\setup.ps1
+.\setup-vod.ps1
+.\setup-live.ps1   
+```
+
+### Start VOD
+1. Run Start Endpoint script. More information [here](#start-endpointps1)
+```powershell
+.\start-endpoint.ps1   
+```
+
+### Start Live
+1. Run Start Live script. More information [here](#start-liveps1)
+```powershell
+.\start-live.ps1
+```
+2. The script shows the ingest URLs
+3. Copy the ingest URL in your streaming software 
+4. Start streaming in your software
+5. When streaming is started press enter in the terminal
+
+### Upload Samples
+1. Run Stop Live script. More information [here](#upload-samplesps1)
+```powershell
+.\upload-samples.ps1
+```
+This script prints the URL to access the samples online.
+
+### Stop VOD
+1. Run Stop Endpoint script. More information [here](#stop-vodps1)
+```powershell
+.\stop-endpoint.ps1   
+```
+
+### Stop Live
+1. Run Stop Live script. More information [here](#stop-liveps1)
+```powershell
+.\stop-live.ps1
+```
 
 ## Configuration
 The resource creation process can be configured through a `config.json` file, an example is uploaded [here](config.json.example).
@@ -101,10 +187,7 @@ config.json
   "liveOutputName": "liveoutput",
   "mode": "default" // Allowed values: default, transcription, lowLatency
 },
-"samples": {
-  "path": "..\\players\\" // Path to the folder that will be uploaded as a static site
-},
-"fairPlayCertificate": "" // Path to Public FairPlay Certificate
+"FairPlayCertificate": "" // Path to Public FairPlay Certificate
 ```
 
 #### Options of the Content Key Policy
@@ -138,7 +221,7 @@ In this sample, the Content key Policy with DRM and token protection will be cre
     {
       "name": "fairplayopen",
       "type": "--fair-play-pfx",
-      "typeValue": "@payload/Fairplay-out.pfx",
+      "typeValue": "@Fairplay-out.pfx",
       "ask": "ask-32-chars-hex-string",
       "fairPlayPfxPassword": "pfxPassword",
       "rentalAndLeaseKeyType": "PersistentUnlimited",
@@ -149,27 +232,6 @@ In this sample, the Content key Policy with DRM and token protection will be cre
 ```
 In the Setup directory there is a playreadylicense.json already created with the default template.
 In the config.json.example there is an extra parameter called "disabled-options" in the first Content Key Policy for a FairPlay sample. It won't be used in the scripts.
-
-#### Steps to setup VOD and Live streams
-1. Launch Windows PowerShell, and wait a moment for the PS command prompt to appear
-2. Login into your Azure account:
-```powershell
-az login
-```
-3. Select the subscription
-```powershell
-az account set --subscription "subscription name"
-```
-4. Navigate to the directory where the scripts are
-5. Execute the following scripts to configure both VOD and live stream and to upload the samples to a static website in Azure: 
-   - [setup.ps1](#setupps1)
-   - [setup-vod.ps1](#setup-vodps1)
-   - [setup-live.ps1](#setup-liveps1)
-   - [start-live.ps1](#start-liveps1)
-   - [upload-sample.ps1](#upload-samplesps1)
-6. To stop both live stream and VOD:
-   - [stop-live.ps1](#stop-liveps1)
-   - [stop-endpoint.ps1](#stop-endpointps1)
 
 ------
 
@@ -389,8 +451,8 @@ The following fields must be filled in the `config.json` file:
 ### upload-samples.ps1
 
 #### What this script does
-1. Enables the storage account specified in `config.json` file to host static website.
-2. Uploads to the blob storage the files in the path indicated in the `config.json`.
+1. Enables the storage account specified in `config.json` file to host static website
+2. Uploads to the blob storage the samples
 3. Prints the URL to access the static website.
 4. Extracts license URLs from manifest. To extract them, it performs the following steps:
    - Downloads the DASH DRM protected manifest from the generated URL 
@@ -403,8 +465,7 @@ The following fields must be filled in the `config.json` file:
 - The following fields must be filled in the `config.json` file:
     - `ResourceGroup`
     - `StorageAccount`
-    - `samples`
-        - `path`
+    - `FairPlayCertificate` Only if FairPlay is configured
 
 #### Run
 ```powershell
