@@ -16,6 +16,15 @@
           "name": "playreadyopen",
           "type": "--play-ready-template",
           "typeValue": "@payload/playreadylicense.json"
+        },
+        {
+          "name": "fairplayopen",
+          "type": "--fair-play-pfx",
+          "typeValue": "@fairplay.pfx",
+          "ask": "ask-32-chars-hex-string",
+          "fairPlayPfxPassword": "pfxPassword",
+          "rentalAndLeaseKeyType": "PersistentUnlimited",
+          "rentalDuration": "5000"
         }
       ]
     },
@@ -31,6 +40,15 @@
           "name": "playreadytoken",
           "type": "--play-ready-template",
           "typeValue": "@payload/playreadylicense.json"
+        },
+        {
+          "name": "fairplaytoken",
+          "type": "--fair-play-pfx",
+          "typeValue": "@fairplay.pfx",
+          "ask": "ask-32-chars-hex-string",
+          "fairPlayPfxPassword": "pfxPassword",
+          "rentalAndLeaseKeyType": "PersistentUnlimited",
+          "rentalDuration": "5000"
         }
       ]
     },
@@ -75,5 +93,5 @@
     "liveOutputName": "liveoutput",
     "mode": "default"
   },
-  "FairPlayCertificate": ""
+  "FairPlayCertificate": "fairplay.cer"
 }
