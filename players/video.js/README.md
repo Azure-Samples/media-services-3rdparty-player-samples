@@ -1,4 +1,4 @@
-# Media Services v3 Player Frameworks Tests - Video.js
+# Media Services 3rd Party Player Sample - Video.js
 
 [Overview](#overview)
 
@@ -52,7 +52,8 @@ Its official documentation can be found [here](https://docs.videojs.com/ "Video.
     </video>
   
     <script src="https://vjs.zencdn.net/7.8.2/video.js"></script>
-    <script src="index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/videojs-contrib-eme@3.7.0/dist/videojs-contrib-eme.min.js"></script>
+    <script type="module" src="index.js"></script>
   </body>
 <html>
 ```
@@ -80,18 +81,17 @@ videoJS.src({
 Run the `addRemoteTextTrack` method, and replace:
 
 - `subtitleKind` with either `"captions"`, `"subtitles"`,`"descriptions"`,  or `"metadata"`  
-- `caption` with the .vtt file path
+- `caption` with the .vtt file path (vtt file needs to be in the same host to avoid CORS error)
 - `subtitleLang` with the BCP 47 code for language, e.g. `"eng"` for English or `"es"` Spanish
 - `subtitleLabel` with your desired display name of caption
 
 ```javascript
-    videojs.players.video.addRemoteTextTrack({
-      kind: subtitleKind,
-      src: caption,
-      srclang: subtitleLang,
-      label: subtitleLabel
-    });
-
+videojs.players.video.addRemoteTextTrack({
+  kind: subtitleKind,
+  src: caption,
+  srclang: subtitleLang,
+  label: subtitleLabel
+});
 ```
 
 ### Setup Token Authentication
@@ -99,13 +99,14 @@ Run the `addRemoteTextTrack` method, and replace:
 The token must be set in the authorization field of the request's header. In order to avoid problems with CORS, this token must be set only in those requests with `'keydeliver'` in its URL. The following code lines should do the work:
 
 ```javascript
-setupTokenForDecrypt = function (options) {
-  if (options.uri.includes("keydeliver")) {
-    options.headers = options.headers || {};
-    options.headers.Authorization = "Bearer=" + '<REPLACE YOUR TOKEN HERE>';
+setupTokenForDecrypt (options) {
+  if (options.uri.includes('keydeliver')) {
+    options.headers = options.headers || {}
+    options.headers.Authorization = 'Bearer=' + this.getInputToken()
+  }
+
+  return options
 }
-  return options;
-};
 ```
 
 Then, the above function must be attached to the `videojs.Hls.xhr.beforeRequest` event.
@@ -125,7 +126,6 @@ In order to support DRM protection, you must add the [videojs-contrib-eme](https
 
    ```javascript
     videoJS.eme();
-    videoJS.src({...
    ```
 
 2. Now you can define the URLs of the DRM services, and the URLs of the corresponding licenses as follows:
@@ -170,9 +170,11 @@ References:
 
 ✔️ All scenarios are supported (Protocol + Browsers + VOD + Live Stream + Low Latency)
 
-⚠️ Some scenario may not be supported. See notes in each case.
+⚠️ Some scenarios may not be supported. See the notes in each case.
 
-❌ No scenario is supported
+❌ No scenarios were supported
+
+![chrome](../icons/chrome.png) Compatible browser
 
 ## Windows 10 - v1909+
 
@@ -180,9 +182,9 @@ Tested on ![newedge](../icons/edge-new.png) Edge (Chromium-based v83.0.478.50+),
 
 | Format | Clear | Token | Widevine | PlayReady | FairPlay | AES-128 | Captions |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: |
-| HLS TS    |  |  |  |  |  |  |  |
-| HLS CMAF  |  |  |  |  |  |  |  |
-| DASH CMAF |  |  |  |  |  |  |  |
+| HLS TS    | ✔️ | ⚠️ | ❌ | ❌ | Not tested | ![newedge](../icons/edge-new.png)![edge](../icons/edge.png) | ✔️ |
+| HLS CMAF  | ✔️ | ⚠️ | ✔️ | ⚠️ | Not tested | ❌ | ✔️ |
+| DASH CMAF | ⚠️ | ⚠️ | ⚠️ | ⚠️ | Not tested | ❌ | ✔️ |
 
 [More details](./results/windows.md)
 
@@ -192,9 +194,9 @@ Tested on ![chrome](../icons/chrome.png) Chrome(v83.0.4103.97) and ![safari](../
 
 | Format | Clear | Token | Widevine | PlayReady | FairPlay | AES-128 | Captions |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: |
-| HLS TS    |  |  |  |  |  |  |  |
-| HLS CMAF  |  |  |  |  |  |  |  |
-| DASH CMAF |  |  |  |  |  |  |  |
+| HLS TS    | ✔️ | ⚠️ | ❌ | ❌ | Not tested | ✔️ | ✔️ |
+| HLS CMAF  | ✔️ | ⚠️ | ![chrome](../icons/chrome.png) | ❌ | Not tested | ❌ | ✔️ |
+| DASH CMAF | ✔️ | ⚠️ | ![chrome](../icons/chrome.png) | ❌ | Not tested | ❌ | ✔️ |
 
 [More details](./results/mac.md)
 
@@ -204,9 +206,9 @@ Tested on ![chrome](../icons/chrome.png) Chrome(v79.0.3945.130) and ![firefox](.
 
 | Format | Clear | Token | Widevine | PlayReady | FairPlay | AES-128 | Captions |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: |
-| HLS TS    |  |  |  |  |  |  |  |
-| HLS CMAF  |  |  |  |  |  |  |  |
-| DASH CMAF |  |  |  |  |  |  |  |
+| HLS TS    | ✔️ | ⚠️ | ❌ | ❌ | Not tested | ✔️ | ✔️ |
+| HLS CMAF  | ✔️ | ⚠️ | ✔️ | ❌ | Not tested | ❌ | ✔️ |
+| DASH CMAF | ✔️ | ⚠️ | ⚠️ | ❌ | Not tested | ❌ | ✔️ |
 
 [More details](./results/ubuntu.md)
 
@@ -216,9 +218,9 @@ Tested on ![chrome](../icons/chrome.png) Chrome(v83.0.4103.97) and ![firefox](..
 
 | Format | Clear | Token | Widevine | PlayReady | FairPlay | AES-128 | Captions |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: |
-| HLS TS    |  |  |  |  |  |  |  |
-| HLS CMAF  |  |  |  |  |  |  |  |
-| DASH CMAF |  |  |  |  |  |  |  |
+| HLS TS    | ✔️ | ⚠️ | ❌ | ❌ | ❌ | ✔️ | ✔️ |
+| HLS CMAF  | ⚠️ | ❌ | ❌ | ❌ | ❌ | ❌ | ⚠️ |
+| DASH CMAF | ⚠️ | ⚠️ | ⚠️ | ❌ | ❌ | ❌ | ✔️ |
 
 [More details](./results/android.md)
 
@@ -228,8 +230,8 @@ Tested on ![chrome](../icons/chrome.png) Chrome (v83.0.4103.88) and ![safari](..
 
 | Format | Clear | Token | Widevine | PlayReady | FairPlay | AES-128 | Captions |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: |
-| HLS TS    |  |  |  |  |  |  |  |
-| HLS CMAF  |  |  |  |  |  |  |  |
-| DASH CMAF |  |  |  |  |  |  |  |
+| HLS TS    | ✔️ | ⚠️ | ❌ | ❌ | Not tested | ✔️ | ✔️ |
+| HLS CMAF  | ✔️ | ❌ | ❌ | ❌ | Not tested | ❌ | ✔️ |
+| DASH CMAF | ❌ | ❌ | ❌ | ❌ | Not tested | ❌ | ❌ |
 
 [More details](./results/ios.md)

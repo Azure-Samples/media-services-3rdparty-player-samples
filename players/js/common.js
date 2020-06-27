@@ -1,148 +1,180 @@
-var manifest = getUrlParameter('manifest');
-var token = getUrlParameter('token');
-var caption = getUrlParameter('caption');
-var format = getUrlParameter('format');
-var widevineLicenseUrl = getUrlParameter('widevine');
-var playReadyLicenseUrl = getUrlParameter('playReady');
-var fairPlayLicenseUrl = getUrlParameter('fairPlay');
-var fairPlayCertificate = getUrlParameter('fairPlayCertificate');
 
-function initPage() {
-  document.getElementById('captionCheckbox').addEventListener('click', configureCaption);
-  document.getElementById('tokenCheckbox').addEventListener('click', configureToken);
+const colors = {
+  DEBUG: 'text-black',
+  INFO: 'text-green-500',
+  WARNING: 'text-yellow-500',
+  ERROR: 'text-red-500'
+}
 
-  if (document.getElementById('widevineCheckbox'))
-    document.getElementById('widevineCheckbox').addEventListener('click', configureWidevine);
-  if (document.getElementById('playReadyCheckbox'))
-    document.getElementById('playReadyCheckbox').addEventListener('click', configurePlayReady);
-  if (document.getElementById('fairPlayCheckbox'))
-    document.getElementById('fairPlayCheckbox').addEventListener('click', configureFairPlay);
-  if (document.getElementById('fairPlayCertificateCheckbox'))
-    document.getElementById('fairPlayCertificateCheckbox').addEventListener('click', configureFairPlayCertificate);
+class BasePlayer {
+  constructor () {
+    this.manifest = this.getUrlParameter('manifest')
+    this.token = this.getUrlParameter('token')
+    this.caption = this.getUrlParameter('caption')
+    this.format = this.getUrlParameter('format')
+    this.widevineLicenseUrl = this.getUrlParameter('widevine')
+    this.playReadyLicenseUrl = this.getUrlParameter('playReady')
+    this.fairPlayLicenseUrl = this.getUrlParameter('fairPlay')
+    this.fairPlayCertificate = this.getUrlParameter('fairPlayCertificate')
 
-  var video = document.getElementById('video');
-  document.getElementById('manifestInput').value = manifest;
-
-  if (caption) {
-    document.getElementById('captionInput').value = caption;
-    document.getElementById('captionCheckbox').checked = true;
-    configureCaption();
+    this.initPage()
   }
 
-  if (token) {
-    document.getElementById('tokenInput').value = token;
-    document.getElementById('tokenCheckbox').checked = true;
-    configureToken();
+  $ (id) {
+    return document.getElementById(id)
   }
 
-  if (widevineLicenseUrl && document.getElementById('widevineCheckbox')) {
-    document.getElementById('widevineInput').value = widevineLicenseUrl;
-    document.getElementById('widevineCheckbox').checked = true;
-    configureWidevine();
+  initPage () {
+    this.$('captionCheckbox').addEventListener('click', this.configureCaption.bind(this))
+    this.$('tokenCheckbox').addEventListener('click', this.configureToken.bind(this))
+
+    if (this.$('widevineCheckbox')) {
+      this.$('widevineCheckbox').addEventListener('click', this.configureWidevine.bind(this))
+    }
+
+    if (this.$('playReadyCheckbox')) {
+      this.$('playReadyCheckbox').addEventListener('click', this.configurePlayReady.bind(this))
+    }
+
+    if (this.$('fairPlayCheckbox')) {
+      this.$('fairPlayCheckbox').addEventListener('click', this.configureFairPlay.bind(this))
+    }
+
+    if (this.$('fairPlayCertificateCheckbox')) {
+      this.$('fairPlayCertificateCheckbox').addEventListener('click', this.configureFairPlayCertificate.bind(this))
+    }
+
+    this.video = this.$('video')
+    this.$('manifestInput').value = this.manifest
+
+    if (this.caption) {
+      this.$('captionInput').value = this.caption
+      this.$('captionCheckbox').checked = true
+      this.configureCaption()
+    }
+
+    if (this.token) {
+      this.$('tokenInput').value = this.token
+      this.$('tokenCheckbox').checked = true
+      this.configureToken()
+    }
+
+    if (this.widevineLicenseUrl && this.$('widevineCheckbox')) {
+      this.$('widevineInput').value = this.widevineLicenseUrl
+      this.$('widevineCheckbox').checked = true
+      this.configureWidevine()
+    }
+
+    if (this.playReadyLicenseUrl && this.$('playReadyInput')) {
+      this.$('playReadyInput').value = this.playReadyLicenseUrl
+      this.$('playReadyCheckbox').checked = true
+      this.configurePlayReady()
+    }
+
+    if (this.fairPlayLicenseUrl && this.$('fairPlayCheckbox')) {
+      this.$('fairPlayInput').value = this.fairPlayLicenseUrl
+      this.$('fairPlayCheckbox').checked = true
+      this.configureFairPlay()
+    }
+
+    if (this.fairPlayCertificate && this.$('fairPlayCertificateCheckbox')) {
+      this.$('fairPlayCertificateInput').value = this.fairPlayCertificate
+      this.$('fairPlayCertificateCheckbox').checked = true
+      this.configureFairPlayCertificate()
+    }
+
+    if (this.format === 'hls' && this.$('selectHls')) {
+      this.$('selectHls').selected = 'true'
+    }
+
+    if (this.format === 'dash' && this.$('selectDash')) {
+      this.$('selectDash').selected = 'true'
+    }
   }
 
-  if (playReadyLicenseUrl && document.getElementById('playReadyInput')) {
-    document.getElementById('playReadyInput').value = playReadyLicenseUrl;
-    document.getElementById('playReadyCheckbox').checked = true;
-    configurePlayReady();
+  chooseFormat () {
+    this.selectFormat = this.$('formatsUrl').value
   }
 
-  if (fairPlayLicenseUrl && document.getElementById('fairPlayCheckbox')) {
-    document.getElementById('fairPlayInput').value = fairPlayLicenseUrl;
-    document.getElementById('fairPlayCheckbox').checked = true;
-    configureFairPlay();
+  getUrlParameter (name) {
+    name = name.replace(/[[]/, '\\[').replace(/[\]]/, '\\]')
+    const regex = new RegExp('[\\?&]' + name + '=([^&#]*)')
+    const results = regex.exec(location.search)
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '))
   }
 
-  if (fairPlayCertificate && document.getElementById('fairPlayCertificateCheckbox')) {
-    document.getElementById('fairPlayCertificateInput').value = fairPlayCertificate;
-    document.getElementById('fairPlayCertificateCheckbox').checked = true;
-    configureFairPlayCertificate();
+  configureCaption () {
+    this.$('captionInput').disabled = !this.$('captionCheckbox').checked
+
+    if (this.$('captionInput').disabled) {
+      this.$('captionInput').value = ''
+    }
   }
 
+  configureToken () {
+    this.$('tokenInput').disabled = !this.$('tokenCheckbox').checked
 
-  if (format == 'hls' && document.getElementById("selectHls")) {
-    document.getElementById("selectHls").selected = "true";
+    if (this.$('tokenInput').disabled) {
+      this.$('tokenInput').value = ''
+    }
   }
 
-  if (format == 'dash' && document.getElementById("selectDash")) {
-    document.getElementById("selectDash").selected = "true";
+  configureWidevine () {
+    this.$('widevineInput').disabled = !this.$('widevineCheckbox').checked
+
+    if (this.$('widevineInput').disabled) {
+      this.$('widevineInput').value = ''
+    }
   }
-}
 
-function chooseFormat() {
-  selectFormat = document.getElementById("formatsUrl").value;
-}
+  configurePlayReady () {
+    this.$('playReadyInput').disabled = !this.$('playReadyCheckbox').checked
 
+    if (this.$('playReadyInput').disabled) {
+      this.$('playReadyInput').value = ''
+    }
+  }
 
-function getUrlParameter(name) {
-  name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-  var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-  var results = regex.exec(location.search);
-  return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-}
+  configureFairPlay () {
+    this.$('fairPlayInput').disabled = !this.$('fairPlayCheckbox').checked
 
-function configureCaption() {
-  document.getElementById('captionInput').disabled = !document.getElementById('captionCheckbox').checked
+    if (this.$('fairPlayInput').disabled) {
+      this.$('fairPlayInput').value = ''
+    }
+  }
 
+  configureFairPlayCertificate () {
+    this.$('fairPlayCertificateInput').disabled = !this.$('fairPlayCertificateCheckbox').checked
 
-  if (document.getElementById('captionInput').disabled)
-    document.getElementById('captionInput').value = '';
-}
+    if (this.$('fairPlayCertificateInput').disabled) {
+      this.$('fairPlayCertificateInput').value = ''
+    }
+  }
 
-function configureToken() {
-  document.getElementById('tokenInput').disabled = !document.getElementById('tokenCheckbox').checked
+  addMessage (type, message) {
+    if (!message) {
+      return
+    }
 
-  if (document.getElementById('tokenInput').disabled)
-    document.getElementById('tokenInput').value = '';
-}
+    const log = document.createElement('p')
+    log.classList.add(colors[type])
 
-function configureWidevine() {
-  document.getElementById('widevineInput').disabled = !document.getElementById('widevineCheckbox').checked
+    const now = new Date()
+    log.textContent += now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds() + '.' + now.getMilliseconds() + ' '
+    log.textContent += '[' + type + '] '
+    log.textContent += message
 
-  if (document.getElementById('widevineInput').disabled)
-    document.getElementById('widevineInput').value = '';
-}
+    const playerEvents = this.$('playerEvents')
+    playerEvents.append(log)
 
-function configurePlayReady() {
-  document.getElementById('playReadyInput').disabled = !document.getElementById('playReadyCheckbox').checked
+    playerEvents.scrollTop = playerEvents.scrollHeight
+  }
 
-  if (document.getElementById('playReadyInput').disabled)
-    document.getElementById('playReadyInput').value = '';
-}
-function configureFairPlay() {
-  document.getElementById('fairPlayInput').disabled = !document.getElementById('fairPlayCheckbox').checked
-
-  if (document.getElementById('fairPlayInput').disabled)
-    document.getElementById('fairPlayInput').value = '';
-}
-
-function configureFairPlayCertificate() {
-  document.getElementById('fairPlayCertificateInput').disabled = !document.getElementById('fairPlayCertificateCheckbox').checked
-
-  if (document.getElementById('fairPlayCertificateInput').disabled)
-    document.getElementById('fairPlayCertificateInput').value = '';
-}
-
-function addMessage(type, message) {
-  if (!message) return
-
-  var log = document.createElement('p');
-  log.classList.add(colors[type]);
-
-  var now = new Date();
-  log.textContent += now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds() + '.' + now.getMilliseconds() + ' ';
-  log.textContent += '[' + type + '] ';
-  log.textContent += message;
-
-  playerEvents.append(log);
-
-  playerEvents.scrollTop = playerEvents.scrollHeight;
-}
-
-function interceptLog(type, log) {
-  return function () {
-    addMessage(type, Array.from(arguments).filter(Boolean).join(' '));
+  interceptLog (type, log) {
+    return () => {
+      this.addMessage(type, Array.from(arguments).filter(Boolean).join(' '))
+    }
   }
 }
 
-document.addEventListener('DOMContentLoaded', initPage);
+export default BasePlayer

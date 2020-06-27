@@ -88,7 +88,7 @@ function urlOutput ($urlTest) {
       $cbcsAapl = $_.url | Select-String -Pattern 'cbcs-aapl'
       $HLSV4 = $_.url | Select-String -Pattern 'm3u8-aapl'
       $tipoHLS = if ($HLSV4) {"HLS TS"} else {"HLS CMAF"}
-      $tipoEnc = if ($encCenc) {"CENC"} else {if($cbcsAapl){"CBCS"} else{""}}
+      $tipoEnc = if ($encCenc) {"CENC (Widevine + PlayReady)"} else {if($cbcsAapl){"CBCS (FairPlay)"} else{""}}
       $list += @{"streamingProtocol"="$($tipoHLS) $($tipoEnc)";"url"=$_.url;}
       WarningMessage "Protocol: $($tipoHLS) $($tipoEnc)"
       SuccessMessage $_.url
@@ -98,8 +98,8 @@ function urlOutput ($urlTest) {
       if ($DASHCMAF) {
         $encCenc = $_.url | Select-String -Pattern 'cenc'
         $cbcsAapl = $_.url | Select-String -Pattern 'cbcs-aapl'
-        $tipoEnc = if ($encCenc) {"CENC"} else {if($cbcsAapl){"CBCS"} else{""}}
-        $list += @{"streamingProtocol"="DASH-CMAF $($tipoEnc)";"url"=$_.url}
+        $tipoEnc = if ($encCenc) {"CENC (Widevine + PlayReady)"} else {if($cbcsAapl){"CBCS (FairPlay)"} else{""}}
+        $list += @{"streamingProtocol"="DASH CMAF $($tipoEnc)";"url"=$_.url}
         WarningMessage "Protocol: DASH CMAF $($tipoEnc)"
         SuccessMessage $_.url
       }

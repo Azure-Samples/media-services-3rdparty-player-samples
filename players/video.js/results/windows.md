@@ -6,19 +6,19 @@ References:
 
 ✔️ All tested browsers are supported 
 
-![edge](../../icons/edge.png) ![edge](../../icons/edge-new.png)![firefox](../../icons/firefox.png) ![chrome](../../icons/chrome.png) Only supported for these browsers
-
 ❌ Not supported by any tested browsers
+
+![edge](../../icons/edge-new.png)![edge](../../icons/edge.png)![firefox](../../icons/firefox.png)![chrome](../../icons/chrome.png) Only supported for these browsers
 
 ## VOD
 
 Preset: "AdaptiveStreaming"
 
-| Format | Clear | Token | Widevine | PlayReady | FairPlay | AES-128 | Sidecar | 
-| --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: |
-| HLS TS    |  |  |  |  |  |  |  |
-| HLS CMAF  |  |  |  |  |  |  |  |
-| DASH CMAF |  |  |  |  |  |  |  |
+| Format    | Clear | DRM Token | AES-128 Token |                           Widevine                           |                          PlayReady                           | FairPlay | AES-128 | Sidecar captions |
+| --------- | :---: | :-------: | :-----------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :-----: | :--------------: |
+| HLS TS    |   ✔️   |     ❌     |       ✔️       |                              ❌                               |                              ❌                               |    ❌     |    ✔️    |        ✔️         |
+| HLS CMAF  |   ✔️   |     ✔️     |       ❌       | ![firefox](../../icons/firefox.png)![chrome](../../icons/chrome.png) |             ![newedge](../../icons/edge-new.png)             |    ❌     |    ❌    |        ✔️         |
+| DASH CMAF |   ✔️   |     ✔️     |       ❌       | ![firefox](../../icons/firefox.png)![chrome](../../icons/chrome.png) | ![newedge](../../icons/edge-new.png)![edge](../../icons/edge.png) |    ❌     |    ❌    |        ✔️         |
 
 ## Live Stream
 
@@ -26,11 +26,11 @@ EncodingType: "Standard"
 
 PresetName: "Default720p"
 
-| Format | Clear | Token | Widevine | PlayReady | FairPlay | AES-128 | Live Transcription |
-| --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: |
-| HLS TS    |  |  |  |  |  |  |  |
-| HLS CMAF  |  |  |  |  |  |  |  |
-| DASH CMAF |  |  |  |  |  |  |  |
+| Format | Clear | DRM Token | AES-128 Token | Widevine | PlayReady | FairPlay | AES-128 | Live Transcription |
+| --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
+| HLS TS    | ✔️ | ❌ | ✔️ | ❌ | ❌ | Not tested | ✔️ | ![edge](../../icons/edge-new.png)![firefox](../../icons/firefox.png)![chrome](../../icons/chrome.png) |
+| HLS CMAF  | ✔️ | ![firefox](../../icons/firefox.png)![chrome](../../icons/chrome.png) | ❌ | ![firefox](../../icons/firefox.png)![chrome](../../icons/chrome.png) | ❌ | Not tested | ❌ | ❌ |
+| DASH CMAF | ![newedge](../../icons/edge-new.png)![edge](../../icons/edge.png) | ❌ | ❌ | ❌ | ![edge](../../icons/edge.png) | Not tested | ❌ | ❌ |
 
 ## Live Stream with Low Latency
 
@@ -38,8 +38,8 @@ EncodingType: "Standard"
 
 PresetName: "Default720p"
 
-| Format | Clear | Token | Widevine | PlayReady | FairPlay | AES-128 |
-| --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: |
-| HLS TS    |  |  |  |  |  |  |
-| HLS CMAF  |  |  |  |  |  |  |
-| DASH CMAF |  |  |  |  |  |  |
+| Format    |             Clear             |                          DRM Token                           |                        AES-128 Token                         |                           Widevine                           |           PlayReady           |  FairPlay  | AES-128 |
+| --------- | :---------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :---------------------------: | :--------: | :-----: |
+| HLS TS    |               ✔️               |                              ❌                               | ![chrome](../../icons/chrome.png)![newedge](../../icons/edge-new.png)![firefox](../../icons/firefox.png) |                              ❌                               |               ❌               | Not tested |    ✔️    |
+| HLS CMAF  |               ✔️               | ![firefox](../../icons/firefox.png)![chrome](../../icons/chrome.png) |                              ❌                               | ![firefox](../../icons/firefox.png)![chrome](../../icons/chrome.png) |               ❌               | Not tested |    ❌    |
+| DASH CMAF | ![edge](../../icons/edge.png) |                ![edge](../../icons/edge.png)                 |                              ❌                               |                              ❌                               | ![edge](../../icons/edge.png) | Not tested |    ❌    |

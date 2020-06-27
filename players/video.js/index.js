@@ -1,94 +1,90 @@
-function initPlayer() {
+import BasePlayer from '../js/common.js'
 
-  var videoJS = videojs("video");
+const Types = {
+  hlsType: 'application/x-mpegURL',
+  dashType: 'application/dash+xml',
+  dashCmaf: 'mpd-time-cmaf'
+}
 
-  let subtitleKind = 'subtitles';
-  let subtitleLang = 'eng';
-  let subtitleLabel = 'test';
+class VideojsPlayer extends BasePlayer {
+  initPlayer () {
+    const videoJS = videojs('video')
 
-  videojs.Hls.xhr.beforeRequest = setupTokenForDecrypt;
+    const subtitleKind = 'subtitles'
+    const subtitleLang = 'eng'
+    const subtitleLabel = 'test'
 
-  var typeUrl = constants.hlsType;
-  if (format == "dash") {
-    var typeUrl = constants.dashType;
-  }
+    videojs.Hls.xhr.beforeRequest = this.setupTokenForDecrypt.bind(this)
 
-  videoJS.eme();
+    let typeUrl = Types.hlsType
+    if (this.format === 'dash') {
+      typeUrl = Types.dashType
+    }
 
-  if (playReadyLicenseUrl || widevineLicenseUrl || fairPlayCertificate) {
-    videoJS.src({
-      src: manifest,
-      type: typeUrl,
-      emeHeaders: {'Authorization':  "Bearer=" + getInputToken()},
-      keySystems: {
-        "com.microsoft.playready": playReadyLicenseUrl,
-        "com.widevine.alpha": widevineLicenseUrl,
-        "com.apple.fps.1_0": {
-          certificateUri: fairPlayCertificate,
-          licenseUri: fairPlayLicenseUrl
+    videoJS.eme()
+
+    if (this.playReadyLicenseUrl || this.widevineLicenseUrl || this.fairPlayCertificate) {
+      videoJS.src({
+        src: this.manifest,
+        type: typeUrl,
+        emeHeaders: { Authorization: 'Bearer=' + this.getInputToken() },
+        keySystems: {
+          'com.microsoft.playready': this.playReadyLicenseUrl,
+          'com.widevine.alpha': this.widevineLicenseUrl,
+          'com.apple.fps.1_0': {
+            certificateUri: this.fairPlayCertificate,
+            licenseUri: this.fairPlayLicenseUrl
+          }
         }
-      }
-    })
+      })
+    } else {
+      videoJS.src({
+        src: this.manifest,
+        type: typeUrl
+      })
+    }
+
+    const logLevelDetailsChosen = 4
+
+    if (logLevelDetailsChosen >= 1) {
+      videojs.log.error = this.interceptLog('ERROR', videojs.log.error)
+    }
+
+    if (logLevelDetailsChosen >= 2) {
+      videojs.log.warn = this.interceptLog('WARNING', videojs.log.warn)
+    }
+
+    if (logLevelDetailsChosen >= 3) {
+      videojs.log.info = this.interceptLog('INFO', videojs.log.info)
+    }
+
+    if (logLevelDetailsChosen >= 4) {
+      videojs.log.debug = this.interceptLog('DEBUG', videojs.log.debug)
+    }
+
+    if (this.caption) {
+      videojs.players.video.addRemoteTextTrack({
+        kind: subtitleKind,
+        src: this.caption,
+        srclang: subtitleLang,
+        label: subtitleLabel
+      })
+    };
   }
-  else {
-    videoJS.src({
-      src: manifest,
-      type: typeUrl
-    })
+
+  getInputToken () {
+    return this.$('tokenInput').value
   }
 
-  var logLevelDetailsChosen = 4;
+  setupTokenForDecrypt (options) {
+    if (options.uri.includes('keydeliver')) {
+      options.headers = options.headers || {}
+      options.headers.Authorization = 'Bearer=' + this.getInputToken()
+    }
 
-  if (logLevelDetailsChosen >= 1) {
-    videojs.log.error = interceptLog("ERROR", videojs.log.error);
-  };
-  if (logLevelDetailsChosen >= 2) {
-    videojs.log.warn = interceptLog("WARNING", videojs.log.warn);
-  };
-  if (logLevelDetailsChosen >= 3) {
-    videojs.log.info = interceptLog("INFO", videojs.log.info);
-  };
-  if (logLevelDetailsChosen >= 4) {
-    videojs.log.debug = interceptLog("DEBUG", videojs.log.debug);
-  };
-
-  if (caption) {
-    videojs.players.video.addRemoteTextTrack({
-      kind: subtitleKind,
-      src: caption,
-      srclang: subtitleLang,
-      label: subtitleLabel
-    });
-  };
-
-
-};
-
-getInputToken = function () {
-  return document.getElementById("tokenInput").value;
-};
-
-setupTokenForDecrypt = function (options) {
-  if (options.uri.includes("keydeliver")) {
-    options.headers = options.headers || {};
-    options.headers.Authorization = "Bearer=" + getInputToken();
+    return options
   }
-  return options;
-};
+}
 
-constants = {
-  hlsType: "application/x-mpegURL",
-  dashType: "application/dash+xml",
-  dashCmaf: "mpd-time-cmaf",
-};
-
-colors = {
-  DEBUG: "text-black",
-  INFO: "text-green-500",
-  WARNING: "text-yellow-500",
-  ERROR: "text-red-500",
-};
-
-document.addEventListener("DOMContentLoaded", () => {
-  initPlayer();
-});
+const videojsPlayer = new VideojsPlayer()
+videojsPlayer.initPlayer()
