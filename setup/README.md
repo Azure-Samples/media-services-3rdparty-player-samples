@@ -95,7 +95,11 @@ Open the `config.json` and update the names of the resources you'll use. If thes
 ```
 Additional configurations [here](#configuration)
 
-if you are configuring Fairplay in the `config.json` replace `fairplay.pfx` with the path of your private key and `fairplay.cer` with the path of your public certificate.
+if you are configuring Fairplay replace in the `config.json` the folowing values:  
+  - `fairplay.pfx` with the path of your private key.
+  - `fairplay.cer` with the path of your public certificate.
+  - `ask-32-chars-hex-string` with the key that must be used as FairPlay Application Secret Key, which is a 32 character hex string.
+  - `fairPlayPfxPassword` with the password encrypting FairPlay certificate in PKCS 12 (pfx) format.
 
 9. Run Setup scripts. More information [here](#setupps1)
 ```powershell
@@ -182,9 +186,9 @@ config.json
 "liveStream": {
   "liveEventName": "liveeventname", // The name for the Live Event to be created.
   "assetName": "liveassetname", // The asset where the Live Encoding will save the output to be streamed
-  "encodingType": "Standard",
-  "presetName": "Default720p",
-  "liveOutputName": "liveoutput",
+  "encodingType": "Standard", // The encoding type for live event. This value is specified at creation time and cannot be updated. Allowed values: Basic, None, Standard.
+  "presetName": "Default720p", // The encoding preset name. This value is specified at creation time and cannot be updated.
+  "liveOutputName": "liveoutput", // The name of the live event.
   "mode": "default" // Allowed values: default, transcription, lowLatency
 },
 "FairPlayCertificate": "" // Path to Public FairPlay Certificate
@@ -221,7 +225,7 @@ In this sample, the Content key Policy with DRM and token protection will be cre
     {
       "name": "fairplayopen",
       "type": "--fair-play-pfx",
-      "typeValue": "@Fairplay-out.pfx",
+      "typeValue": "@fairplay.pfx",
       "ask": "ask-32-chars-hex-string",
       "fairPlayPfxPassword": "pfxPassword",
       "rentalAndLeaseKeyType": "PersistentUnlimited",

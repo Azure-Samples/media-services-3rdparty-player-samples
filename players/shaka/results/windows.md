@@ -6,19 +6,19 @@ References:
 
 ✔️ All tested browsers are supported 
 
-![edge](../../icons/edge.png) ![edge](../../icons/edge-new.png)![firefox](../../icons/firefox.png) ![chrome](../../icons/chrome.png) Only supported for these browsers
-
 ❌ Not supported by any tested browsers
+
+![edge](../../icons/edge-new.png)![edge](../../icons/edge.png) ![firefox](../../icons/firefox.png) ![chrome](../../icons/chrome.png) Only supported for these browsers
 
 ## VOD
 
 Preset: "AdaptiveStreaming"
 
-| Format | Clear | Token | Widevine | PlayReady | FairPlay | AES-128 | Sidecar | 
-| --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: |
-| HLS TS    |  |  |  |  |  |  |  |
-| HLS CMAF  |  |  |  |  |  |  |  |
-| DASH CMAF |  |  |  |  |  |  |  |
+| Format | Clear | DRM Token | AES-128 Token | Widevine | PlayReady | FairPlay | AES-128 | Sidecar captions |
+| --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
+| HLS TS    | ✔️ | ❌ | ❌ | Not applicable | Not applicable | Not applicable| ❌ | ✔️ |
+| HLS CMAF  | ✔️ | ❌ | ❌ | ❌ | ❌ | Not applicable | ❌ | ✔️ |
+| DASH CMAF | ✔️ | ✔️ | ❌ | ![firefox](../../icons/firefox.png)![chrome](../../icons/chrome.png) | ![edge](../../icons/edge-new.png)![edge](../../icons/edge.png) | Not applicable | ❌ | ✔️ |
 
 ## Live Stream
 
@@ -26,11 +26,11 @@ EncodingType: "Standard"
 
 PresetName: "Default720p"
 
-| Format | Clear | Token | Widevine | PlayReady | FairPlay | AES-128 | Live Transcription |
-| --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: |
-| HLS TS    |  |  |  |  |  |  |  |
-| HLS CMAF  |  |  |  |  |  |  |  |
-| DASH CMAF |  |  |  |  |  |  |  |
+| Format | Clear | DRM Token | AES-128 Token | Widevine | PlayReady | FairPlay | AES-128 | Live Transcription |
+| --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
+| HLS TS    | ✔️ | ❌ | ❌ | Not applicable | Not applicable | Not applicable| ❌ | ❌ |
+| HLS CMAF  | ✔️ | ❌ | ❌ | ❌ | ❌ | ❌ |Not applicable | ❌ | ❌ |
+| DASH CMAF | ✔️ | ![edge](../../icons/edge.png) ![firefox](../../icons/firefox.png) ![chrome](../../icons/chrome.png) | ❌ | ![firefox](../../icons/firefox.png)![chrome](../../icons/chrome.png) | ![edge](../../icons/edge.png) | Not applicable | ❌ | ✔️ |
 
 ## Live Stream with Low Latency
 
@@ -38,8 +38,8 @@ EncodingType: "Standard"
 
 PresetName: "Default720p"
 
-| Format | Clear | Token | Widevine | PlayReady | FairPlay | AES-128 |
-| --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: |
-| HLS TS    |  |  |  |  |  |  |
-| HLS CMAF  |  |  |  |  |  |  |
-| DASH CMAF |  |  |  |  |  |  |
+| Format | Clear | DRM Token | AES-128 Token | Widevine | PlayReady | FairPlay | AES-128 |
+| --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
+| HLS TS    | ✔️ | ❌ | ❌ | Not applicable | Not applicable | Not applicable| ❌ | ✔️ |
+| HLS CMAF  | ✔️ | ❌ | ❌ | ❌ | ❌ |Not applicable | ❌ | ❌ |
+| DASH CMAF | ✔️ | ![edge](../../icons/edge.png) ![firefox](../../icons/firefox.png) ![chrome](../../icons/chrome.png) | ❌ | ![firefox](../../icons/firefox.png) ![chrome](../../icons/chrome.png) | ![edge](../../icons/edge.png) | Not applicable | ❌ |

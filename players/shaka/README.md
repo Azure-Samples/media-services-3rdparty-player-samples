@@ -1,4 +1,4 @@
-# Media Services v3 Player Frameworks Tests - Shaka Player
+# Media Services 3rd Party Player Sample - Shaka Player
 
 [Overview](#overview)
 
@@ -22,7 +22,7 @@
 
 Shaka Player is an open-source JavaScript library for adaptive media. It plays adaptive media formats (such as DASH and HLS) in a browser, without using plugins or Flash. Instead, Shaka Player uses the open web standards MediaSource Extensions and Encrypted Media Extensions.
 
-We recommend using it with [Mux.js](https://github.com/videojs/mux.js/) in order to maximize HLS compatibility.
+We recommend using it with [Mux.js](https://github.com/videojs/mux.js/) in order to maximize HLS compatibility. Without Mux the player would support HLS CMAF format, but not HLS TS.
 
 Its official documentation can be found [here](https://shaka-player-demo.appspot.com/docs/api/tutorial-welcome.html "Shaka player documentation").
 
@@ -49,9 +49,9 @@ Follow these instructions if you need to setup your own instance of the player.
 ```html
 <html>
   <head>
-    <script src="//cdn.jsdelivr.net/npm/shaka-player@3.0.0/dist/shaka-player.compiled.debug.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/mux.js@5.6.2/dist/mux.js"></script>
-    <script src="/myscript.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/shaka-player@3.0.1/dist/shaka-player.compiled.debug.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/mux.js@5.6.3/dist/mux.js"></script>
+    <script type="module" src="index.js"></script>
   </head>
   <body>
     <video id="video" controls></video>
@@ -77,7 +77,7 @@ player.load(manifestUrl);
 4. Run a server (for example with `npx http-server` ) and your player should be working.
 
 ### Setup VOD captions
-Run the following lines of code, and replace `captionUrl` with your .vtt directory, `lang` with the two letter code for language, and `type` with either `caption` or `subtitle`:
+Run the following lines of code, and replace `captionUrl` with your .vtt directory (vtt file needs to be in the same host to avoid CORS error), `lang` with the two letter code for language, and `type` with either `caption` or `subtitle`:
 
 ```javascript
 player.configure('streaming.alwaysStreamText', true)
@@ -153,9 +153,11 @@ References:
 
 ✔️ All scenarios are supported (Protocol + Browsers + VOD + Live Stream + Low Latency)
 
-⚠️ Some scenario may not be supported. See notes in each case.
+⚠️ Some scenarios may not be supported. See the notes in each case.
 
-❌ No scenario is supported
+❌ No scenarios were supported
+
+![chrome](../icons/chrome.png) Compatible browser
 
 ## Windows 10 - v1909+
 
@@ -163,9 +165,10 @@ Tested on ![newedge](../icons/edge-new.png) Edge (Chromium-based v83.0.478.50+),
 
 | Format | Clear | Token | Widevine | PlayReady | FairPlay | AES-128 | Captions |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: |
-| HLS TS    |  |  |  |  |  |  |  |
-| HLS CMAF  |  |  |  |  |  |  |  |
-| DASH CMAF |  |  |  |  |  |  |  |
+| HLS TS    | ✔️ | ❌ | Not applicable | Not applicable | Not applicable | ❌ | ✔️ |
+| HLS CMAF  | ✔️ | ❌ | ❌ | ❌ | Not applicable | ❌ | ✔️ |
+| DASH CMAF | ✔️ | ✔️ | ✔️ | ⚠️ | Not applicable | ❌ | ✔️ |
+
 
 [More details](./results/windows.md)
 
@@ -175,9 +178,10 @@ Tested on ![chrome](../icons/chrome.png) Chrome(v83.0.4103.97) and ![safari](../
 
 | Format | Clear | Token | Widevine | PlayReady | FairPlay | AES-128 | Captions |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: |
-| HLS TS    |  |  |  |  |  |  |  |
-| HLS CMAF  |  |  |  |  |  |  |  |
-| DASH CMAF |  |  |  |  |  |  |  |
+| HLS TS    | ✔️ | ⚠️ | Not applicable | Not applicable | Not tested | ❌ | ⚠️ |
+| HLS CMAF  | ✔️ | ⚠️ | ❌ | Not applicable | Not tested | ❌ | ✔️ |
+| DASH CMAF | ✔️ | ⚠️ | ✔️ | Not applicable | Not applicable | ❌ | ✔️ |
+
 
 [More details](./results/mac.md)
 
@@ -187,9 +191,10 @@ Tested on ![chrome](../icons/chrome.png) Chrome(v79.0.3945.130) and ![firefox](.
 
 | Format | Clear | Token | Widevine | PlayReady | FairPlay | AES-128 | Captions |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: |
-| HLS TS    |  |  |  |  |  |  |  |
-| HLS CMAF  |  |  |  |  |  |  |  |
-| DASH CMAF |  |  |  |  |  |  |  |
+| HLS TS    | ✔️ | ❌ | Not applicable | Not applicable | Not applicable | ❌ | ✔️ |
+| HLS CMAF  | ✔️ | ❌ | ❌ | ❌ | Not applicable | ❌ | ✔️ |
+| DASH CMAF | ✔️ | ✔️ | ✔️ | ⚠️ | Not applicable | ❌ | ✔️ |
+
 
 [More details](./results/ubuntu.md)
 
@@ -199,9 +204,10 @@ Tested on ![chrome](../icons/chrome.png) Chrome(v83.0.4103.97) and ![firefox](..
 
 | Format | Clear | Token | Widevine | PlayReady | FairPlay | AES-128 | Captions |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: |
-| HLS TS    |  |  |  |  |  |  |  |
-| HLS CMAF  |  |  |  |  |  |  |  |
-| DASH CMAF |  |  |  |  |  |  |  |
+| HLS TS    | ✔️ | ❌ | Not applicable | Not applicable | Not applicable | ❌ | ✔️ |
+| HLS CMAF  | ✔️ | ❌ | ❌ | ❌ | Not applicable | ❌ | ✔️ |
+| DASH CMAF | ✔️ | ✔️ | ✔️ | ⚠️ | Not applicable | ❌ | ✔️ |
+
 
 [More details](./results/android.md)
 
@@ -211,8 +217,10 @@ Tested on ![chrome](../icons/chrome.png) Chrome (v83.0.4103.88) and ![safari](..
 
 | Format | Clear | Token | Widevine | PlayReady | FairPlay | AES-128 | Captions |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: |
-| HLS TS    |  |  |  |  |  |  |  |
-| HLS CMAF  |  |  |  |  |  |  |  |
-| DASH CMAF |  |  |  |  |  |  |  |
+| HLS TS    | ✔️ | ⚠️ | Not applicable | Not applicable | Not tested | ❌ | ✔️ |
+| HLS CMAF  | ✔️ | ⚠️ | ❌ | Not applicable | Not tested | ❌ | ✔️ |
+| DASH CMAF | ❌ | ❌ |  Not applicable | Not applicable | Not tested | ❌ | ✔️ |
+
 
 [More details](./results/ios.md)
+
