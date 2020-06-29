@@ -64,7 +64,7 @@ if ($asset) {
   --account-name $config.StorageAccount `
   --container-name $vttassetData.container `
   --name "transcript.vtt" `
-  --file "..\players\transcript.vtt"
+  --file "..\src\transcript.vtt"
   SuccessMessage "VTT file downloaded"
 }
 

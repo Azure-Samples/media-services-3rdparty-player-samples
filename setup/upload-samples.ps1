@@ -20,7 +20,7 @@ $enabling = az storage blob service-properties update `
 SuccessMessage "Static website hosting enabled."
 
 function uploadFile ($typeFile) {
-$samplesPath = "..\\players\\"
+$samplesPath = "..\\src\\"
 ActivityMessage "Uploading files from $($samplesPath) ..."
 az storage blob upload-batch `
 --source $samplesPath `

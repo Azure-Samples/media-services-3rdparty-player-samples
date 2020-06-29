@@ -35,7 +35,7 @@ Its official documentation can be found [here](https://shaka-player-demo.appspot
 
 ## Basic usage of sample
 1. Clone this repository
-2. Navigate through the console to the example's folder (players/) and run `npx http-server`
+2. Navigate through the console to the example's folder (src/) and run `npx http-server`
 3. Open the browser of your choice, and go to `http://localhost:8080/`
 4. Copy the link to your manifest URL, and paste it in the `Manifest URL` field and click `Load Stream`
 

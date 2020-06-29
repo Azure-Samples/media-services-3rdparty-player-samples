@@ -29,13 +29,13 @@ if ($liveEvent) {
   $output.LiveStream.encryptionOpen = @()
   $output.LiveStream.encryptionToken = @()
   SaveOutputInJsonFile
-  $playerOutput = Get-Content -Raw -Path "..\players\output.json" | ConvertFrom-Json
+  $playerOutput = Get-Content -Raw -Path "..\src\output.json" | ConvertFrom-Json
   $playerOutput.LiveStream.clear = @()
   $playerOutput.LiveStream.DRMOpen = @()
   $playerOutput.LiveStream.DRMToken = @()
   $playerOutput.LiveStream.encryptionOpen = @()
   $playerOutput.LiveStream.encryptionToken = @()
-  $playerOutput | ConvertTo-Json -Depth 10 | Out-File "..\players\output.json"
+  $playerOutput | ConvertTo-Json -Depth 10 | Out-File "..\src\output.json"
   SuccessMessage "output.json updated"
 }
 

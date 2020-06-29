@@ -16,10 +16,10 @@ This repository contains samples, documentation and platform/browser support mat
 This guidance also includes the steps needed to configure and play Live and VOD content from Azure Media Services with several 3rd party video players. There are two main components to this repository:
 
 1. The [setup scripts](/setup) will help you generating Live and VOD content with Azure Media Services for testing in the players.
-2. Once you've set up your Live and VOD test content, you can opt between the two players tested in this repository:
+2. Once you've set up your Live and VOD test content, you can opt between the players tested in this repository:
 
-- [Video.js](/players/video.js)  or
-- [Shaka Player](/players/shaka)
+- [Video.js](/src/video.js)  or
+- [Shaka Player](/src/shaka)
 
 ## Contents
 
@@ -28,16 +28,11 @@ Outline the file contents of the repository. It helps users navigate the codebas
 | File/folder         | Description                                |
 |---------------------|--------------------------------------------|
 | `.github`           | Folder with github workflows               |
-| `players`           | Folder with players samples                |
+| `src`               | Folder with players samples                |
+| `docs`               | Folder with players configuration files and test results|
 | `setup`             | Folder with AMS setup scripts.             |
 | `.gitignore`        | Define what to ignore at commit time.      |
 | `CHANGELOG.md`      | List of changes to the sample.             |
 | `CONTRIBUTING.md`   | Guidelines for contributing to the sample. |
 | `LICENSE`           | The license for the sample.                |
 | `README.md`         | This README file.                          |
-
-
-## Index
-  * Web players
-    + [Video.js](./players/video.js "videojs")
-    + [Shaka Player](./players/shaka "shaka-player")
