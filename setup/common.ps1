@@ -171,7 +171,7 @@ function generateURLs{
     $output.LiveStream.encryptionToken = $newLiveStreamEncToken
   }
 
-  $output | ConvertTo-Json -Depth 10 | Out-File "..\players\output.json"
+  $output | ConvertTo-Json -Depth 10 | Out-File "..\src\output.json"
   SuccessMessage "All URLs saved in output.json"
 }
 
@@ -476,7 +476,7 @@ function getLicenseURLs($manifestUrl){
 }
 
 function updateLicenseURLs(){
-  $output = Get-Content -Raw -Path "..\players\output.json" | ConvertFrom-Json
+  $output = Get-Content -Raw -Path "..\src\output.json" | ConvertFrom-Json
 
   if ($output.VOD.DRMOpen) {
     $output.VOD.DRMOpen | ForEach-Object -Process {
@@ -496,5 +496,5 @@ function updateLicenseURLs(){
     }
   }
 
-  $output | ConvertTo-Json -Depth 10 | Out-File "..\players\output.json"
+  $output | ConvertTo-Json -Depth 10 | Out-File "..\src\output.json"
 }
