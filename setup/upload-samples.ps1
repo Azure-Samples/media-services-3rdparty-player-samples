@@ -36,8 +36,8 @@ uploadFile "*.html"
 uploadFile "*.vtt"
 uploadFile "*.json"
 
-if ($config.FairPlayCertificate -and (Test-Path -Path $config.FairPlayCertificate)){
-  uploadFile $config.FairPlayCertificate
+if ($config.FairPlayPublicCertPath -and (Test-Path -Path $config.FairPlayPublicCertPath)){
+  uploadFile $config.FairPlayPublicCertPath
 }
 
 ActivityMessage "Getting URL ..."

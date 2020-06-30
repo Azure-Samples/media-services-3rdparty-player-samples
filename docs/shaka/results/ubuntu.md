@@ -1,14 +1,12 @@
-# Test results for Video.js on Ubuntu (v18.04.3 LTS)
+# Test results for Shaka on Ubuntu v18.04.3 LTS+
 
-Tested on ![chrome](../../icons/chrome.png)Chrome(v79.0.3945.130) and ![firefox](../../icons/firefox.png)Firefox (v76.0.1).
+References:
 
-References: 
+- ✔️ All browsers are supported.
 
-✔️ All tested browsers are supported 
+- ❌ None browsers supported.
 
-❌ Not supported by any tested browsers
-
-![firefox](../../icons/firefox.png) ![chrome](../../icons/chrome.png) Only supported for these browsers
+- ![firefox](../../icons/firefox.png) ![chrome](../../icons/chrome.png) Scenario supported in the given browser.
 
 ## VOD
 

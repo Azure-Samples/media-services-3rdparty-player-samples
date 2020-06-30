@@ -3,6 +3,7 @@ import BasePlayer from '../js/common.js'
 class ShakaPlayer extends BasePlayer {
   async initPlayer () {
     shaka.polyfill.installAll()
+    document.getElementById('player-version').innerHTML = shaka.Player.version
     const loglevel = parseInt(this.getUrlParameter('loglevel')) || shaka.log.Level.INFO
     shaka.log.setLevel(loglevel)
     this.$('loglevelInput').value = loglevel

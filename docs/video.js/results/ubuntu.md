@@ -1,14 +1,12 @@
-# Test results for Video.js on Ubuntu (v18.04.3 LTS)
+# Test results for Video.js on Ubuntu v18.04.3 LTS+
 
-Tested on ![chrome](../../icons/chrome.png)Chrome(v79.0.3945.130) and ![firefox](../../icons/firefox.png)Firefox (v76.0.1).
+References:
 
-References: 
+- ✔️ All browsers are supported.
 
-✔️ All tested browsers are supported 
+- ❌ None browsers supported.
 
-❌ Not supported by any tested browsers
-
-![firefox](../../icons/firefox.png)![chrome](../../icons/chrome.png) Only supported for these browsers
+- ![firefox](../../icons/firefox.png) ![chrome](../../icons/chrome.png) Scenario supported in the given browser.
 
 ## VOD
 
@@ -16,9 +14,9 @@ Preset: "AdaptiveStreaming"
 
 | Format | Clear | DRM Token | AES-128 Token | Widevine | PlayReady | FairPlay | AES-128 | Sidecar captions |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :------: | :------: | :------: |
-| HLS TS    | ✔️ | ❌ | ✔️ | ❌ | ❌ | ❌ | ✔️ | ✔️ |
-| HLS CMAF  | ✔️ | ✔️ | ❌ | ✔️ | ❌ | ❌ | ❌ | ✔️ |
-| DASH CMAF | ✔️ | ✔️ | ❌ | ✔️ | ❌ | ❌ | ❌ | ✔️ |
+| HLS TS    | ✔️ | ❌ | ✔️ | Not applicable | Not applicable | Not applicable | ✔️ | ✔️ |
+| HLS CMAF  | ✔️ | ✔️ | ❌ | ✔️ | Not applicable | Not applicable | ❌ | ✔️ |
+| DASH CMAF | ✔️ | ✔️ | ❌ | ✔️ | Not applicable | Not applicable | ❌ | ✔️ |
 
 ## Live Stream
 
@@ -28,9 +26,9 @@ PresetName: "Default720p"
 
 | Format | Clear | DRM Token | AES-128 Token | Widevine | PlayReady | FairPlay | AES-128 | Live Transcription |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :------: | :------: | :------: |
-| HLS TS    | ✔️ | ❌ | ✔️ | ❌ | ❌ | ❌ | ✔️ | ✔️ |
-| HLS CMAF  | ✔️ | ✔️ | ❌ | ✔️ | ❌ | ❌ | ❌ | ❌ |
-| DASH CMAF | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| HLS TS    | ✔️ | ❌ | ✔️ | Not applicable | Not applicable | Not applicable | ✔️ | ✔️ |
+| HLS CMAF  | ✔️ | ✔️ | ❌ | ✔️ | Not applicable | Not applicable | ❌ | ❌ |
+| DASH CMAF | ❌ | ❌ | ❌ | ❌ | Not applicable | Not applicable | ❌ | ❌ |
 
 ## Live Stream with Low Latency
 
@@ -40,6 +38,6 @@ PresetName: "Default720p"
 
 | Format | Clear | DRM Token | AES-128 Token | Widevine | PlayReady | FairPlay | AES-128 |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| HLS TS    | ✔️ | ❌ | ✔️ | ❌ |     ❌     | ❌ | ✔️ |
-| HLS CMAF  | ✔️ | ✔️ | ❌ | ✔️ |     ❌     | ❌ | ❌ |
-| DASH CMAF | ❌ | ❌ | ❌ | ❌ |     ❌     |    ❌     | ❌ |
+| HLS TS    | ✔️ | ❌ | ✔️ | Not applicable | Not applicable | Not applicable | ✔️ |
+| HLS CMAF  | ✔️ | ✔️ | ❌ | ✔️ |     Not applicable | Not applicable | ❌ |
+| DASH CMAF | ❌ | ❌ | ❌ | ❌ |     Not applicable | Not applicable | ❌ |

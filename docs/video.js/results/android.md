@@ -1,14 +1,12 @@
-# Test results for Video.js on Android (v8+)
+# Test results for Video.js on Android v8+
 
-Tested on ![chrome](../../icons/chrome.png)Chrome(v83.0.4103.97) and ![firefox](../../icons/firefox.png)Firefox (v68.9+).
+References:
 
-References: 
+- ✔️ All browsers are supported.
 
-✔️ All tested browsers are supported 
+- ❌ None browsers supported.
 
-❌ Not supported by any tested browsers
-
-![firefox](../../icons/firefox.png) ![chrome](../../icons/chrome.png)  Only supported for these browsers
+- ![firefox](../../icons/firefox.png) ![chrome](../../icons/chrome.png) Scenario supported in the given browser.
 
 ## VOD
 
@@ -16,9 +14,9 @@ Preset: "AdaptiveStreaming"
 
 | Format | Clear | DRM Token | AES-128 Token | Widevine | PlayReady | FairPlay | AES-128 | Sidecar caption |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
-| HLS TS    | ✔️ | ❌ | ✔️ | ❌ | ❌ | ❌ | ✔️ | ✔️ |
-| HLS CMAF  | ![firefox](../../icons/firefox.png) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ![chrome](../../icons/chrome.png) |
-| DASH CMAF | ✔️ | ✔️ | ❌ | ✔️ | ❌ | ❌ | ❌ | ✔️ |
+| HLS TS    | ✔️ | ❌ | ✔️ | Not applicable | Not applicable | Not applicable | ✔️ | ✔️ |
+| HLS CMAF  | ![firefox](../../icons/firefox.png) | ❌ | ❌ | ❌ | Not applicable | Not applicable | ❌ | ![chrome](../../icons/chrome.png) |
+| DASH CMAF | ✔️ | ✔️ | ❌ | ✔️ | Not applicable | Not applicable | ❌ | ✔️ |
 
 ## Live Stream
 
@@ -28,9 +26,9 @@ PresetName: "Default720p"
 
 | Format | Clear | DRM Token | AES-128 Token | Widevine | PlayReady | FairPlay | AES-128 | Live Transcription |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
-| HLS TS    | ✔️ | ❌ | ✔️ | ![chrome](../../icons/chrome.png) | ❌ | ❌ | ✔️ | ❌ |
-| HLS CMAF  | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| DASH CMAF | ![firefox](../../icons/firefox.png) | ![firefox](../../icons/firefox.png) | ❌ | ![firefox](../../icons/firefox.png) | ❌ | ❌ | ❌ | ❌ |
+| HLS TS    | ✔️ | ❌ | ✔️ | Not applicable | Not applicable | Not applicable | ✔️ | ❌ |
+| HLS CMAF  | ❌ | ❌ | ❌ | ❌ | Not applicable | Not applicable | ❌ | ❌ |
+| DASH CMAF | ![firefox](../../icons/firefox.png) | ![firefox](../../icons/firefox.png) | ❌ | ![firefox](../../icons/firefox.png) | Not applicable | Not applicable | ❌ | ❌ |
 
 ## Live Stream with Low Latency
 
@@ -40,6 +38,6 @@ PresetName: "Default720p"
 
 | Format | Clear | DRM Token | AES-128 Token | Widevine | PlayReady | FairPlay | AES-128 |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| HLS TS    | ✔️ | ❌ | ✔️ | ❌ | ❌ | ❌ | ✔️ |
-| HLS CMAF  | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| DASH CMAF | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| HLS TS    | ✔️ | ❌ | ✔️ | Not applicable | Not applicable | Not applicable | ✔️ |
+| HLS CMAF  | ❌ | ❌ | ❌ | ❌ | Not applicable | Not applicable | ❌ |
+| DASH CMAF | ❌ | ❌ | ❌ | ❌ | Not applicable | Not applicable | ❌ |

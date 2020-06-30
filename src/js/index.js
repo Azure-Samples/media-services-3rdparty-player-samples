@@ -48,9 +48,9 @@ function generateLinkElement (config, category, path, links) {
     if (category.drm) {
       htmlLinkElement.href += `&widevine=${config.WidevineLicenseURL}?kid=${category.kidcenc}`
       htmlLinkElement.href += `&playReady=${config.PlayReadyLicenseURL}`
-      if (stream.url.includes('m3u8') > 0 && config.FairPlayCertificate) {
+      if (stream.url.includes('m3u8') > 0 && config.FairPlayPublicCertPath) {
         htmlLinkElement.href += `&fairPlay=${config.FairPlayLicenseURL}?kid=${category.kidcbcs}`
-        htmlLinkElement.href += `&fairPlayCertificate=${window.location}${config.FairPlayCertificate}`
+        htmlLinkElement.href += `&fairPlayCertificate=${window.location}${config.FairPlayPublicCertPath}`
       }
     }
 

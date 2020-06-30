@@ -58,7 +58,7 @@
   "token": {
     "type": "Jwt",
     "keyType": "Symmetric",
-    "key": "dgYJUdft2j5d2dKuf6hc049dIBHFhKh1lQvz4mEI",
+    "key": "Symmetric Key 40 characters",
     "issuer": "randomissuer",
     "audience": "randomaudience",
     "duration": "604800"
@@ -75,5 +75,5 @@
     "liveOutputName": "liveoutput",
     "mode": "default"
   },
-  "FairPlayCertificate": ""
+  "FairPlayPublicCertPath": ""
 }
