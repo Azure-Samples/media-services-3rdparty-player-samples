@@ -87,20 +87,22 @@ function urlOutput ($urlTest) {
       $encCenc = $_.url | Select-String -Pattern 'cenc'
       $cbcsAapl = $_.url | Select-String -Pattern 'cbcs-aapl'
       $HLSV4 = $_.url | Select-String -Pattern 'm3u8-aapl'
-      $tipoHLS = if ($HLSV4) {"HLS TS"} else {"HLS CMAF"}
-      $tipoEnc = if ($encCenc) {"CENC (Widevine + PlayReady)"} else {if($cbcsAapl){"CBCS (FairPlay)"} else{""}}
-      $list += @{"streamingProtocol"="$($tipoHLS) $($tipoEnc)";"url"=$_.url;}
-      WarningMessage "Protocol: $($tipoHLS) $($tipoEnc)"
-      SuccessMessage $_.url
+      $typeHLS = if ($HLSV4) {"HLS TS"} else {"HLS CMAF"}
+      $typeEnc = if ($encCenc) {"CENC (Widevine + PlayReady)"} else {if($cbcsAapl){"CBCS (FairPlay)"} else{""}}
+      if (!$encCenc -or !$HLSV4) {
+        $list += @{"streamingProtocol"="$($typeHLS) $($typeEnc)";"url"=$_.url;}
+        WarningMessage "Protocol: $($typeHLS) $($typeEnc)"
+        SuccessMessage $_.url
+      }
     }
     if($_.streamingProtocol -eq 'Dash'){
       $DASHCMAF = $_.url | Select-String -Pattern 'mpd-time-cmaf'
       if ($DASHCMAF) {
         $encCenc = $_.url | Select-String -Pattern 'cenc'
         $cbcsAapl = $_.url | Select-String -Pattern 'cbcs-aapl'
-        $tipoEnc = if ($encCenc) {"CENC (Widevine + PlayReady)"} else {if($cbcsAapl){"CBCS (FairPlay)"} else{""}}
-        $list += @{"streamingProtocol"="DASH CMAF $($tipoEnc)";"url"=$_.url}
-        WarningMessage "Protocol: DASH CMAF $($tipoEnc)"
+        $typeEnc = if ($encCenc) {"CENC (Widevine + PlayReady)"} else {if($cbcsAapl){"CBCS (FairPlay)"} else{""}}
+        $list += @{"streamingProtocol"="DASH CMAF $($typeEnc)";"url"=$_.url}
+        WarningMessage "Protocol: DASH CMAF $($typeEnc)"
         SuccessMessage $_.url
       }
     }

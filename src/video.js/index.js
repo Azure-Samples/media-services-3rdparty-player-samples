@@ -14,6 +14,8 @@ class VideojsPlayer extends BasePlayer {
     const subtitleLang = 'eng'
     const subtitleLabel = 'test'
 
+    document.getElementById('player-version').innerHTML = 'v' + videojs.VERSION
+
     videojs.Hls.xhr.beforeRequest = this.setupTokenForDecrypt.bind(this)
 
     let typeUrl = Types.hlsType

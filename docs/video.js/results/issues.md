@@ -1,44 +1,49 @@
-## Issue #1
+# Issues
 
-Video reproduces for 30 secs and then stops. The video cannot be resumed, but continues if the browser is refreshed.
+## Issue #1 30 secs and then stops
 
-- This is a [known issue](https://github.com/videojs/http-streaming/issues/256) and it hasn't been solved yet
+The video is reproduced for around 30 secs and then it freezes. The video can not be resumed, but continues if the browser is refreshed.
 
-- There is also a mention [here](https://github.com/videojs/http-streaming#dash-assets-with-time-interpolation-and-segmenttimelines-with-no-t)
-
-------
-
-## Issue #3
-
-An error was detected while reproducing a video in DASH CMAF or HLS CMAF in Video.js with encryption (AES-128 with token and without token). 
-
-- We [reported the issue](https://github.com/videojs/video.js/issues/6717).
+- The issues is reported [here](https://github.com/videojs/http-streaming/issues/256) and it hasn't been solved yet. Also it's mentioned [here](https://github.com/videojs/http-streaming#dash-assets-with-time-interpolation-and-segmenttimelines-with-no-t).
 
 ------
 
-## Issue #4
+## Issue #3 DASH CMAF or HLS CMAF in Video.js
 
-DAHS.js (the library this plugin adapts) only works on MSE supported browsers, and iOS is not supported.The issues is detailed  
-[here](https://github.com/videojs/videojs-contrib-dash/issues/136)
+An error was detected while reproducing a video in DASH CMAF or HLS CMAF in Video.js with encryption (AES-128 with token and without token).
 
-
-------
-
-## Issue #5
-We did not find an issues on Video.js GitHub.
+- The issues is reported [here](https://github.com/videojs/video.js/issues/6717).
 
 ------
 
-## Issue #6
+## Issue #4 DASH on iOS
 
-Video.js not playing on Android, more details [here](https://github.com/videojs/videojs-contrib-hls/issues/1058).
+DAHS.js (the library this plugin adapts) only works on MSE supported browsers, and iOS is not supported.
+
+- The issues is reported [here](https://github.com/videojs/videojs-contrib-dash/issues/136).
 
 ------
 
-## Issue #7
+## Issue #5 HLS CMAF with Widevine and PlayReady
 
-Video.js doesn't show subtitles in live streams with DASH CMAF or HLS CMAF. Also in all browsers, we detected that HLS TS is not working. 
+Video.js does not reproduce HLS CMAF with Widevine and PlayReady using Azure Media Services.
 
-- The error was mentioned in two issues GitHub but it was never fixed: [GitHub Issue #1](https://github.com/videojs/video.js/issues/4300), [GitHub Issue #2](https://github.com/videojs/video.js/issues/5804)
+- The issue is reported [here](https://github.com/videojs/video.js/issues/6733).
+
+------
+
+## Issue #6 Clear Live with Android
+
+Video.js does not reproduce live stream and low latency on Android.
+
+- The issues is reported [here](https://github.com/videojs/videojs-contrib-hls/issues/1058).
+
+------
+
+## Issue #7 live streams with DASH CMAF or HLS CMAF
+
+Video.js doesn't show subtitles in live streams with DASH CMAF or HLS CMAF. Also in all browsers, we detected that HLS TS is not working.
+
+- The issues is reported [here](https://github.com/videojs/video.js/issues/4300) and [here](https://github.com/videojs/video.js/issues/5804).
 
 ------
