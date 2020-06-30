@@ -4,7 +4,7 @@ References:
 
 - ✔️ All browsers are supported.
 
-- ❌ None browsers supported.
+- ❌ None browser supported. More details [here](issues.md).
 
 - ![safari](../../icons/safari.png) ![chrome](../../icons/chrome.png) Scenario supported in the given browser.
 
@@ -14,9 +14,9 @@ Preset: "AdaptiveStreaming"
 
 | Format | Clear | DRM Token | AES-128 Token | Widevine | PlayReady | FairPlay | AES-128 | Sidecar captions |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
-| HLS TS    | ✔️ | ❌ | ✔️ | Not applicable | Not applicable | Not tested | ✔️ | ✔️ |
-| HLS CMAF  | ✔️ | ![chrome](../../icons/chrome.png) | ❌ | ![chrome](../../icons/chrome.png) | Not applicable | Not tested | ❌ | ✔️ |
-| DASH CMAF | ✔️ | ![chrome](../../icons/chrome.png) | ❌ | ![chrome](../../icons/chrome.png) | ❌ | Not applicable | ❌ | ✔️ |
+| HLS TS    | ✔️ | Not applicable | ✔️ | Not applicable | Not applicable | Not tested | ✔️ | ✔️ |
+| HLS CMAF  | ✔️ | ![chrome](../../icons/chrome.png) | ❌(#3) | ![chrome](../../icons/chrome.png) | Not applicable | Not tested | ❌(#3) | ✔️ |
+| DASH CMAF | ✔️ | ![chrome](../../icons/chrome.png) | ❌(#3) | ![chrome](../../icons/chrome.png) | Not applicable | Not applicable | ❌(#3) | ✔️ |
 
 ## Live Stream
 
@@ -26,9 +26,9 @@ PresetName: "Default720p"
 
 | Format | Clear | DRM Token | AES-128 Token | Widevine | PlayReady | FairPlay | AES-128 | Live Transcription |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
-| HLS TS    | ✔️ | ❌ | ![chrome](../../icons/chrome.png) | Not applicable | Not applicable | Not tested | ✔️ | ✔️ |
-| HLS CMAF  | ✔️ | ![chrome](../../icons/chrome.png) | ❌ | ![chrome](../../icons/chrome.png) | Not applicable | Not tested | ❌ | ![safari](../../icons/safari.png) |
-| DASH CMAF | ✔️ | ![chrome](../../icons/chrome.png) | ❌ | ![chrome](../../icons/chrome.png) | ❌ | Not applicable | ❌ | ❌ |
+| HLS TS    | ✔️ | Not applicable | ![chrome](../../icons/chrome.png) | Not applicable | Not applicable | Not tested | ✔️ | ✔️ |
+| HLS CMAF  | ✔️ | ![chrome](../../icons/chrome.png) | ❌(#3) | ![chrome](../../icons/chrome.png) | Not applicable | Not tested | ❌(#3) | ![safari](../../icons/safari.png) |
+| DASH CMAF | ✔️ | ![chrome](../../icons/chrome.png) | ❌(#3) | ![chrome](../../icons/chrome.png) | Not applicable | Not applicable | ❌(#3) | ❌(#7) |
 
 ## Live Stream with Low Latency
 
@@ -38,6 +38,6 @@ PresetName: "Default720p"
 
 | Format | Clear | DRM Token | AES-128 Token | Widevine | PlayReady | FairPlay | AES-128 |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| HLS TS    | ✔️ | ❌ | ✔️ | Not applicable | Not applicable | Not tested | ✔️ |
-| HLS CMAF  | ✔️ | ![chrome](../../icons/chrome.png) | ❌ | ![chrome](../../icons/chrome.png) | Not applicable | Not tested | ❌ |
-| DASH CMAF | ![safari](../../icons/safari.png) | ![chrome](../../icons/chrome.png) | ❌ | ![chrome](../../icons/chrome.png) | ❌ | Not applicable | ❌ |
+| HLS TS    | ✔️ | Not applicable | ✔️ | Not applicable | Not applicable | Not tested | ✔️ |
+| HLS CMAF  | ✔️ | ![chrome](../../icons/chrome.png) | ❌(#3) | ![chrome](../../icons/chrome.png) | Not applicable | Not tested | ❌(#3) |
+| DASH CMAF | ![safari](../../icons/safari.png) | ![chrome](../../icons/chrome.png) | ❌(#3) | ![chrome](../../icons/chrome.png) | Not applicable | Not applicable | ❌(#3) |

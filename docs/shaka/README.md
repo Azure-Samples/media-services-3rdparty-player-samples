@@ -111,7 +111,7 @@ player.getNetworkingEngine().registerRequestFilter(function (type, request) {
 
 Shaka Player does not currently support AES-128 encryption.
 
-[Source](https://github.com/google/shaka-player/issues/850)
+A link to a GitHub [issue](https://github.com/google/shaka-player/issues/850) to follow the status of this feature.
 
 #### Setup DRM Protection
 

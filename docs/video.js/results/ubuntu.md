@@ -4,7 +4,7 @@ References:
 
 - ✔️ All browsers are supported.
 
-- ❌ None browsers supported.
+- ❌ None browser supported. More details [here](issues.md).
 
 - ![firefox](../../icons/firefox.png) ![chrome](../../icons/chrome.png) Scenario supported in the given browser.
 
@@ -14,9 +14,9 @@ Preset: "AdaptiveStreaming"
 
 | Format | Clear | DRM Token | AES-128 Token | Widevine | PlayReady | FairPlay | AES-128 | Sidecar captions |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :------: | :------: | :------: |
-| HLS TS    | ✔️ | ❌ | ✔️ | Not applicable | Not applicable | Not applicable | ✔️ | ✔️ |
-| HLS CMAF  | ✔️ | ✔️ | ❌ | ✔️ | Not applicable | Not applicable | ❌ | ✔️ |
-| DASH CMAF | ✔️ | ✔️ | ❌ | ✔️ | Not applicable | Not applicable | ❌ | ✔️ |
+| HLS TS    | ✔️ | Not applicable | ✔️ | Not applicable | Not applicable | Not applicable | ✔️ | ✔️ |
+| HLS CMAF  | ✔️ | ✔️ | ❌(#3) | ✔️ | Not applicable | Not applicable | ❌(#3) | ✔️ |
+| DASH CMAF | ✔️ | ✔️ | ❌(#3) | ✔️ | Not applicable | Not applicable | ❌(#3) | ✔️ |
 
 ## Live Stream
 
@@ -26,9 +26,9 @@ PresetName: "Default720p"
 
 | Format | Clear | DRM Token | AES-128 Token | Widevine | PlayReady | FairPlay | AES-128 | Live Transcription |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :------: | :------: | :------: |
-| HLS TS    | ✔️ | ❌ | ✔️ | Not applicable | Not applicable | Not applicable | ✔️ | ✔️ |
-| HLS CMAF  | ✔️ | ✔️ | ❌ | ✔️ | Not applicable | Not applicable | ❌ | ❌ |
-| DASH CMAF | ❌ | ❌ | ❌ | ❌ | Not applicable | Not applicable | ❌ | ❌ |
+| HLS TS    | ✔️ | Not applicable | ✔️ | Not applicable | Not applicable | Not applicable | ✔️ | ✔️ |
+| HLS CMAF  | ✔️ | ✔️ | ❌(#3) | ✔️ | Not applicable | Not applicable | ❌(#3) | ❌(#7) |
+| DASH CMAF | ❌(#1) | ❌(#1) | ❌(#3) | ❌(#1) | Not applicable | Not applicable | ❌(#3) | ❌(#7) |
 
 ## Live Stream with Low Latency
 
@@ -38,6 +38,6 @@ PresetName: "Default720p"
 
 | Format | Clear | DRM Token | AES-128 Token | Widevine | PlayReady | FairPlay | AES-128 |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| HLS TS    | ✔️ | ❌ | ✔️ | Not applicable | Not applicable | Not applicable | ✔️ |
-| HLS CMAF  | ✔️ | ✔️ | ❌ | ✔️ |     Not applicable | Not applicable | ❌ |
-| DASH CMAF | ❌ | ❌ | ❌ | ❌ |     Not applicable | Not applicable | ❌ |
+| HLS TS    | ✔️ | Not applicable | ✔️ | Not applicable | Not applicable | Not applicable | ✔️ |
+| HLS CMAF  | ✔️ | ✔️ | ❌(#3) | ✔️ |     Not applicable | Not applicable | ❌(#3) |
+| DASH CMAF | ❌(#1) | ❌(#1) | ❌(#3) | ❌(#1) |     Not applicable | Not applicable | ❌(#3) |
