@@ -1,14 +1,12 @@
-# Test results for Video.js on MacOS (v10.15.5)
+# Test results for Shaka on MacOS v10.15.5+
 
-Tested on ![chrome](../../icons/chrome.png)Chrome(v83.0.4103.97) and ![safari](../../icons/safari.png)Safari (v13.1.1).
+References:
 
-References: 
+- ✔️ All browsers are supported.
 
-✔️ All tested browsers are supported 
+- ❌ None browsers supported.
 
-❌ Not supported by any tested browsers
-
-![chrome](../../icons/chrome.png) ![safari](../../icons/safari.png)  Only supported for these browsers
+- ![safari](../../icons/safari.png) ![chrome](../../icons/chrome.png) Scenario supported in the given browser.
 
 ## VOD
 
