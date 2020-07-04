@@ -1,16 +1,12 @@
-# Media Services 3rd Party Player Sample - Shaka Player
+# Media Services 3rd Party Player Samples - Shaka Player
 
-[Overview](#overview)
-
-- [How to use](#how-to-use)
-  - [Setup development environment](#setup-development-environment)
-  - [Basic usage of sample](#basic-usage-of-sample)
-  - [Custom setup of player](#custom-setup-of-player)
-    - [Setup VOD captions](#setup-vod-captions)
-    - [Setup Live stream captions](#setup-live-stream-captions)
-    - [Setup Token Authentication](#setup-token-authentication)
-    - [Setup AES-128 encryption](#setup-aes-128-encryption)
-    - [Setup DRM Protection](#setup-drm-protection)
+- [Overview](#overview)
+- [Implementing the player](#implementing-the-player)
+  - [Setup captions](#setup-captions)
+  - [Setup token authentication](#setup-token-authentication)
+  - [Setup AES-128 encryption](#setup-aes-128-encryption)
+  - [Setup DRM protection](#setup-drm-protection)
+- [Implementation reference](#implementation-reference)
 - [Test results](#test-results)
 
 ## Overview
@@ -23,24 +19,9 @@ Its official documentation can be found [here](https://shaka-player-demo.appspot
 
 ------------
 
-## How to use
+## Implementing the player
 
-### Setup development environment
-
-- Install [NodeJS v8+](https://nodejs.org/en/download/ "NodeJS v8+")
-
-### Basic usage of sample
-
-1. Clone this repository.
-2. Navigate through the console to the example's folder (src/) and run `npx http-server`.
-3. Open the browser of your choice, and go to `http://localhost:8080/`.
-4. Copy the link to your manifest URL, and paste it in the `Manifest URL` field and click `Load Stream`.
-
-**Your video is now loaded.**
-
-### Custom setup of player
-
-Follow these instructions if you need to setup your own instance of the player.
+Follow these instructions if you need to implement your own instance of the player.
 
 1. Create an `index.html` file where you'll host the player. Add the following lines of code (you can replace the versions for newer if applicable):
 
@@ -74,6 +55,8 @@ Follow these instructions if you need to setup your own instance of the player.
 3. Replace `manifestUrl` with the manifest URL of your choice.
 4. Run a server (for example with `npx http-server`) and your player should be working.
 
+### Setup captions
+
 #### Setup VOD captions
 
 Run the following lines of code, and replace `captionUrl` with your .vtt directory (vtt file needs to be in the same host to avoid CORS error), `lang` with the two letter code for language, and `type` with either `caption` or `subtitle`:
@@ -87,7 +70,7 @@ player.load(manifestUrl).then(function(){
 });
 ```
 
-#### Setup Live stream captions
+#### Setup live stream captions
 
 Enable captions in live stream is configured adding the following line of code:
 
@@ -95,7 +78,7 @@ Enable captions in live stream is configured adding the following line of code:
 player.setTextTrackVisibility(true)
 ```
 
-#### Setup Token Authentication
+### Setup token authentication
 
 Run the following lines of code, and replace `token` with your token string:
 
@@ -107,19 +90,19 @@ player.getNetworkingEngine().registerRequestFilter(function (type, request) {
 });
 ```
 
-#### Setup AES-128 encryption
+### Setup AES-128 encryption
 
 Shaka Player does not currently support AES-128 encryption.
 
 A link to a GitHub [issue](https://github.com/google/shaka-player/issues/850) to follow the status of this feature.
 
-#### Setup DRM Protection
+### Setup DRM protection
 
 Shaka Player uses Encrypted Media Extensions (EME), which requires a secure URL to use. It means that for testing any DRM protected content it's necessary to use https. Also, because of mixed content requirements, if the site is using https, then the manifest and every segment will also need to use https too.
 
 The order of preference for Shaka management of the URL(s) of its license server(s):
 
-1. Clear Key config, used for debugging, should override everything else. (The application can still specify a clearkey license server.)
+1. ClearKey config, used for debugging, should override everything else. (The application can still specify a ClearKey license server.)
 2. Application-configured servers, if any are present, should override anything from the manifest.
 3. Manifest-provided license servers are only used if nothing else is specified.
 
@@ -145,7 +128,11 @@ const cert = await req.arrayBuffer();
 player.configure('drm.advanced.com\\.apple\\.fps\\.1_0.serverCertificate', new Uint8Array(cert));
 ```
 
-#### Documentation: [here](https://shaka-player-demo.appspot.com/docs/api/tutorial-drm-config.html "Shaka player DRM protection documentation")
+Shaka DRM documentation: [here](https://shaka-player-demo.appspot.com/docs/api/tutorial-drm-config.html "Shaka player DRM protection documentation")
+
+## Implementation reference
+
+For an implementation reference sample please check the following [link](./src/shaka) which contains a complete implementation of a Shaka Player.
 
 ------------
 
@@ -157,7 +144,7 @@ References:
 
 - ⚠️ Some scenarios may not be supported (for more information, click more details at the bottom).
 
-- ❌ No scenario supported.
+- ❌ No scenario is supported.
 
 ### Windows 10 v1909+
 
@@ -189,7 +176,7 @@ Tested on:
 | HLS CMAF  | ✔️ | ⚠️ | ❌ | Not applicable | Not tested | ❌ | ✔️ |
 | DASH CMAF | ✔️ | ⚠️ | ✔️ | Not applicable | Not applicable | ❌ | ✔️ |
 
-[More details](./results/mac.md)
+[More details](./results/macOS.md)
 
 ### Ubuntu v18.04.3 LTS+
 
@@ -232,6 +219,6 @@ Tested on:
 | --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: |
 | HLS TS    | ✔️ | ⚠️ | Not applicable | Not applicable | Not tested | ❌ | ✔️ |
 | HLS CMAF  | ✔️ | ⚠️ | ❌ | Not applicable | Not tested | ❌ | ✔️ |
-| DASH CMAF | ❌ | ❌ |  Not applicable | Not applicable | Not tested | ❌ | ✔️ |
+| DASH CMAF | ❌ | ❌ |  Not applicable | Not applicable | Not applicable | ❌ | ✔️ |
 
-[More details](./results/ios.md)
+[More details](./results/iOS.md)

@@ -1,41 +1,23 @@
-# Media Services 3rd Party Player Sample - Video.js
+# Media Services 3rd Party Player Samples - Video.js
 
-[Overview](#overview)
-
-- [How to use](#how-to-use)
-  - [Setup development environment](#setup-development-environment)
-  - [Basic usage of sample](#basic-usage-of-sample)
-  - [Custom setup of player](#custom-setup-of-player)
-    - [Setup VOD captions](#setup-vod-captions)
-    - [Setup Token Authentication](#setup-token-authentication)
-    - [Setup AES-128 encryption](#setup-aes-128-encryption)
-    - [Setup DRM Protection](#setup-drm-protection)
-      - [Acquiring the License URL](#acquiring-the-license-url)
-      - [Using tokenized DRM](#using-tokenized-drm)
+- [Overview](#overview)
+- [Implementing the player](#implementing-the-player)
+  - [Setup captions](#setup-captions)
+  - [Setup token authentication](#setup-token-authentication)
+  - [Setup AES-128 encryption](#setup-aes-128-encryption)
+  - [Setup DRM protection](#setup-drm-protection)
+- [Implementation reference](#implementation-reference)
 - [Test results](#test-results)
 
 ## Overview
 
-Video.js is a web video player built from the ground up for an HTML5 world. It plays adaptive media formats (such as DASH and HLS) in a browser, without using plugins or Flash. Instead, Video.js uses the open web standards MediaSource Extensions and Encrypted Media Extensions. Moreover, It supports video playback on desktops and mobile devices.
+Video.js is a web video player built from the ground up for an HTML5 world. It plays adaptive media formats (such as DASH and HLS) in a browser, without using plugins or Flash. Instead, Video.js uses the open web standards MediaSource Extensions and Encrypted Media Extensions. Moreover, it supports video playback on desktops and mobile devices.
 
 Its official documentation can be found [here](https://docs.videojs.com/ "Video.js documentation").
 
 ------------
 
-## How to use
-
-### Setup development environment
-
-- Install [NodeJS v8+](https://nodejs.org/en/download/ "NodeJS v8+")
-
-### Basic usage of sample
-
-1. Clone this repository.
-2. Navigate through the console to the example's folder (src/) and run `npx http-server`.
-3. Open the browser of your choice, and go to `http://localhost:8080/`.
-4. Copy the link to your manifest URL, and paste it in the `Manifest URL` field and click `Load Stream`. Your video is now loaded.
-
-### Custom setup of player
+## Implementing the player
 
 1. Create an `index.html` file where you'll host the player. Add the following lines of code (you can replace the versions for newer if applicable):
 
@@ -67,12 +49,12 @@ Its official documentation can be found [here](https://docs.videojs.com/ "Video.
 
 3. Replace `manifestUrl` with the manifest URL of your choice.
 
-4. Replace `protocolType` with the folowin options:
+4. Replace `protocolType` with the following options:
 
 - "application/x-mpegURL" for HLS protocols
 - "application/dash+xml" for DASH protocols
 
-#### Setup VOD captions
+### Setup captions
 
 Run the `addRemoteTextTrack` method, and replace:
 
@@ -90,7 +72,7 @@ videojs.players.video.addRemoteTextTrack({
 });
 ```
 
-#### Setup Token Authentication
+### Setup token authentication
 
 The token must be set in the authorization field of the request's header. In order to avoid problems with CORS, this token must be set only in those requests with `'keydeliver'` in its URL. The following code lines should do the work:
 
@@ -111,11 +93,11 @@ Then, the above function must be attached to the `videojs.Hls.xhr.beforeRequest`
 videojs.Hls.xhr.beforeRequest = setupTokenForDecrypt;
 ```
 
-#### Setup AES-128 encryption
+### Setup AES-128 encryption
 
 Video.js supports AES-128 encryption without any additional configuration. Please note that there's currently an [issue](https://github.com/videojs/video.js/issues/6717) with encryption and HLS/DASH CMAF content, which are not playable.
 
-#### Setup DRM Protection
+### Setup DRM protection
 
 In order to support DRM protection, you must add the [videojs-contrib-eme](https://github.com/videojs/videojs-contrib-eme) official extension; a CDN version of it works as well.
 
@@ -141,14 +123,14 @@ In order to support DRM protection, you must add the [videojs-contrib-eme](https
 
    ```
 
-##### Acquiring the License URL
+#### Acquiring the license URL
 
-In order to acquire the license URL you can:
+In order to acquire the license URL, you can:
 
 - Consult your DRM provider configuration
-- or, consult the `output.json` document generated when you previously ran the [setup-vod.ps1](https://github.com/southworks/media-services-v3-player-frameworks-tests/tree/master/setup#setup-vodps1) for VODs, or [start-live.ps1](https://github.com/southworks/media-services-v3-player-frameworks-tests/tree/master/setup#start-liveps1) for live streams; you'll also find the KIDs inside this file.
+- or, consult the `output.json` document generated when you previously ran the [setup-vod.ps1](../../setup#setup-vodps1) for VODs, or [start-live.ps1](../../setup#start-liveps1) for live streams; you'll also find the KIDs inside this file.
 
-##### Using tokenized DRM
+#### Using tokenized DRM
 
 In order to support tokenized DRM protection, you have to add the following line to the `src` property of the player:
 
@@ -158,6 +140,10 @@ src: ...,
 emeHeaders: {'Authorization': "Bearer=" + "YOUR TOKEN"},
 keySystems: {...
 ```
+
+## Implementation reference
+
+For an implementation reference sample please check the following [link](../../src/video.js) which contains a complete implementation of a Video.js Player.
 
 ------------
 
@@ -169,7 +155,7 @@ References:
 
 - ⚠️ Some scenarios may not be supported (for more information, click more details at the bottom).
 
-- ❌ No scenario supported.
+- ❌ No scenario is supported.
 
 ### Windows 10 v1909+
 
@@ -199,9 +185,9 @@ Tested on:
 | --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: |
 | HLS TS    | ✔️ | ⚠️ | Not applicable | Not applicable | Not tested | ✔️ | ✔️ |
 | HLS CMAF  | ✔️ | ⚠️ | ![chrome](../icons/chrome.png) | Not applicable | Not tested | ❌ | ✔️ |
-| DASH CMAF | ✔️ | ⚠️ | ![chrome](../icons/chrome.png) | Not applicable | Not applicable | ❌ | ✔️ |
+| DASH CMAF | ⚠️ | ⚠️ | ![chrome](../icons/chrome.png) | Not applicable | Not applicable | ❌ | ✔️ |
 
-[More details](./results/mac.md)
+[More details](./results/macOS.md)
 
 ### Ubuntu v18.04.3 LTS+
 
@@ -214,7 +200,7 @@ Tested on:
 | --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: |
 | HLS TS    | ✔️ | ⚠️ | Not applicable | Not applicable | Not applicable | ✔️ | ✔️ |
 | HLS CMAF  | ✔️ | ⚠️ | ✔️ | ❌ | Not applicable | ❌ | ✔️ |
-| DASH CMAF | ✔️ | ⚠️ | ⚠️ | ❌ | Not applicable | ❌ | ✔️ |
+| DASH CMAF | ⚠️ | ⚠️ | ⚠️ | ❌ | Not applicable | ❌ | ✔️ |
 
 [More details](./results/ubuntu.md)
 
@@ -244,6 +230,6 @@ Tested on:
 | --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: |
 | HLS TS    | ✔️ | ⚠️ | Not applicable | Not applicable | Not tested | ✔️ | ✔️ |
 | HLS CMAF  | ✔️ | ❌ | ❌ | Not applicable | Not tested | ❌ | ✔️ |
-| DASH CMAF | ❌ | ❌ | Not applicable | Not applicable | Not tested | ❌ | ❌ |
+| DASH CMAF | ❌ | ❌ | Not applicable | Not applicable | Not applicable | ❌ | ❌ |
 
-[More details](./results/ios.md)
+[More details](./results/iOS.md)
