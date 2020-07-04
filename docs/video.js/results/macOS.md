@@ -1,4 +1,4 @@
-# Test results for Video.js on Android v8+
+# Test results for Video.js on macOS v10.15.5+
 
 References:
 
@@ -6,17 +6,17 @@ References:
 
 - ❌ No browser is supported.
 
-- ![firefox](../../icons/firefox.png) ![chrome](../../icons/chrome.png) Scenario supported in the given browser.
+- ![safari](../../icons/safari.png) ![chrome](../../icons/chrome.png) Scenario supported in the given browser.
 
 ## VOD
 
 Preset: "AdaptiveStreaming"
 
-| Format | Clear | DRM Token | AES-128 Token | Widevine | PlayReady | FairPlay | AES-128 | Sidecar caption |
+| Format | Clear | DRM Token | AES-128 Token | Widevine | PlayReady | FairPlay | AES-128 | Sidecar captions |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
-| HLS TS    | ✔️ | Not applicable | ✔️ | Not applicable | Not applicable | Not applicable | ✔️ | ✔️ |
-| HLS CMAF  | ![firefox](../../icons/firefox.png) | ❌([#5](issues.md#issue-5)) | ❌([#3](issues.md#issue-3)) | ❌([#5](issues.md#issue-5)) | Not applicable | Not applicable | ❌([#3](issues.md#issue-3)) | ![chrome](../../icons/chrome.png) |
-| DASH CMAF | ✔️ | ✔️ | ❌([#3](issues.md#issue-3)) | ✔️ | Not applicable | Not applicable | ❌([#3](issues.md#issue-3)) | ✔️ |
+| HLS TS    | ✔️ | Not tested  | ✔️ | Not applicable | Not applicable | Not tested | ✔️ | ✔️ |
+| HLS CMAF  | ✔️ | ![chrome](../../icons/chrome.png) | ❌([#3](issues.md#issue-3)) | ![chrome](../../icons/chrome.png) | Not applicable | Not tested | ❌([#3](issues.md#issue-3)) | ✔️ |
+| DASH CMAF | ✔️ | ![chrome](../../icons/chrome.png) | ❌([#3](issues.md#issue-3)) | ![chrome](../../icons/chrome.png) | Not applicable | Not applicable | ❌([#3](issues.md#issue-3)) | ✔️ |
 
 More details about issues [here](issues.md).
 
@@ -28,8 +28,8 @@ PresetName: "Default720p"
 
 | Format | Clear | DRM Token | AES-128 Token | Widevine | PlayReady | FairPlay | AES-128 | Live Transcription |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
-| HLS TS    | ✔️ | Not applicable | ✔️ | Not applicable | Not applicable | Not applicable | ✔️ | ❌([#7](issues.md#issue-7)) |
-| HLS CMAF  | ❌([#6](issues.md#issue-6)) | ❌([#5](issues.md#issue-5)) | ❌([#3](issues.md#issue-3)) | ❌([#5](issues.md#issue-5)) | Not applicable | Not applicable | ❌([#3](issues.md#issue-3)) | ❌([#7](issues.md#issue-7)) |
+| HLS TS    | ✔️ | Not tested  | ![chrome](../../icons/chrome.png) | Not applicable | Not applicable | Not tested | ✔️ | ✔️ |
+| HLS CMAF  | ✔️ | ![chrome](../../icons/chrome.png) | ❌([#3](issues.md#issue-3)) | ![chrome](../../icons/chrome.png) | Not applicable | Not tested | ❌([#3](issues.md#issue-3)) | ![safari](../../icons/safari.png) |
 | DASH CMAF | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#3](issues.md#issue-3)) | ❌([#1](issues.md#issue-1)) | Not applicable | Not applicable | ❌([#3](issues.md#issue-3)) | ❌([#7](issues.md#issue-7)) |
 
 More details about issues [here](issues.md).
@@ -42,8 +42,8 @@ PresetName: "Default720p"
 
 | Format | Clear | DRM Token | AES-128 Token | Widevine | PlayReady | FairPlay | AES-128 |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| HLS TS    | ✔️ | Not applicable | ✔️ | Not applicable | Not applicable | Not applicable | ✔️ |
-| HLS CMAF  | ❌([#6](issues.md#issue-6)) | ❌([#5](issues.md#issue-5)) | ❌([#3](issues.md#issue-3)) | ❌([#5](issues.md#issue-5)) | Not applicable | Not applicable | ❌([#3](issues.md#issue-3)) |
+| HLS TS    | ✔️ | Not tested  | ✔️ | Not applicable | Not applicable | Not tested | ✔️ |
+| HLS CMAF  | ✔️ | ![chrome](../../icons/chrome.png) | ❌([#3](issues.md#issue-3)) | ![chrome](../../icons/chrome.png) | Not applicable | Not tested | ❌([#3](issues.md#issue-3)) |
 | DASH CMAF | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#3](issues.md#issue-3)) | ❌([#1](issues.md#issue-1)) | Not applicable | Not applicable | ❌([#3](issues.md#issue-3)) |
 
 More details about issues [here](issues.md).

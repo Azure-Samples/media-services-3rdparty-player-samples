@@ -1,4 +1,4 @@
-# Test results for Shaka on iOS v13.5.1+
+# Test results for Shaka on macOS v10.15.5+
 
 References:
 
@@ -16,7 +16,7 @@ Preset: "AdaptiveStreaming"
 | --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
 | HLS TS    | ✔️ | Not tested  | ❌([#2](issues.md#issue-2)) | Not applicable | Not applicable | Not tested | ❌([#2](issues.md#issue-2)) | ✔️ |
 | HLS CMAF  | ✔️ | ❌([#1](issues.md#issue-1)) | ❌([#2](issues.md#issue-2)) | ❌([#1](issues.md#issue-1)) | Not applicable | Not tested | ❌([#2](issues.md#issue-2)) | ✔️ |
-| DASH CMAF | ❌([#4](issues.md#issue-4)) | Not applicable | ❌([#4](issues.md#issue-4)) | Not applicable | Not applicable | Not applicable | ❌([#4](issues.md#issue-4)) | ❌([#4](issues.md#issue-4)) |
+| DASH CMAF | ✔️ | ✔️ | ❌([#2](issues.md#issue-2)) | ![chrome](../../icons/chrome.png) | Not applicable | Not applicable | ❌([#2](issues.md#issue-2)) | ✔️ |
 
 More details about issues [here](issues.md).
 
@@ -30,7 +30,7 @@ PresetName: "Default720p"
 | --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
 | HLS TS    | ✔️ | Not tested  | ❌([#2](issues.md#issue-2)) | Not applicable | Not applicable | Not tested | ❌([#2](issues.md#issue-2)) | ❌([#12](issues.md#issue-12)) |
 | HLS CMAF  | ✔️ | ❌([#1](issues.md#issue-1)) | ❌([#2](issues.md#issue-2)) | ❌([#1](issues.md#issue-1)) | Not applicable | Not tested | ❌([#2](issues.md#issue-2)) | ❌([#12](issues.md#issue-12)) |
-| DASH CMAF | ❌([#4](issues.md#issue-4)) | Not applicable | ❌([#4](issues.md#issue-4)) | Not applicable | Not applicable | Not applicable | ❌([#4](issues.md#issue-4)) | ❌([#12](issues.md#issue-12)) |
+| DASH CMAF | ✔️ | ✔️ | ❌([#2](issues.md#issue-2)) | ![chrome](../../icons/chrome.png) | Not applicable | Not applicable | ❌([#2](issues.md#issue-2)) | ✔️ |
 
 More details about issues [here](issues.md).
 
@@ -44,6 +44,6 @@ PresetName: "Default720p"
 | --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
 | HLS TS    | ✔️ | Not tested  | ❌([#2](issues.md#issue-2)) | Not applicable | Not applicable | Not tested | ❌([#2](issues.md#issue-2)) |
 | HLS CMAF  | ✔️ | ❌([#1](issues.md#issue-1)) | ❌([#2](issues.md#issue-2)) | ❌([#1](issues.md#issue-1)) | Not applicable | Not tested | ❌([#2](issues.md#issue-2)) |
-| DASH CMAF | ❌([#4](issues.md#issue-4)) | Not applicable | ❌([#4](issues.md#issue-4)) | Not applicable | Not applicable | Not applicable | ❌([#4](issues.md#issue-4)) |
+| DASH CMAF | ✔️ | ✔️ | ❌([#2](issues.md#issue-2)) | ![chrome](../../icons/chrome.png) | Not applicable | Not applicable | ❌([#2](issues.md#issue-2)) |
 
 More details about issues [here](issues.md).

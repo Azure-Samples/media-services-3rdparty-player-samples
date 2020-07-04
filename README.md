@@ -4,7 +4,7 @@ languages:
 - javascript
 products:
 - azure media services
-description: "This repository contains samples, documentation and test results for different 3rd player frameworks using VOD and Live content from Azure Media Services (AMS)."
+description: "This repository contains samples, documentation and test results for different 3rd party player frameworks using VOD and Live content from Azure Media Services (AMS)."
 urlFragment: "media-services-3rdparty-player-samples"
 ---
 
@@ -12,57 +12,91 @@ urlFragment: "media-services-3rdparty-player-samples"
 
 ## Overview
 
-This repository contains samples, documentation and platform/browser support matrix for using popular 3rd party player frameworks that support HLS and/or MPEG-DASH delivery from Azure Media Services (AMS).
+This repository contains samples, documentation, and platform/browser feature tables for using popular 3rd party player frameworks that support HLS and/or MPEG-DASH delivery from Azure Media Services (AMS). This guide also includes the steps needed to configure VOD and Live content from Azure Media Services to facility the testing of each 3rd party player.
 
-This guidance also includes the steps needed to configure and play Live and VOD content from Azure Media Services with several 3rd party video players. There are two main components to this repository:
+These are the main components of this repository:
 
-1. The [setup scripts](/setup) will help you generating Live and VOD content with Azure Media Services for testing in the players.
-2. Once you've set up your Live and VOD test content, you can opt between the players tested in this repository:
+1. [Setup](#setup)
 
-- [Video.js](/src/video.js)  or
+2. [Samples](#samples)
+
+3. [Test results](#test-results)
+
+4. [How to setup your player](#how-to-setup-your-player)
+
+## Setup
+
+This project uses PowerShell [setup](/setup) scripts to generate content (VOD and Live) in Azure Media Services, and provides tools to test the 3rd party players in different combination of features, streaming formats, and content protection.
+
+For example, this is the _Index_ page generated after running the setup scripts. It contains the playback endpoints for all the features, formats, and content protection options available in Azure Media Services along with links to test them on each 3rd party player sample:
+
+![Index](docs/images/index.jpg)
+
+For a detailed guide on how to run them, please check the [Setup](/setup) section.
+
+## Samples
+
+The repository contains a sample implementation of each player. The sample is a minimal implementation of the player ready to use with captioning and content protection (DRM and Encryption).
+
+To see the sample code, please check:
+
+- [Video.js](/src/video.js)
 - [Shaka Player](/src/shaka)
 
-## Contents
+## Test results
+  
+The samples were tested with VOD and Live content generated with the [Setup](/setup) in the following browsers:
+
+- Windows 10 v1909+
+  - ![chrome](docs/icons/chrome.png) Chrome (v83.0.4103.97+)
+  - ![firefox](docs/icons/firefox.png) Firefox (v77.0.1+)
+  - ![newedge](docs/icons/edge-new.png) Edge Chromium-based (v83.0.478.50+)
+  - ![edge](docs/icons/edge.png) Edge (v44.18362.449.0+)
+- macOS v10.15.5+
+  - ![chrome](docs/icons/chrome.png) Chrome (v83.0.4103.97+)
+  - ![safari](docs/icons/safari.png) Safari (v13.1.1+)
+- Ubuntu v18.04.3 LTS+
+  - ![chrome](docs/icons/chrome.png) Chrome (v79.0.3945.130+)
+  - ![firefox](docs/icons/firefox.png) Firefox (v76.0.1+)
+- Android v8+
+  - ![chrome](docs/icons/chrome.png) Chrome (v83.0.4103.97+)
+  - ![firefox](docs/icons/firefox.png) Firefox (v68.9+)
+- iOS v13.5.1+
+  - ![chrome](docs/icons/chrome.png) Chrome (v83.0.4103.88+)
+  - ![safari](docs/icons/safari.png) Safari (v13.1+)
+
+To see the test results, please check:
+  
+- [Video.js](/docs/video.js#test-results)
+- [Shaka Player](/docs/shaka#test-results)
+
+## How to setup your player
+
+The documentation contains instructions on how to implement your own player, covering the following items:
+
+- Implementing the player
+- Setup captions
+- Setup token authentication
+- Setup AES-128 encryption
+- Setup DRM protection
+
+To see the documentation, please check:
+
+- [Video.js](/docs/video.js)
+- [Shaka Player](/docs/shaka)
+
+## Root contents
 
 | File/folder         | Description                                |
 |---------------------|--------------------------------------------|
-| `.github`           | Folder with github workflows               |
-| `src`               | Folder with players samples                |
-| `docs`               | Folder with players configuration files and test results|
+| `src`               | Folder with 3rd party players samples                |
+| `docs`              | Folder with 3rd party players documentation and test results|
 | `setup`             | Folder with AMS setup scripts.             |
 | `.gitignore`        | Define what to ignore at commit time.      |
 | `CHANGELOG.md`      | List of changes to the sample.             |
 | `CONTRIBUTING.md`   | Guidelines for contributing to the sample. |
 | `LICENSE`           | The license for the sample.                |
 | `README.md`         | This README file.                          |
-
-## Prerequisites
-
-To run the setup scripts you need to install the following tools
-
-- [Azure CLI 2.8.0+](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
-- [PowerShell 5.1+](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-core-on-windows?view=powershell-7)
-
-## Setup
-
-To setup these samples first you need to run the setup scripts. For a detailed guide on how to run them go to [Setup](/setup).
-
-## Running the sample
-
-Once you have created all the content in Azure Media Services continue with our guides for each Player:
-
-- [Video.js](/src/video.js)  or
-- [Shaka Player](/src/shaka)
-
-## Key concepts
-
-This project uses Azure CLI in PowerShell scripts to generate content in Azure Media Services, it also provides HTML/JS sample implementations to test this content and test results for each combination of browser, format and content.
-
-For test results plase check
-
-
-- [Video.js](/docs/video.js#test-results)
-- [Shaka Player](/docs/shaka#test-results)
 
 ## Contributing
 

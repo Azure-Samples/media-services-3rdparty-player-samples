@@ -1,27 +1,29 @@
-# Media Services v3 Player Frameworks Tests - Content Setup with Azure CLI PowerShell scripts
+# Media Services 3rd Party Player Samples - Setup
 
 ## Table of contents
 
-- [Azure Media Services test content setup - Azure CLI PowerShell scripts](#azure-media-services-test-content-setup---azure-cli-powershell-scripts)
-  - [Table of contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Requirements](#requirements)
-  - [Steps to setup and start the streams](#steps-to-setup-and-start-the-streams)
-  - [Configuration](#configuration)
+- [Overview](#overview)
+- [Requirements](#requirements)
+- [Steps to setup and start the streams](#steps-to-setup-and-start-the-streams)
+  - [Common configuration](#common-configuration)
+  - [Avoiding extra costs](#avoiding-extra-costs)
+- [Documentation](#documentation)
+  - [config.json](#configjson)
     - [Options of the Content Key Policy](#options-of-the-content-key-policy)
-    - [setup.ps1](#setupps1)
-    - [setup-vod.ps1](#setup-vodps1)
-    - [setup-live.ps1](#setup-liveps1)
-    - [start-live.ps1](#start-liveps1)
-    - [stop-live.ps1](#stop-liveps1)
-    - [start-endpoint.ps1](#start-endpointps1)
-    - [stop-endpoint.ps1](#stop-endpointps1)
-    - [delete.ps1](#deleteps1)
-    - [upload-samples.ps1](#upload-samplesps1)
+  - [output.json](#outputjson)
+  - [setup.ps1](#setupps1)
+  - [setup-vod.ps1](#setup-vodps1)
+  - [setup-live.ps1](#setup-liveps1)
+  - [start-live.ps1](#start-liveps1)
+  - [stop-live.ps1](#stop-liveps1)
+  - [start-endpoint.ps1](#start-endpointps1)
+  - [stop-endpoint.ps1](#stop-endpointps1)
+  - [delete.ps1](#deleteps1)
+  - [upload-samples.ps1](#upload-samplesps1)
 
 ## Overview
 
-This file documents the scripts used to setup the content in Azure Media Services that will be used in tests. It aids with the creation of the needed resources and provides the user with playback and ingest URLs.
+This document contains the instructions to generate streaming content (both VOD and Live) in Azure Media Services so it can be used for testing the different 3rd party players. The different playback endpoints (HLS, DASH, DRM, etc.), ingest URLs, and license server URLs will be the output of this process. The output then is used to generate an index page with links to test in each player all the content. The scripts also deploy the samples (that will contain the output and the index page) to a static website hosted on an Azure storage blob container.
 
 ## Requirements
 
@@ -71,28 +73,34 @@ This file documents the scripts used to setup the content in Azure Media Service
     Copy-Item .\config.json.fairplay.example .\config.json
     ```
 
-7. Configuration
+    > **Note:** If the `config.json` file doesn't exist, the script will automatically copy it from `config.json.example`. We suggest you to create your own `config.json` before running the script if you want to customize the configuration.
 
-    Open the `config.json` and update the names of the resources you'll use. If these don't exist, the script will create them:
+7. Update the configuration
 
+    Open the `config.json` to select the names of the Azure resources that you'll use. **If these resources doesn't exist, the script will create them for you**:
+    
     ```json
     "ResourceGroup": "amsplayerresource",
     "StorageAccount": "amsplayerstorage",
     "MediaServiceAccount": "amsplayeraccount"
     ```
 
-    Configure the token by adding the key:
-      - `key`: Either a string (40 characters) for symmetric key, or a file path to a certificate (x509) or public key (rsa)
+    Configure the token by setting the `key` property in the `token` section:
+      - `key`: Either a string (40 characters) for symmetric key, or a file path to a certificate (X509) or public key (RSA).
 
-    Additional configurations [here](#configuration)
+    See [here](#documentation) for additional configurations options.
 
-    if you are configuring Fairplay complete the `config.json` with the folowing values:  
+    if you are configuring FairPlay complete the `config.json` with the following values:  
       - `typeValue`: with the path of your private key.
-      - `ask`: with the key that must be used as FairPlay Application Secret Key, which is a 32 character hex string.
+      - `ask`: with the key that must be used as FairPlay Application Secret Key, which is a 32-character hex string.
       - `fairPlayPfxPassword` with the password encrypting FairPlay certificate in PKCS 12 (pfx) format.
       - `FairPlayPublicCertPath` : with the path of your public certificate.
 
-8. Run Setup scripts. More information [here](#setupps1)
+    This should be loaded both in `DRMOpen` and `DRMToken` sections of the Content Key Policies.
+
+8. Setup the content
+
+    After completing the required fields in the `config.json`, you can configure the basic Azure resources with:
 
     ```powershell
     .\setup.ps1
@@ -100,57 +108,89 @@ This file documents the scripts used to setup the content in Azure Media Service
     .\setup-live.ps1
     ```
 
-### Start VOD
+    > **Note:** Find [below](#documentation) detailed information of what each script does.
 
-1. Run Start Endpoint script. More information [here](#start-endpointps1)
+    While running the `setup-vod.ps1` script, you'll be asked if you want to start the default streaming endpoint and, in case you do so, your content will be ready to be played. 
+    
+    > **Note:** Keep in mind that once the streaming endpoint is started you will begin to be charged (more information in the [Avoiding extra costs](#Avoiding-extra-costs) section). You can always start the default streaming endpoint later by executing the following command:
+    >
+    >```powershell
+    >.\start-endpoint.ps1
+    >```
 
-    ```powershell
-    .\start-endpoint.ps1
-    ```
+    After running the `setup-vod.ps1` script, an `output.json` file in the `src` folder will be generated, containing the VOD manifests URLs, a token (for testing), the license URLs, and the content keys IDs (one for the DRM open and one for the DRM with token protected content). More information about the `output.json` file can be found in the [Documentation](#outputjson) section.
+    
+    Also, a `transcript.vtt` file, generated using Video Indexer, will be downloaded into the `src` folder.
 
-### Start Live
-
-1. Run Start Live script. More information [here](#start-liveps1)
+    Execute the following script to start a live stream:
 
     ```powershell
     .\start-live.ps1
     ```
 
-2. The script shows the ingest URLs
-3. Copy the ingest URL in your streaming software
-4. Start streaming in your software
-5. When streaming is started press enter in the terminal
+    While running the `start-live.ps1` you'll be asked to connect your live encoder to one of the ingest URLs provided. You can skip this but the script will try to get the manifests URLs anyway and they won't be completely generated until the encoder is correctly connected, so you will see in the `output.json` just the host name of the manifests (obtained from the streaming endpoint). If you decided to skip it, you can re-run the `start-live.ps1` script once you have your encoder connected and this will complete the `output.json` with the live stream content (manifests and license URLs and content keys IDs).
 
-### Upload Samples
+    Keep in mind that, once you run the `start-live.ps1` script, the default streaming endpoint and the live event will be running either you connect the encoder or not, and this will generate costs (please see the [Avoiding extra costs](#Avoiding-extra-costs) section for more information).
 
-1. Run Stop Live script. More information [here](#upload-samplesps1)
+    The live streaming content is different from the VOD since the manifest URLS (and, therefore, the content key IDs) will change every time you start and stop it. So the section for live stream in the `output.json` will change constantly.
+
+    In case you need to change the mode of the live stream to enable low latency or live transcription you need to run the `setup-live.ps1` script. This will stop and delete any running resource and create a new live event so when you run the `start-live.ps1` it will use that mode. In this case the ingest URLs will change.
+
+9. Deploy a static web site
+
+    In the `src` folder there is an `index` page configured which generates links with the URLs and parameters needed in the player to reproduce the content. This data is loaded from the `output.json`.
+
+    You can create a static website with the `index` and the players samples with:
 
     ```powershell
     .\upload-samples.ps1
     ```
 
-This script prints the URL to access the samples online.
+    This script enables a static web site in the storage account selected in the `config.json` and uploads into its blob container, called `$web`, the entire `src` folder. It also configures the `index` and returns the URL to access it.
 
-### Stop VOD
+    ![Index](../docs/images/index.jpg)
 
-1. Run Stop Endpoint script. More information [here](#stop-vodps1)
+    In case you run this without previously executing the other scripts, the `index` will contain only a link to each player sample where you can test any manifest.
 
-    ```powershell
-    .\stop-endpoint.ps1
-    ```
+    If you change the live stream mode, run this script again so the `output.json` is updated and the links use the new URLs.
 
-### Stop Live
+    Once you completed all the tests, and if you won't use any of the content anymore, you can delete you resource group with the script `delete.ps1`.
 
-1. Run Stop Live script. More information [here](#stop-liveps1)
+    More technical details on what each file and script does and contains [here](#documentation).
 
-    ```powershell
-    .\stop-live.ps1
-    ```
+### Avoiding extra costs
 
-## Configuration
+There are three main cost-generators when you setup the content:
+  - The `streaming endpoint` in running state.
+  - The `live event` in running state.
+  - The `blob storage`.
+
+More information about Azure Media Services pricing [here](https://azure.microsoft.com/en-us/pricing/details/media-services/). You can also find the encoding price for the VOD, but as the scripts use a short video to encode and as it's run just once, the cost should be negligible.
+
+More information about `blob storage` pricing [here](https://azure.microsoft.com/en-us/pricing/details/storage/blobs/).
+
+The live stream content requires both `live event` and `streaming endpoint` running to work and the VOD just requires the `streaming endpoint`.
+
+We recommend that once the live stream is not used anymore run:
+
+```powershell
+.\stop-live.ps1
+```
+
+This will stop the `live event` and will delete all the content generated, so the overall `blob storage` costs will be reduced. Take into account that this script won't stop the `streaming endpoint`, so the VOD content will continue to work. All the live stream content from the `output.json` will be removed, since, once you start it again, it will change.
+
+To stop the `streaming endpoint` run:
+
+```powershell
+.\stop-endpoint.ps1
+```
+
+## Documentation
+
+### config.json
 
 The resource creation process can be configured through a `config.json` file, an example is uploaded [here](config.json.example).
-*If we run a script and there is no config.json, it will create it from the example.*
+*If you run a script and there is no config.json, it will create it from the example.*
 
 config.json
 
@@ -200,14 +240,14 @@ config.json
 "FairPlayPublicCertPath": "" // Path to Public FairPlay Certificate
 ```
 
-### Options of the Content Key Policy
+#### Options of the Content Key Policy
 
 The Content Key Policies can have more than one option.
 Each option can have the fields:
 
 - `name`: Name of the option. This field is required for all Content Key Policies.
 - `type`: Parameter to configure the DRM or encryption option (--widevine-template /--play-ready-template / -fair-play-pfx / --clear-key-configuration) This field is required for all Content Key Policies.
-- `typeValue`: Value of the type, a path to the json license file, json string (Widevine works with an empty json), empty for encryption or the filepath to a FairPlay certificate file in PKCS 12 (pfx) format (including private key). This field is required for all Content Key Policies.
+- `typeValue`: Value of the type, a path to the json license file, json string (Widevine works with an empty json), empty for encryption or the file path to a FairPlay certificate file in PKCS 12 (pfx) format (including private key). This field is required for all Content Key Policies.
 - `ask`: The key that must be used as FairPlay Application Secret Key, which is a 32 character hex string. This field is required for FairPlay Content Key Policy.
 - `fairPlayPfxPassword`: The password encrypting FairPlay certificate in PKCS 12 (pfx) format. This field is required for FairPlay Content Key Policy
 - `rentalAndLeaseKeyType`: The rental and lease key type. Available values: Undefined, DualExpiry, PersistentUnlimited, PersistentLimited.
@@ -244,22 +284,64 @@ In this sample, the Content key Policy with DRM and token protection will be cre
 
 In the Setup directory there is a `playreadylicense.json` already created with the default template.
 
-In the config.json.example there is an extra parameter called `disabled-options` in the first Content Key Policy for a FairPlay sample. It won't be used in the scripts.
+In the `config.json.example` there is an extra parameter called `disabled-options` in the first Content Key Policy for a FairPlay sample. It won't be used in the scripts.
 
 ------
 
+### output.json
+
+The output of each script will be saved in this file located in the `src` folder. The file will contain all the information required to test the different features on each players, including ingest URLs, manifest URLs, token, licence URLs, licence keys, and captions.
+
+The file is also consumed by the index page of the sample player to generate the links to the different contents. 
+
+```json
+{
+  "VOD": {
+    "clear": [],
+    "DRMOpen": [],
+    "DRMToken": [],
+    "encryptionOpen": [],
+    "encryptionToken": [],
+    "subtitle": "",
+    "DRMOpenKIDCENC": "",
+    "DRMOpenKIDCBCS": "",
+    "DRMTokenKIDCENC": "",
+    "DRMTokenKIDCBCS": ""
+  },
+  "LiveStream": {
+    "mode": "",
+    "ingestURLs": [],
+    "clear": [],
+    "DRMOpen": [],
+    "DRMToken": [],
+    "encryptionOpen": [],
+    "encryptionToken": [],
+    "DRMOpenKIDCENC": "",
+    "DRMOpenKIDCBCS": "",
+    "DRMTokenKIDCENC": "",
+    "DRMTokenKIDCBCS": ""
+  },
+  "WidevineLicenseURL": "",
+  "PlayReadyLicenseURL": "",
+  "FairPlayLicenseURL": "",
+  "FairPlayPublicCertPath": "",
+  "Token": ""
+}
+```
+
 ### setup.ps1
 
-What this script does
+What this script does:
 
-1. Creates (if they don't exist) a **Resource Group**, a **Storage Account** and an **Azure Media Services Account** with the names specified in the `config.json` file
-2. Creates (if they don't exist) the **Content Key Policies** with the options specified in the `CKP` section of the `config.json` for:
+1. Creates (if they don't exist) a **Resource Group**, a **Storage Account** and an **Azure Media Services Account** with the names specified in the `config.json` file.
+2. Creates (if it doesn't exist) a **Streaming policy** for using CENC encryption in DASH and HLS URLs. And CBCS in HLS.
+3. Creates (if they don't exist) the **Content Key Policies** with the options specified in the `CKP` section of the `config.json` for:
     - Open DRM
     - Tokenized DRM
     - Open ClearKey
     - Tokenized ClearKey
 
-Requirements
+Requirements:
 
 The following fields must be filled in the `config.json` file:
 
@@ -276,7 +358,7 @@ The following fields must be filled in the `config.json` file:
   - `audience`
   - `duration`
 
-Run
+Run:
 
 ```powershell
 .\setup.ps1
@@ -286,25 +368,32 @@ Run
 
 ### setup-vod.ps1
 
-What this script does
+What this script does:
 
-1. Creates asset
-2. Uploads the file
-3. Creates the transform
-4. Runs a new job to transform the created asset and saves the result into an output asset
-5. Runs a new job to analyze the audio of the video and download the generated `trancript.vtt` into the `src` folder.
-6. Generates the streaming locators for:
+1. Creates asset.
+2. Uploads the file.
+3. Creates the transform with the selected preset in the `config.json`.
+4. Runs a new job to transform the created asset and saves the result into an output asset.
+5. Creates a transform with the preset AudioAnalyzer.
+6. Runs a new job with the AudioAnalyzer preset transform and download the generated `trancript.vtt` into the `src` folder.
+7. Generates the streaming locators for:
     - Clear VOD
     - Open MultiDRM VOD
     - Tokenized MultiDRM VOD
     - Open ClearKey VOD
     - Tokenized ClearKey VOD
-7. Gets all the URLs from the streaming locators and saves them into `output.json` file
-8. Ask whether the user wants to start the default streaming endpoint
+8. Gets all the URLs from the streaming locators and saves them into `output.json` file.
+9. Extracts license URLs from manifest. To extract them, it performs the following steps:
+    - Downloads the DASH DRM protected manifest from the generated URL.
+    - Opens the manifest and finds the XPath /MPD/Period/AdaptationSet/ContentProtection/laurl/licenseUrl. This node contains the license URL for Widevine.
+    - The license URLs for PlayReady are generated with the host of Widevine’s license URL, plus /PlayReady/.
+    - The license URLs for FairPlay are generated with the host of Widevine’s license URL, plus /FairPlay/.
+10. Gets the content keys and save their IDs into the `output.json`.
+11. Ask whether the user wants to start the default streaming endpoint.
 
-Requirements
+Requirements:
 
-- `setup.ps1` executed beforehand
+- `setup.ps1` executed beforehand.
 - The following fields must be filled in the `config.json` file:
   - `ResourceGroup`
   - `StorageAccount`
@@ -313,7 +402,7 @@ Requirements
     - `filePath`
     - `preset`
 
-Run
+Run:
 
 ```powershell
 .\setup-vod.ps1
@@ -323,11 +412,11 @@ Run
 
 ### setup-live.ps1
 
-What this script does
+What this script does:
 
-1. Creates the live event with the name specified in the `config.json` file
+1. Creates the live event with the name specified in the `config.json` file.
 
-Requirements
+Requirements:
 
 - `setup.ps1` executed before
 - The following fields must be filled in the `config.json` file:
@@ -340,7 +429,7 @@ Requirements
     - `presetName`
     - `mode` (in order to change the mode, run `setup-live.ps1` again with the new configuration)
 
-Run
+Run:
 
 ```powershell
 .\setup-live.ps1
@@ -350,23 +439,29 @@ Run
 
 ### start-live.ps1
 
-What this script does
+What this script does:
 
-1. Creates a new asset
-2. Creates a new live output
+1. Creates a new asset.
+2. Creates a new live output.
 3. Generates the streaming locators for:
     - Clear Live stream
     - Open DRM Live stream
     - Tokenized DRM Live stream
     - Open ClearKey Live stream
     - Tokenized ClearKey Live stream
-4. Starts the default streaming endpoint
-5. Starts the live event
-6. Saves the ingest URLs. These are to be used in your streaming software of choice, where you'll need to provide them in order to start the live stream. If your software awaits for a password, enter `default`
-7. The script now waits for the user to connect to an ingest URL
-8. Saves the playback URLs in the `output.json` file
+4. Starts the default streaming endpoint.
+5. Starts the live event.
+6. Saves the ingest URLs. These are to be used in your streaming software of choice, where you'll need to provide them in order to start the live stream. If your software awaits for a password, enter `default`.
+7. The script now waits for the user to connect to an ingest URL.
+8. Saves the playback URLs in the `output.json` file.
+9. Extracts license URLs from manifest. To extract them, it performs the following steps:
+    - Downloads the DASH DRM protected manifest from the generated URL.
+    - Opens the manifest and finds the XPath /MPD/Period/AdaptationSet/ContentProtection/laurl/licenseUrl. This node contains the license URL for Widevine.
+    - The license URLs for PlayReady are generated with the host of Widevine’s license URL, plus /PlayReady/.
+    - The license URLs for FairPlay are generated with the host of Widevine’s license URL, plus /FairPlay/.
+10. Gets the content keys and save their IDs into the `output.json`.
 
-Requirements
+Requirements:
 
 - `setup.ps1` executed beforehand
 - `setup-live.ps1` executed beforehand
@@ -381,7 +476,7 @@ Requirements
     - `liveOutputName`
     - `mode`
 
-Run
+Run:
 
 ```powershell
 .\start-live.ps1
@@ -391,18 +486,18 @@ Run
 
 ### stop-live.ps1
 
-What this script does
+What this script does:
 
-1. Stops the live event
-2. Deletes the live output
-3. Deletes the asset
-4. Removes the ingest URLs and the playback URLs from the `output.json` file
+1. Stops the live event.
+2. Deletes the live output.
+3. Deletes the asset.
+4. Removes the ingest URLs, the playback URLs and the content key IDs from the `output.json` file.
 
-Requirements
+Requirements:
 
-- `setup.ps1` executed beforehand
-- `setup-live.ps1` executed beforehand
-- `start-live.ps1` executed beforehand
+- `setup.ps1` executed beforehand.
+- `setup-live.ps1` executed beforehand.
+- `start-live.ps1` executed beforehand.
 - The following fields must be filled in the `config.json` file:
   - `ResourceGroup`
   - `StorageAccount`
@@ -413,7 +508,7 @@ Requirements
     - `liveOutputName`
     - `liveTranscription`
 
-Run
+Run:
 
 ```powershell
 .\stop-live.ps1
@@ -423,20 +518,19 @@ Run
 
 ### start-endpoint.ps1
 
-What this script does
+What this script does:
 
-1. Starts the default streaming endpoint
+1. Starts the default streaming endpoint.
 
-Requirements
+Requirements:
 
-- `setup.ps1` executed beforehand
-- `setup-vod.ps1` executed beforehand
+- `setup.ps1` executed beforehand.
 - The following fields must be filled in the `config.json` file:
   - `ResourceGroup`
   - `StorageAccount`
   - `MediaServiceAccount`
 
-Run
+Run:
 
 ```powershell
 .\start-endpoint.ps1
@@ -446,21 +540,20 @@ Run
 
 ### stop-endpoint.ps1
 
-What this script does
+What this script does:
 
-1. Stops the Live Event if running
-2. Stops the default Streaming Endpoint
+1. Stops the Live Event if running.
+2. Stops the default Streaming Endpoint.
 
-Requirements
+Requirements:
 
-- `setup.ps1` executed beforehand
-- `setup-vod.ps1` executed beforehand
+- `setup.ps1` executed beforehand.
 - The following fields must be filled in the `config.json` file:
   - `ResourceGroup`
   - `StorageAccount`
   - `MediaServiceAccount`
 
-Run
+Run:
 
 ```powershell
 .\stop-endpoint.ps1
@@ -470,17 +563,17 @@ Run
 
 ### delete.ps1
 
-What this script does
+What this script does:
 
-1. Deletes the resource group indicated in the `config.json` file
+1. Deletes the resource group indicated in the `config.json` file.
 
-Requirements
+Requirements:
 
-- `setup.ps1` executed beforehand
+- `setup.ps1` executed beforehand.
 - The following fields must be filled in the `config.json` file:
   - `ResourceGroup`
 
-Run
+Run:
 
 ```powershell
 .\delete.ps1
@@ -490,26 +583,21 @@ Run
 
 ### upload-samples.ps1
 
-What this script does
+What this script does:
 
-1. Enables the storage account specified in `config.json` file to host static website
-2. Uploads to the blob storage the samples
+1. Enables the storage account specified in `config.json` file to host static website.
+2. Uploads to the blob storage the samples.
 3. Prints the URL to access the static website.
-4. Extracts license URLs from manifest. To extract them, it performs the following steps:
-   - Downloads the DASH DRM protected manifest from the generated URL
-   - Opens the manifest and finds the XPath /MPD/Period/AdaptationSet/ContentProtection/laurl/licenseUrl. This node contains the license URL for Widevine
-   - The license URLs for PlayReady are generated with the host of Widevine’s license URL, plus /PlayReady/
-   - The license URLs for FairPlay are generated with the host of Widevine’s license URL, plus /FairPlay/
 
-Requirements
+Requirements:
 
 - `setup.ps1` executed beforehand
 - The following fields must be filled in the `config.json` file:
   - `ResourceGroup`
   - `StorageAccount`
-  - `FairPlayPublicCertPath` Only if FairPlay is configured
+  - `FairPlayPublicCertPath` Only if FairPlay is configured.
 
-Run
+Run:
 
 ```powershell
 .\upload-samples.ps1
