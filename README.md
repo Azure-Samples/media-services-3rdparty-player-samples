@@ -12,7 +12,7 @@ urlFragment: "media-services-3rdparty-player-samples"
 
 ## Overview
 
-This repository contains samples, documentation, and platform/browser feature tables for using popular 3rd party player frameworks that support HLS and/or MPEG-DASH delivery from Azure Media Services (AMS). This guide also includes the steps needed to configure VOD and Live content from Azure Media Services to facility the testing of each 3rd party player.
+This repository contains samples, documentation, and platform/browser feature tables for using popular 3rd party player frameworks that support HLS and/or MPEG-DASH delivery from Azure Media Services (AMS). This guide also includes the steps needed to configure VOD and Live content from Azure Media Services to facilitate the testing of each 3rd party player.
 
 These are the main components of this repository:
 
@@ -26,7 +26,7 @@ These are the main components of this repository:
 
 ## Setup
 
-This project uses PowerShell [setup](/setup) scripts to generate content (VOD and Live) in Azure Media Services, and provides tools to test the 3rd party players in different combination of features, streaming formats, and content protection.
+This project uses PowerShell [setup](/setup) scripts to generate content (VOD and Live) in Azure Media Services, and provides tools to test the 3rd party players in different combinations of features, streaming formats, and content protection.
 
 For example, this is the _Index_ page generated after running the setup scripts. It contains the playback endpoints for all the features, formats, and content protection options available in Azure Media Services along with links to test them on each 3rd party player sample:
 
@@ -36,7 +36,7 @@ For a detailed guide on how to run them, please check the [Setup](/setup) sectio
 
 ## Samples
 
-The repository contains a sample implementation of each player. The sample is a minimal implementation of the player ready to use with captioning and content protection (DRM and Encryption).
+The repository contains a sample implementation of each player. The sample is a minimal player implementation using captioning and content protection (DRM and Encryption).
 
 To see the sample code, please check:
 
@@ -70,15 +70,15 @@ To see the test results, please check:
 - [Video.js](/docs/video.js#test-results)
 - [Shaka Player](/docs/shaka#test-results)
 
-## How to setup your player
+## How to set up your player
 
 The documentation contains instructions on how to implement your own player, covering the following items:
 
 - Implementing the player
-- Setup captions
-- Setup token authentication
-- Setup AES-128 encryption
-- Setup DRM protection
+- Set up captions
+- Set up token authentication
+- Set up AES-128 encryption
+- Set up DRM protection
 
 To see the documentation, please check:
 
@@ -89,14 +89,14 @@ To see the documentation, please check:
 
 | File/folder         | Description                                |
 |---------------------|--------------------------------------------|
-| `src`               | Folder with 3rd party players samples                |
-| `docs`              | Folder with 3rd party players documentation and test results|
-| `setup`             | Folder with AMS setup scripts.             |
-| `.gitignore`        | Define what to ignore at commit time.      |
-| `CHANGELOG.md`      | List of changes to the sample.             |
-| `CONTRIBUTING.md`   | Guidelines for contributing to the sample. |
-| `LICENSE`           | The license for the sample.                |
-| `README.md`         | This README file.                          |
+| `src`               | Folder with 3rd party player samples                |
+| `docs`              | Folder with 3rd party player documentation and test results|
+| `setup`             | Folder with AMS setup scripts             |
+| `.gitignore`        | Define what to ignore at commit time      |
+| `CHANGELOG.md`      | List of changes to the sample             |
+| `CONTRIBUTING.md`   | Guidelines for contributing to the sample |
+| `LICENSE`           | The license for the sample                |
+| `README.md`         | This README file                          |
 
 ## Contributing
 
