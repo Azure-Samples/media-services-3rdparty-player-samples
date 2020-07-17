@@ -4,7 +4,7 @@
 
 - [Overview](#overview)
 - [Requirements](#requirements)
-- [Steps to setup and start the streams](#steps-to-setup-and-start-the-streams)
+- [Steps to set up and start the streams](#steps-to-setup-and-start-the-streams)
   - [Common configuration](#common-configuration)
   - [Avoiding extra costs](#avoiding-extra-costs)
 - [Documentation](#documentation)
@@ -23,7 +23,7 @@
 
 ## Overview
 
-This document contains the instructions to generate streaming content (both VOD and Live) in Azure Media Services so it can be used for testing the different 3rd party players. The different playback endpoints (HLS, DASH, DRM, etc.), ingest URLs, and license server URLs will be the output of this process. The output then is used to generate an index page with links to test in each player all the content. The scripts also deploy the samples (that will contain the output and the index page) to a static website hosted on an Azure storage blob container.
+This document contains the instructions for generating streaming content (both VOD and Live) in Azure Media Services so it can be used for testing the different 3rd party players. The different playback endpoints (HLS, DASH, DRM, etc.), ingest URLs, and license server URLs will be the output of this process. The output then is used to generate an index page with links to test all the content in each player. The scripts also deploy the samples (that will contain the output and the index page) to a static website hosted on an Azure storage blob container.
 
 ## Requirements
 
@@ -34,32 +34,32 @@ This document contains the instructions to generate streaming content (both VOD 
 
 ### Common configuration
 
-1. Clone the repository
+1. Clone the repository.
 
     ```powershell
     git clone https://github.com/Azure-Samples/media-services-3rdparty-player-samples.git
     ```
 
-2. Launch a PowerShell terminal
-3. Login into your Azure account
+2. Launch a PowerShell terminal.
+3. Login into your Azure account.
 
     ```powershell
     az login
     ```
 
-4. Select a subscription
+4. Select a subscription.
 
     ```powershell
     az account set --subscription "subscription name"
     ```
 
-5. Navigate to the `setup` folder in the cloned directory
+5. Navigate to the `setup` folder in the cloned directory.
 
     ```powershell
     cd .\media-services-3rdparty-player-samples\setup
     ```
 
-6. Copy the example configuration
+6. Copy the example configuration.
 
     Configuration without FairPlay:
 
@@ -73,7 +73,7 @@ This document contains the instructions to generate streaming content (both VOD 
     Copy-Item .\config.json.fairplay.example .\config.json
     ```
 
-    > **Note:** If the `config.json` file doesn't exist, the script will automatically copy it from `config.json.example`. We suggest you to create your own `config.json` before running the script if you want to customize the configuration.
+    **Note:** If the `config.json` file doesn't exist, the script will automatically copy it from `config.json.example`. We suggest you to create your own `config.json` before running the script if you want to customize the configuration.
 
 7. Update the configuration
 
@@ -90,7 +90,7 @@ This document contains the instructions to generate streaming content (both VOD 
 
     See [here](#documentation) for additional configurations options.
 
-    if you are configuring FairPlay complete the `config.json` with the following values:  
+    If you are configuring FairPlay complete the `config.json` with the following values:  
       - `typeValue`: with the path of your private key.
       - `ask`: with the key that must be used as FairPlay Application Secret Key, which is a 32-character hex string.
       - `fairPlayPfxPassword` with the password encrypting FairPlay certificate in PKCS 12 (pfx) format.
@@ -98,7 +98,7 @@ This document contains the instructions to generate streaming content (both VOD 
 
     This should be loaded both in `DRMOpen` and `DRMToken` sections of the Content Key Policies.
 
-8. Setup the content
+8. Set up the content
 
     After completing the required fields in the `config.json`, you can configure the basic Azure resources with:
 
@@ -108,16 +108,15 @@ This document contains the instructions to generate streaming content (both VOD 
     .\setup-live.ps1
     ```
 
-    > **Note:** Find [below](#documentation) detailed information of what each script does.
+    **Note:** Find detailed information of what each script does[below](#documentation).
 
-    While running the `setup-vod.ps1` script, you'll be asked if you want to start the default streaming endpoint and, in case you do so, your content will be ready to be played. 
+    While running the `setup-vod.ps1` script, you'll be asked if you want to start the default streaming endpoint and, if you do, your content will be ready to be played. 
     
-    > **Note:** Keep in mind that once the streaming endpoint is started you will begin to be charged (more information in the [Avoiding extra costs](#Avoiding-extra-costs) section). You can always start the default streaming endpoint later by executing the following command:
-    >
-    >```powershell
-    >.\start-endpoint.ps1
-    >```
-
+    **Note:** Keep in mind that once the streaming endpoint is started you will begin to be charged (more information in the [Avoiding extra costs](#Avoiding-extra-costs) section). You can always start the default streaming endpoint later by executing the following command:
+    
+    ```powershell
+    .\start-endpoint.ps1
+    ```
     After running the `setup-vod.ps1` script, an `output.json` file in the `src` folder will be generated, containing the VOD manifests URLs, a token (for testing), the license URLs, and the content keys IDs (one for the DRM open and one for the DRM with token protected content). More information about the `output.json` file can be found in the [Documentation](#outputjson) section.
     
     Also, a `transcript.vtt` file, generated using Video Indexer, will be downloaded into the `src` folder.
@@ -128,15 +127,15 @@ This document contains the instructions to generate streaming content (both VOD 
     .\start-live.ps1
     ```
 
-    While running the `start-live.ps1` you'll be asked to connect your live encoder to one of the ingest URLs provided. You can skip this but the script will try to get the manifests URLs anyway and they won't be completely generated until the encoder is correctly connected, so you will see in the `output.json` just the host name of the manifests (obtained from the streaming endpoint). If you decided to skip it, you can re-run the `start-live.ps1` script once you have your encoder connected and this will complete the `output.json` with the live stream content (manifests and license URLs and content keys IDs).
+    While running the `start-live.ps1`, you'll be asked to connect your live encoder to one of the ingest URLs provided. You can skip this but the script will try to get the manifests URLs anyway and they won't be completely generated until the encoder is correctly connected, so you will see just the host name of the manifests (obtained from the streaming endpoint) in the `output.json`. If you decided to skip it, you can re-run the `start-live.ps1` script once you have your encoder connected and this will complete the `output.json` with the live stream content (manifests and license URLs and content keys IDs).
 
-    Keep in mind that, once you run the `start-live.ps1` script, the default streaming endpoint and the live event will be running either you connect the encoder or not, and this will generate costs (please see the [Avoiding extra costs](#Avoiding-extra-costs) section for more information).
+    Keep in mind that once you run the `start-live.ps1` script, the default streaming endpoint and the live event will be running whether you connect the encoder or not, and this will generate costs. Please see the [Avoiding extra costs](#Avoiding-extra-costs) section for more information.
 
-    The live streaming content is different from the VOD since the manifest URLS (and, therefore, the content key IDs) will change every time you start and stop it. So the section for live stream in the `output.json` will change constantly.
+    The live streaming content is different from the VOD content since the manifest URLS (and, therefore, the content key IDs) will change every time you start and stop it. So the section for live stream in the `output.json` will change constantly.
 
-    In case you need to change the mode of the live stream to enable low latency or live transcription you need to run the `setup-live.ps1` script. This will stop and delete any running resource and create a new live event so when you run the `start-live.ps1` it will use that mode. In this case the ingest URLs will change.
+    If you need to change the mode of the live stream to enable low latency or live transcription, you need to run the `setup-live.ps1` script. This will stop and delete any running resource and create a new live event so when you run the `start-live.ps1` it will use that mode. In this case, the ingest URLs will change.
 
-9. Deploy a static web site
+9. Deploy a static web site.
 
     In the `src` folder there is an `index` page configured which generates links with the URLs and parameters needed in the player to reproduce the content. This data is loaded from the `output.json`.
 
@@ -150,26 +149,26 @@ This document contains the instructions to generate streaming content (both VOD 
 
     ![Index](../docs/images/index.jpg)
 
-    In case you run this without previously executing the other scripts, the `index` will contain only a link to each player sample where you can test any manifest.
+    If you run this without previously executing the other scripts, the `index` will contain only a link to each player sample where you can test any manifest.
 
     If you change the live stream mode, run this script again so the `output.json` is updated and the links use the new URLs.
 
-    Once you completed all the tests, and if you won't use any of the content anymore, you can delete you resource group with the script `delete.ps1`.
+    Once you have completed all the tests, and if you won't use any of the content anymore, you can delete your resource group with the script `delete.ps1`.
 
-    More technical details on what each file and script does and contains [here](#documentation).
+    More technical details on what each file and script does and contains is [here](#documentation).
 
 ### Avoiding extra costs
 
-There are three main cost-generators when you setup the content:
+There are three main cost-generators when you set up the content:
   - The `streaming endpoint` in running state.
   - The `live event` in running state.
   - The `blob storage`.
 
-More information about Azure Media Services pricing [here](https://azure.microsoft.com/en-us/pricing/details/media-services/). You can also find the encoding price for the VOD, but as the scripts use a short video to encode and as it's run just once, the cost should be negligible.
+More information about Azure Media Services pricing is [here](https://azure.microsoft.com/en-us/pricing/details/media-services/). You can also find the encoding price for the VOD, but as the scripts use a short video to encode and as it's run just once, the cost should be negligible.
 
 More information about `blob storage` pricing [here](https://azure.microsoft.com/en-us/pricing/details/storage/blobs/).
 
-The live stream content requires both `live event` and `streaming endpoint` running to work and the VOD just requires the `streaming endpoint`.
+The live stream content requires both `live event` and `streaming endpoint` to be running to work and the VOD just requires the `streaming endpoint`.
 
 We recommend that once the live stream is not used anymore run:
 
@@ -177,7 +176,7 @@ We recommend that once the live stream is not used anymore run:
 .\stop-live.ps1
 ```
 
-This will stop the `live event` and will delete all the content generated, so the overall `blob storage` costs will be reduced. Take into account that this script won't stop the `streaming endpoint`, so the VOD content will continue to work. All the live stream content from the `output.json` will be removed, since, once you start it again, it will change.
+This will stop the `live event` and will delete all the generated content, so the overall `blob storage` costs will be reduced. Take into account that this script won't stop the `streaming endpoint`, so the VOD content will continue to work. Once you start it again, all the live stream content from the `output.json` will be removed as it will change.
 
 To stop the `streaming endpoint` run:
 
@@ -189,7 +188,7 @@ To stop the `streaming endpoint` run:
 
 ### config.json
 
-The resource creation process can be configured through a `config.json` file, an example is uploaded [here](config.json.example).
+The resource creation process can be configured through a `config.json` file. An example is uploaded [here](config.json.example).
 *If you run a script and there is no config.json, it will create it from the example.*
 
 config.json
@@ -242,16 +241,15 @@ config.json
 
 #### Options of the Content Key Policy
 
-The Content Key Policies can have more than one option.
-Each option can have the fields:
+The Content Key Policies can have more than one option. Each option can have the fields:
 
-- `name`: Name of the option. This field is required for all Content Key Policies.
-- `type`: Parameter to configure the DRM or encryption option (--widevine-template /--play-ready-template / -fair-play-pfx / --clear-key-configuration) This field is required for all Content Key Policies.
+- `name`: Name of the option which is required for all Content Key Policies
+- `type`: Parameter to configure the DRM or encryption option (--widevine-template /--play-ready-template / -fair-play-pfx / --clear-key-configuration) which is required for all Content Key Policies
 - `typeValue`: Value of the type, a path to the json license file, json string (Widevine works with an empty json), empty for encryption or the file path to a FairPlay certificate file in PKCS 12 (pfx) format (including private key). This field is required for all Content Key Policies.
-- `ask`: The key that must be used as FairPlay Application Secret Key, which is a 32 character hex string. This field is required for FairPlay Content Key Policy.
-- `fairPlayPfxPassword`: The password encrypting FairPlay certificate in PKCS 12 (pfx) format. This field is required for FairPlay Content Key Policy
-- `rentalAndLeaseKeyType`: The rental and lease key type. Available values: Undefined, DualExpiry, PersistentUnlimited, PersistentLimited.
-- `rentalDuration`: The rental duration. Must be greater than or equal to 0.
+- `ask`: The key that must be used as FairPlay Application Secret Key which is a 32 character hex string and is required for FairPlay Content Key Policy
+- `fairPlayPfxPassword`: The password encrypting FairPlay certificate in PKCS 12 (pfx) format which is required for FairPlay Content Key Policy
+- `rentalAndLeaseKeyType`: The rental and lease key type using the available values: Undefined, DualExpiry, PersistentUnlimited, PersistentLimited
+- `rentalDuration`: The rental duration which must be greater than or equal to 0
 
 In this sample, the Content key Policy with DRM and token protection will be created with Widevine and PlayReady options:
 
@@ -292,7 +290,7 @@ In the `config.json.example` there is an extra parameter called `disabled-option
 
 The output of each script will be saved in this file located in the `src` folder. The file will contain all the information required to test the different features on each players, including ingest URLs, manifest URLs, token, licence URLs, licence keys, and captions.
 
-The file is also consumed by the index page of the sample player to generate the links to the different contents. 
+The file is also consumed by the index page of the sample player to generate the links to the different content. 
 
 ```json
 {
@@ -334,7 +332,7 @@ The file is also consumed by the index page of the sample player to generate the
 What this script does:
 
 1. Creates (if they don't exist) a **Resource Group**, a **Storage Account** and an **Azure Media Services Account** with the names specified in the `config.json` file.
-2. Creates (if it doesn't exist) a **Streaming policy** for using CENC encryption in DASH and HLS URLs. And CBCS in HLS.
+2. Creates (if it doesn't exist) a **Streaming policy** for using CENC encryption in DASH and HLS URLs and CBCS in HLS.
 3. Creates (if they don't exist) the **Content Key Policies** with the options specified in the `CKP` section of the `config.json` for:
     - Open DRM
     - Tokenized DRM
@@ -375,7 +373,7 @@ What this script does:
 3. Creates the transform with the selected preset in the `config.json`.
 4. Runs a new job to transform the created asset and saves the result into an output asset.
 5. Creates a transform with the preset AudioAnalyzer.
-6. Runs a new job with the AudioAnalyzer preset transform and download the generated `trancript.vtt` into the `src` folder.
+6. Runs a new job with the AudioAnalyzer preset transform and downloads the generated `trancript.vtt` into the `src` folder.
 7. Generates the streaming locators for:
     - Clear VOD
     - Open MultiDRM VOD
@@ -383,12 +381,12 @@ What this script does:
     - Open ClearKey VOD
     - Tokenized ClearKey VOD
 8. Gets all the URLs from the streaming locators and saves them into `output.json` file.
-9. Extracts license URLs from manifest. To extract them, it performs the following steps:
+9. Extracts license URLs from the manifest. To extract them, it performs the following steps:
     - Downloads the DASH DRM protected manifest from the generated URL.
     - Opens the manifest and finds the XPath /MPD/Period/AdaptationSet/ContentProtection/laurl/licenseUrl. This node contains the license URL for Widevine.
     - The license URLs for PlayReady are generated with the host of Widevine’s license URL, plus /PlayReady/.
     - The license URLs for FairPlay are generated with the host of Widevine’s license URL, plus /FairPlay/.
-10. Gets the content keys and save their IDs into the `output.json`.
+10. Gets the content keys and saves their IDs into the `output.json`.
 11. Ask whether the user wants to start the default streaming endpoint.
 
 Requirements:
@@ -412,9 +410,7 @@ Run:
 
 ### setup-live.ps1
 
-What this script does:
-
-1. Creates the live event with the name specified in the `config.json` file.
+This script does creates the live event with the name specified in the `config.json` file.
 
 Requirements:
 
@@ -451,7 +447,7 @@ What this script does:
     - Tokenized ClearKey Live stream
 4. Starts the default streaming endpoint.
 5. Starts the live event.
-6. Saves the ingest URLs. These are to be used in your streaming software of choice, where you'll need to provide them in order to start the live stream. If your software awaits for a password, enter `default`.
+6. Saves the ingest URLs which are to be used in your streaming software of choice, and where you'll need to provide them in order to start the live stream. If your software awaits for a password, enter `default`.
 7. The script now waits for the user to connect to an ingest URL.
 8. Saves the playback URLs in the `output.json` file.
 9. Extracts license URLs from manifest. To extract them, it performs the following steps:
@@ -563,9 +559,7 @@ Run:
 
 ### delete.ps1
 
-What this script does:
-
-1. Deletes the resource group indicated in the `config.json` file.
+This script deletes the resource group indicated in the `config.json` file.
 
 Requirements:
 
@@ -585,7 +579,7 @@ Run:
 
 What this script does:
 
-1. Enables the storage account specified in `config.json` file to host static website.
+1. Enables the storage account specified in `config.json` file to host a static website.
 2. Uploads to the blob storage the samples.
 3. Prints the URL to access the static website.
 
