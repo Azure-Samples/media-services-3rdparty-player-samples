@@ -2,10 +2,10 @@
 
 - [Overview](#overview)
 - [Implementing the player](#implementing-the-player)
-  - [Setup captions](#setup-captions)
-  - [Setup token authentication](#setup-token-authentication)
-  - [Setup AES-128 encryption](#setup-aes-128-encryption)
-  - [Setup DRM protection](#setup-drm-protection)
+  - [Set up captions](#setup-captions)
+  - [Set up token authentication](#setup-token-authentication)
+  - [Set up AES-128 encryption](#setup-aes-128-encryption)
+  - [Set up DRM protection](#setup-drm-protection)
 - [Implementation reference](#implementation-reference)
 - [Test results](#test-results)
 
@@ -72,7 +72,7 @@ videojs.players.video.addRemoteTextTrack({
 });
 ```
 
-### Setup token authentication
+### Set up token authentication
 
 The token must be set in the authorization field of the request's header. In order to avoid problems with CORS, this token must be set only in those requests with `'keydeliver'` in its URL. The following code lines should do the work:
 
@@ -93,13 +93,13 @@ Then, the above function must be attached to the `videojs.Hls.xhr.beforeRequest`
 videojs.Hls.xhr.beforeRequest = setupTokenForDecrypt;
 ```
 
-### Setup AES-128 encryption
+### Set up AES-128 encryption
 
 Video.js supports AES-128 encryption without any additional configuration. Please note that there's currently an [issue](https://github.com/videojs/video.js/issues/6717) with encryption and HLS/DASH CMAF content, which are not playable.
 
-### Setup DRM protection
+### Set up DRM protection
 
-In order to support DRM protection, you must add the [videojs-contrib-eme](https://github.com/videojs/videojs-contrib-eme) official extension; a CDN version of it works as well.
+In order to support DRM protection, you must add the [videojs-contrib-eme](https://github.com/videojs/videojs-contrib-eme) official extension; a CDN version works as well.
 
 1. In the `index.js` file detailed above, you must initialize the EME extension by adding `videoJS.eme();` *before* adding the source of the video:
 
