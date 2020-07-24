@@ -2,11 +2,7 @@
 
 - [Overview](#overview)
 - [Implementing the player](#implementing-the-player)
-  - [Setup captions](#setup-captions)
-  - [Setup token authentication](#setup-token-authentication)
-  - [Setup AES-128 encryption](#setup-aes-128-encryption)
-  - [Setup DRM protection](#setup-drm-protection)
-- [Implementation reference](#implementation-reference)
+- [Implementation reference sample](#implementation-reference-sample)
 - [Test results](#test-results)
 
 ## Overview
