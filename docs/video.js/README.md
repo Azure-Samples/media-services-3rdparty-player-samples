@@ -2,10 +2,10 @@
 
 - [Overview](#overview)
 - [Implementing the player](#implementing-the-player)
-  - [Set up captions](#setup-captions)
-  - [Set up token authentication](#setup-token-authentication)
-  - [Set up AES-128 encryption](#setup-aes-128-encryption)
-  - [Set up DRM protection](#setup-drm-protection)
+  - [Set up captions](#set-up-captions)
+  - [Set up token authentication](#set-up-token-authentication)
+  - [Set up AES-128 encryption](#set-up-aes-128-encryption)
+  - [Set up DRM protection](#set-up-drm-protection)
 - [Implementation reference](#implementation-reference)
 - [Test results](#test-results)
 
@@ -54,7 +54,7 @@ Its official documentation can be found [here](https://docs.videojs.com/ "Video.
 - "application/x-mpegURL" for HLS protocols
 - "application/dash+xml" for DASH protocols
 
-### Setup captions
+### Set up captions
 
 Run the `addRemoteTextTrack` method, and replace:
 

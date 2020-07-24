@@ -22,7 +22,7 @@ These are the main components of this repository:
 
 3. [Test results](#test-results)
 
-4. [How to setup your player](#how-to-setup-your-player)
+4. [How to set up your player](#how-to-set-up-your-player)
 
 ## Setup
 
@@ -67,8 +67,8 @@ The samples were tested with VOD and Live content generated with the [Setup](/se
 
 To see the test results, please check:
   
-- [Video.js](/docs/video.js#test-results)
-- [Shaka Player](/docs/shaka#test-results)
+- [Video.js](/docs/video.js/README.md#test-results)
+- [Shaka Player](/docs/shaka/README.md#test-results)
 
 ## How to set up your player
 
@@ -82,8 +82,8 @@ The documentation contains instructions on how to implement your own player, cov
 
 To see the documentation, please check:
 
-- [Video.js](/docs/video.js)
-- [Shaka Player](/docs/shaka)
+- [Video.js](/docs/video.js/README.md)
+- [Shaka Player](/docs/shaka/README.md)
 
 ## Root contents
 

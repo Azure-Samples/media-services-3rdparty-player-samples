@@ -2,10 +2,10 @@
 
 - [Overview](#overview)
 - [Implementing the player](#implementing-the-player)
-  - [Setup captions](#setup-captions)
-  - [Setup token authentication](#setup-token-authentication)
-  - [Setup AES-128 encryption](#setup-aes-128-encryption)
-  - [Setup DRM protection](#setup-drm-protection)
+  - [Set up captions](#set-up-captions)
+  - [Set up token authentication](#set-up-token-authentication)
+  - [Set up AES-128 encryption](#set-up-aes-128-encryption)
+  - [Set up DRM protection](#set-up-drm-protection)
 - [Implementation reference](#implementation-reference)
 - [Test results](#test-results)
 
@@ -55,9 +55,9 @@ Follow these instructions if you need to implement your own instance of the play
 3. Replace `manifestUrl` with the manifest URL of your choice.
 4. Run a server (for example with `npx http-server`) and your player should be working.
 
-### Setup captions
+### Set up captions
 
-#### Setup VOD captions
+#### Set up VOD captions
 
 Run the following lines of code, and replace `captionUrl` with your .vtt directory (vtt file needs to be in the same host to avoid CORS error), `lang` with the two letter code for language, and `type` with either `caption` or `subtitle`:
 
@@ -70,7 +70,7 @@ player.load(manifestUrl).then(function(){
 });
 ```
 
-#### Setup live stream captions
+#### Set up live stream captions
 
 Enable captions in live stream is configured adding the following line of code:
 
@@ -78,7 +78,7 @@ Enable captions in live stream is configured adding the following line of code:
 player.setTextTrackVisibility(true)
 ```
 
-### Setup token authentication
+### Set up token authentication
 
 Run the following lines of code, and replace `token` with your token string:
 
@@ -90,13 +90,13 @@ player.getNetworkingEngine().registerRequestFilter(function (type, request) {
 });
 ```
 
-### Setup AES-128 encryption
+### Set up AES-128 encryption
 
 Shaka Player does not currently support AES-128 encryption.
 
 A link to a GitHub [issue](https://github.com/google/shaka-player/issues/850) to follow the status of this feature.
 
-### Setup DRM protection
+### Set up DRM protection
 
 Shaka Player uses Encrypted Media Extensions (EME), which requires a secure URL to use. It means that for testing any DRM protected content it's necessary to use https. Also, because of mixed content requirements, if the site is using https, then the manifest and every segment will also need to use https too.
 

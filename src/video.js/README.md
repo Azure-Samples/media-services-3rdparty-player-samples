@@ -2,7 +2,7 @@
 
 - [Overview](#overview)
 - [How to use](#how-to-use)
-  - [Setup development environment](#setup-development-environment)
+  - [Set up development environment](#set-up-development-environment)
   - [Using sample player](#using-sample-player)
   - [Sample details](#sample-details)
 
@@ -14,7 +14,7 @@ Documentation on how to implement your own player and test results with differen
 
 ## How to use
 
-### Setup development environment
+### Set up development environment
 
 - Install [NodeJS v8+](https://nodejs.org/en/download/ "NodeJS v8+").
 
