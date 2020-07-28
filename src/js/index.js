@@ -21,6 +21,7 @@ xmlhttp.onreadystatechange = function () {
       if (!category.data) return
       generateLinkElement(config, category, 'video.js', 'videojs-links')
       generateLinkElement(config, category, 'shaka', 'shaka-links')
+      generateLinkElement(config, category, 'theoplayer', 'theoplayer-links')
     }, this)
   }
 }
