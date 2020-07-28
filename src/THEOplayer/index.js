@@ -4,8 +4,8 @@ var type = '';
 
 class TheoPlayer extends BasePlayer {
   initPlayer () {
-    if ( document.getElementById('manifestInput').value == "" ) {
-      document.getElementById('manifestInput').value = "//cdn.theoplayer.com/video/elephants-dream/playlist.m3u8";
+    if ( this.manifest == "" ) {
+      this.manifest = "//cdn.theoplayer.com/video/elephants-dream/playlist.m3u8";
     }
 
     var element = document.querySelector(".theoplayer-container");
@@ -13,9 +13,9 @@ class TheoPlayer extends BasePlayer {
         libraryLocation: "//cdn.theoplayer.com/dash/theoplayer/"
     });
 
-    if ( document.getElementById('manifestInput').value.indexOf('.m3u8') !== -1 ) {
+    if ( this.manifest.indexOf('.m3u8') !== -1 ) {
         type = 'application/x-mpegurl';
-    } else if ( document.getElementById('manifestInput').value.indexOf('.mpd') !== -1 ) {
+    } else if ( this.manifest.indexOf('.mpd') !== -1 ) {
         type = 'application/dash+xml';
     } else {
         type = '';
@@ -25,10 +25,10 @@ class TheoPlayer extends BasePlayer {
       if (type == 'application/x-mpegurl') {
           let drmConfiguration = {
               "integration": "azure",
-              "token": document.getElementById('tokenInput').value,
+              "token": this.tokenInput,
               "fairplay": {
-                  "licenseAcquisitionURL": document.getElementById('fairPlayInput').value,
-                  "certificateURL": document.getElementById('fairPlayCertificateInput').value
+                  "licenseAcquisitionURL": this.fairPlayInput,
+                  "certificateURL": this.fairPlayCertificateInput
               }
           };
           player.source = {
@@ -41,12 +41,12 @@ class TheoPlayer extends BasePlayer {
       } else if (type == 'application/dash+xml') {
           let drmConfiguration = {
               "integration": "azure",
-              "token": document.getElementById('tokenInput').value,
+              "token": this.tokenInput,
               "playready": {
-                  "licenseAcquisitionURL": document.getElementById('playReadyInput').value
+                  "licenseAcquisitionURL": this.playReadyInput
               },
               "widevine": {
-                  "licenseAcquisitionURL": document.getElementById('widevineInput').value
+                  "licenseAcquisitionURL": this.widevineInput
               }
           };
           player.source = {
