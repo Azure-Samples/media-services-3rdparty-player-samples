@@ -4,7 +4,7 @@
 
 - [Overview](#overview)
 - [Requirements](#requirements)
-- [Steps to set up and start the streams](#steps-to-setup-and-start-the-streams)
+- [Steps to set up and start the streams](#steps-to-set-up-and-start-the-streams)
   - [Common configuration](#common-configuration)
   - [Avoiding extra costs](#avoiding-extra-costs)
 - [Documentation](#documentation)
