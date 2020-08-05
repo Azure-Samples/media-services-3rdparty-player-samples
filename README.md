@@ -42,6 +42,7 @@ To see the sample code, please check:
 
 - [Video.js](/src/video.js)
 - [Shaka Player](/src/shaka)
+- [THEOplayer](/src/THEOplayer)
 
 ## Test results
   
@@ -84,6 +85,7 @@ To see the documentation, please check:
 
 - [Video.js](/docs/video.js)
 - [Shaka Player](/docs/shaka)
+- [THEOplayer](/docs/THEOplayer)
 
 ## Root contents
 
