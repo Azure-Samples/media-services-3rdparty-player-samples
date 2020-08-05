@@ -49,19 +49,19 @@ class VideojsPlayer extends BasePlayer {
     const logLevelDetailsChosen = 4
 
     if (logLevelDetailsChosen >= 1) {
-      videojs.log.error = this.interceptLog('ERROR', videojs.log.error)
+      videojs.log.error = this.interceptLog('ERROR')
     }
 
     if (logLevelDetailsChosen >= 2) {
-      videojs.log.warn = this.interceptLog('WARNING', videojs.log.warn)
+      videojs.log.warn = this.interceptLog('WARNING')
     }
 
     if (logLevelDetailsChosen >= 3) {
-      videojs.log.info = this.interceptLog('INFO', videojs.log.info)
+      videojs.log.info = this.interceptLog('INFO')
     }
 
     if (logLevelDetailsChosen >= 4) {
-      videojs.log.debug = this.interceptLog('DEBUG', videojs.log.debug)
+      videojs.log.debug = this.interceptLog('DEBUG')
     }
 
     if (this.caption) {

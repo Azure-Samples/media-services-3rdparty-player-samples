@@ -10,22 +10,22 @@ class ShakaPlayer extends BasePlayer {
 
     switch (loglevel) {
       case 6:
-        shaka.log.v2 = this.interceptLog('V2', shaka.log.v2)
+        shaka.log.v2 = this.interceptLog('V2')
         break
       case 5:
-        shaka.log.v1 = this.interceptLog('V1', shaka.log.v1)
+        shaka.log.v1 = this.interceptLog('V1')
         break
       case 4:
-        shaka.log.debug = this.interceptLog('DEBUG', shaka.log.debug)
+        shaka.log.debug = this.interceptLog('DEBUG')
         break
       case 3:
-        shaka.log.info = this.interceptLog('INFO', shaka.log.info)
+        shaka.log.info = this.interceptLog('INFO')
         break
       case 2:
-        shaka.log.warning = this.interceptLog('WARNING', shaka.log.warning)
+        shaka.log.warning = this.interceptLog('WARNING')
         break
       case 1:
-        shaka.log.error = this.interceptLog('ERROR', shaka.log.error)
+        shaka.log.error = this.interceptLog('ERROR')
         break
     }
 
