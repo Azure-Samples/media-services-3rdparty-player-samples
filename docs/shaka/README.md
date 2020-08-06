@@ -1,7 +1,6 @@
 # Media Services 3rd Party Player Samples - Shaka Player
 
 - [Overview](#overview)
-- [Implementing the player](#implementing-the-player)
 - [Implementation reference sample](#implementation-reference-sample)
 - [Test results](#test-results)
 
