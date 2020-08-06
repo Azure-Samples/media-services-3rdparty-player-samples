@@ -16,7 +16,7 @@ This repository contains samples, documentation, and platform/browser feature ta
 
 These are the main components of this repository:
 
-1. [Set up](#setup)
+1. [Set up](#set-up)
 
 2. [Samples](#samples)
 
