@@ -1,7 +1,6 @@
 # Media Services 3rd Party Player Samples - Video.js
 
 - [Overview](#overview)
-- [Implementing the player](#implementing-the-player)
 - [Implementation reference sample](#implementation-reference-sample)
 - [Test results](#test-results)
 
