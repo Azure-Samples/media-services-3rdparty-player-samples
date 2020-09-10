@@ -2,10 +2,10 @@
 
 - [Overview](#overview)
 - [Implementing the player](#implementing-the-player)
-  - [Set up captions](#setup-captions)
-  - [Set up advertisement](#setup-advertisement)
-  - [Set up AES-128 encryption](#setup-aes-128-encryption)
-  - [Set up DRM protection](#setup-drm-protection)
+  - [Setup captions](#setup-captions)
+  - [Setup advertisement](#setup-advertisement)
+  - [Setup AES-128 encryption](#setup-aes-128-encryption)
+  - [Setup DRM protection](#setup-drm-protection)
 - [Implementation reference](#implementation-reference)
 - [Test results](#test-results)
 
@@ -127,7 +127,7 @@ Save your `.html`, put it on a running web server and browse to it to see your v
 
 ------------
 
-### Set up captions
+### Setup captions
 
 ##### Copy and paste the below function:
 &nbsp;
