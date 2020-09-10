@@ -1,4 +1,4 @@
-# Test results for THEOplayer on macOS vCatalina 10.15.6
+# Test results for THEOplayer on tvOS 13.4.8
 
 References:
 
@@ -14,9 +14,9 @@ Preset: "AdaptiveStreaming"
 
 | Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Sidecar caption |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
-| HLS TS    | ✔️ | ✔️  | Not applicable | Not applicable | ✔️ | ✔️ | ✔️ |
-| HLS CMAF  | ✔️ | ✔️ | Not  applicable | Not applicable | ✔️ | ✔️ | ✔️ |
-| DASH CMAF | ✔️ | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable |
+| HLS TS    | ✔️ | ❌([#6](issues.md#issue-6)) | Not applicable | Not applicable | ❌([#6](issues.md#issue-6))  | ✔️ | ✔️ |
+| HLS CMAF  | ✔️ | ❌([#6](issues.md#issue-6)) | Not  applicable | Not applicable | ❌([#6](issues.md#issue-6))  | ✔️ | ✔️ |
+| DASH CMAF | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable |
 
 More details about issues [here](issues.md).
 
@@ -28,10 +28,9 @@ PresetName: "Default720p"
 
 | Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Sidecar caption |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
-| HLS TS    | ✔️ | ✔️  | Not applicable | Not applicable | ✔️ | ✔️ | ✔️ |
-| HLS CMAF  | ✔️ | ✔️ | Not  applicable | Not applicable | ✔️ | ✔️ | ✔️ |
-| DASH CMAF | ✔️ | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable |
-
+| HLS TS    | ✔️ | ❌([#6](issues.md#issue-6)) | Not applicable | Not applicable | ❌([#6](issues.md#issue-6))  | ✔️ | ✔️ |
+| HLS CMAF  | ✔️ | ❌([#6](issues.md#issue-6)) | Not  applicable | Not applicable | ❌([#6](issues.md#issue-6))  | ✔️ | ✔️ |
+| DASH CMAF | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable |
 
 More details about issues [here](issues.md).
 

@@ -3,7 +3,7 @@
 - [Overview](#overview)
 - [Implementing the player](#implementing-the-player)
   - [Set up captions](#setup-captions)
-  - [Set up token authentication](#setup-token-authentication)
+  - [Set up advertisement](#setup-advertisement)
   - [Set up AES-128 encryption](#setup-aes-128-encryption)
   - [Set up DRM protection](#setup-drm-protection)
 - [Implementation reference](#implementation-reference)
@@ -24,7 +24,7 @@ There is also a THEOplayer [landing page](https://azure.microsoft.com/en-us/blog
 In this user guide we will guide you through the process of setting up THEOplayer on your website. There’s only a few things you need to get started, most of which you will already have available if you are building a website.
 
 A webserver - This will host your webpages.
-A domain name - For example www.theoplayer.com.
+A domain name - For example `www.theoplayer.com`.
 A THEOplayer license - This gives you access to the THEOplayer library and allows you to use it on the aforementioned domain.
 One or more URI's to HLS stream manifests (.m3u8), or MPEG-DASH stream manifests (.mpd), of the video streams that you want to show on your website.
 
@@ -38,8 +38,6 @@ When THEOplayer is used as a web video player, we will need a webpage to put the
 Keep in mind that whilst .html-files can easily be opened from your local computer, this will not work with THEOplayer as THEOplayer licenses are locked to a specific domain.
 
 From this point on, you should assume that if a piece of script is shown, it is hosted on a page in the domain of the THEOplayer license that is being used.
-
-The .html-file that we’ll start with and that we’ll keep working on, looks like this:
 
 ```html
 <!DOCTYPE html>
@@ -71,6 +69,7 @@ Script tags are used to add code to a web page. In this case we used it to inclu
 
 - `src` this is the URI of the THEOplayer library that you wish to use. This could be something like: /path/to/THEOplayer.js, where the url is a link to the THEOplayer.js file you received for your domain.
 - `type` designates the contents of the included script to be JavaScript. While this is optional in many browsers these days, it is nonetheless advisable to put it in there anyway.
+
 To add the THEOplayer UI, you need to reference the THEOplayer CSS file:
 
 ```css
@@ -124,7 +123,7 @@ ui : {
 
 ##### The result
 
-Save your .html, put it on a running web server and browse to it to see your video playing in THEOplayer.
+Save your `.html`, put it on a running web server and browse to it to see your video playing in THEOplayer.
 
 
 1. Setup captions
@@ -132,83 +131,155 @@ Save your .html, put it on a running web server and browse to it to see your vid
 ##### Copy and paste the below function:
 &nbsp;
 ```javascript
-function setLanguage(player, language) {
-    // Disable all text tracks that are currently active
-    player.textTracks.filter(function(x) { if (x.label !== 'disabled') { return x }}).forEach(function(x){x.mode='disabled';});
-    
-    // Enable the text track for a specific language. Note: here i searched on the label, you can also do x.language for the ISO 3 letter language code
-    player.textTracks.filter(function(x) { if (x.label == language) { return x }})[0].mode = 'showing'
-}
+textTracks: [{
+    "default": true, //optional
+    "kind": "captions", //optional - find other values at https://support.theoplayer.com/hc/en-us/articles/214350425#TextTrackDescription
+    "label": "English subs", //optional - this will appear in your UI
+    "src": "transcript.vtt", //path/to/your-subs-track1.vtt
+    "srclang": "en"
+}]
 ```
 
 2. Call the function using the language label (or 3-letter-language code if you change x.label to x.language)
 &nbsp;
 
-### Set up token authentication
+1. Setup advertisement
 
-IN PROGRESS
-
+##### Copy and paste the below array:
+&nbsp;
+```javascript
+ads: [{
+    "sources": "//cdn.theoplayer.com/demos/preroll.xml",
+    "timeOffset": "start",
+    "skipOffset": 2
+}]
+```
 
 ### Set up AES-128 encryption
 
-IN PROGRESS
+THEOplayer supports decryption and playback of HLS streams with AES-128 content protection out of the box, without extra configuration in the player. In order to play AES-128 content protected streams, the decryption key and an optional initialization vector have to be provided in the manifest. When configured correctly, THEOplayer allows playback of AES-128 content protected streams on all supported devices in real time. It allows for the usage of a single key, or a rotating key.
 
+In order to make sure THEOplayer can decrypt the stream, make sure the following information is correct in the manifest:
+
+If a decryption key is specified, it is relevant for all following media segments. This allows you to specify a key for each segment or one for the whole manifest
+The decryption key can be hosted externally (by referencing the key URL) or embedded in the manifest file (by key value).
+
+An example manifest of a 44 second long VOD stream protected with AES-128 content protection - each media segment has its own key.
+```
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-MEDIA-SEQUENCE:0
+#EXT-X-ALLOWCACHE:1
+#EXT-X-KEY:METHOD=AES-128,URI="segment-00000.key"
+#EXTINF:4.458667,
+segment-00000.ts.enc
+#EXT-X-KEY:METHOD=AES-128,URI="segment-00001.key"
+#EXTINF:4.010000,
+segment-00001.ts.enc
+#EXT-X-KEY:METHOD=AES-128,URI="segment-00002.key"
+#EXTINF:4.468667,
+segment-00002.ts.enc
+#EXT-X-KEY:METHOD=AES-128,URI="segment-00003.key"
+#EXTINF:3.893000,
+segment-00003.ts.enc
+#EXT-X-KEY:METHOD=AES-128,URI="segment-00004.key"
+#EXTINF:4.007333,
+segment-00004.ts.enc
+#EXT-X-KEY:METHOD=AES-128,URI="segment-00005.key"
+#EXTINF:3.292667,
+segment-00005.ts.enc
+#EXT-X-KEY:METHOD=AES-128,URI="segment-00006.key"
+#EXTINF:4.011667,
+segment-00006.ts.enc
+#EXT-X-KEY:METHOD=AES-128,URI="segment-00007.key"
+#EXTINF:4.001000,
+segment-00007.ts.enc
+#EXT-X-KEY:METHOD=AES-128,URI="segment-00008.key"
+#EXTINF:4.011667,
+segment-00008.ts.enc
+#EXT-X-KEY:METHOD=AES-128,URI="segment-00009.key"
+#EXTINF:4.001000,
+segment-00009.ts.enc
+#EXT-X-KEY:METHOD=AES-128,URI="segment-00010.key"
+#EXTINF:4.011667,
+segment-00010.ts.enc
+#EXT-X-TARGETDURATION:5
+#EXT-X-ENDLIST
+```
 ### Set up DRM protection
 
 THEOplayer supports Fairplay, PlayReady and Widevine by default. To connect to such a DRM system, developers can use a ContentProtectionDescription (or DRMConfiguration, depending on the SDK). However, more often than not, developers are working with a multi-DRM vendor. These vendors take care of their DRM needs. The last challenge for developers is to integrate the provided DRM solution in a video player. THEOplayer is partnered with many multi-DRM vendors to lighten this burden. In our partnerships, we validate the compatibly and often provide integrations. 
 
 1. Configure Microsoft Azure DRM with THEOplayer by copying and pasting the below code into your `index.html` file:
 
-   ```javascript
-    if (HLS) {
-        let drmConfiguration = {
-            "integration": "azure",
-            "token": "AZURE_TOKEN>",
-            "fairplay": {
-                "licenseAcquisitionURL": "<LICENSE_KEY_URL_FAIRPLAY>",
-                "certificateURL": "CERTIFICATE_URL>"
-            }
-        };
-        player.source = {
-            "sources": {
-                "src": "<HLS_STREAM_URL>",
-                "type": "application/x-mpegurl",
-                "contentProtection": drmConfiguration
-            }
-        }
-    } else if (DASH) {
-        let drmConfiguration = {
-            "integration": "azure",
-            "token": "<AZURE_TOKEN>",
-            "playready": {
-                "licenseAcquisitionURL": "<LICENSE_KEY_URL_PLAYREADY>"
-            },
-            "widevine": {
-                "licenseAcquisitionURL": "<LICENSE_KEY_URL_WIDEVINE>"
-            }
-        };
-        player.source = {
-            "sources": {
-                "src": "<DASH_STREAM_URL>",
-                "type": "application/dash+xml",
-                "contentProtection": drmConfiguration
-            }
-        }
-    }
-   ```
-#### Acquiring the license URL
+```javascript
+  var element = document.querySelector('.theoplayer-container') // fetch THEOplayer container div
+  var player = new THEOplayer.Player(element, { // instantiates video player
+    libraryLocation : '/path/to/your-theoplayer-folder/' // references folder containing your THEOplayer library files (theoplayer.p.js, THEOplayer.js, ...)
+  });
 
-In order to acquire the license URL, you can:
+  // DASH
+  // player.source = {
+  //     sources : [{
+  //         src : '//amssamples.streaming.mediaservices.windows.net/634cd01c-6822-4630-8444-8dd6279f94c6/CaminandesLlamaDrama4K.ism/manifest(format=mpd-time-csf)', // sets DASH source
+  //         type : 'application/dash+xml' // sets type to MPEG-DASH
+  //     }]
+  // };
 
-IN PROGRESS
-
+  // HLS
+  player.source = {
+    sources : [{
+      src : '//cdn.theoplayer.com/video/star_wars_episode_vii-the_force_awakens_official_comic-con_2015_reel_(2015)/index.m3u8', // sets HLS source
+      type : 'application/x-mpegurl' // sets type to HLS
+    }]
+  };
+```
 #### Using tokenized DRM
 
-IN PROGRESS
+Add a JavaScript file with the following code:
 
+```javascript
+<script>
+if (HLS) {
+    let drmConfiguration = {
+        "integration": "azure",
+        "token": "AZURE_TOKEN>",
+        "fairplay": {
+            "licenseAcquisitionURL": "<LICENSE_KEY_URL_FAIRPLAY>",
+            "certificateURL": "CERTIFICATE_URL>"
+        }
+    };
+    player.source = {
+        "sources": {
+            "src": "<HLS_STREAM_URL>",
+            "type": "application/x-mpegurl",
+            "contentProtection": drmConfiguration
+        }
+    }
+} else if (DASH) {
+    let drmConfiguration = {
+        "integration": "azure",
+        "token": "<AZURE_TOKEN>",
+        "playready": {
+            "licenseAcquisitionURL": "<LICENSE_KEY_URL_PLAYREADY>"
+        },
+        "widevine": {
+            "licenseAcquisitionURL": "<LICENSE_KEY_URL_WIDEVINE>"
+        }
+    };
+    player.source = {
+        "sources": {
+            "src": "<DASH_STREAM_URL>",
+            "type": "application/dash+xml",
+            "contentProtection": drmConfiguration
+        }
+    }
+}
+</script>
+```
 ## Implementation reference
 
-For an implementation reference sample please check the following [link](../../src/THEOplayer) which contains a complete implementation of a THEOplayer.
+For an implementation reference sample please check the following [link](../../src/THEOplayer) which contains a complete basic implementation of THEOplayer.
 
 ------------
 
@@ -222,79 +293,236 @@ References:
 
 - ❌ No scenario is supported.
 
-### Windows 10 v1909+
+### Windows 10 v2004
 
 Tested on:
 
 - ![chrome](../icons/chrome.png) Chrome (v83.0.4103.97+)
 - ![firefox](../icons/firefox.png) Firefox (v77.0.1+)
+- ![safari](../icons/safari.png) Safari (v77.0.1+)
 - ![newedge](../icons/edge-new.png) Edge Chromium-based (v83.0.478.50+)
 - ![edge](../icons/edge.png) Edge (v44.18362.449.0+)
 
-| Format | Clear | Token | Widevine | PlayReady | FairPlay | AES-128 | Captions |
-| --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: |
-| HLS TS    | ✔️ | ⚠️ | Not applicable | Not applicable | Not applicable | ⚠️ | ✔️ |
-| HLS CMAF  | ✔️ | ⚠️ | ✔️ | ⚠️ | Not applicable | ❌ | ✔️ |
-| DASH CMAF | ⚠️ | ⚠️ | ⚠️ | ⚠️ | Not applicable | ❌ | ✔️ |
+##### VOD and Live content
+
+| Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Sidecar caption |
+| --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
+| HLS TS    | ✔️ | Not applicable  | Not applicable | Not applicable | Not applicable | ✔️ | ✔️ |
+| HLS CMAF  | ✔️ | Not applicable | Not  applicable | Not applicable | Not applicable | ✔️ | ✔️ |
+| DASH CMAF | ✔️ | ✔️ | ✔️ | ✔️ | Not applicable | Not applicable | ✔️ |
+
+##### Low Latency Live Streaming
+
+| Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Live Transcription |
+| --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
+| HLS TS    | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) |
+| HLS CMAF  | ✔️ | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) |
+| DASH CMAF | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 [More details](./results/windows.md)
 
-### macOS v10.15.5+
+### macOS Catalina v10.15.6
 
 Tested on:
 
 - ![chrome](../icons/chrome.png) Chrome (v83.0.4103.97+)
-- ![safari](../icons/safari.png) Safari (v13.1.1+)
+- ![firefox](../icons/firefox.png) Firefox (v77.0.1+)
+- ![safari](../icons/safari.png) Safari (v77.0.1+)
 
-| Format | Clear | Token | Widevine | PlayReady | FairPlay | AES-128 | Captions |
-| --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: |
-| HLS TS    | ✔️ | ⚠️ | Not applicable | Not applicable | Not tested | ✔️ | ✔️ |
-| HLS CMAF  | ✔️ | ⚠️ | ![chrome](../icons/chrome.png) | Not applicable | Not tested | ❌ | ✔️ |
-| DASH CMAF | ⚠️ | ⚠️ | ![chrome](../icons/chrome.png) | Not applicable | Not applicable | ❌ | ✔️ |
+##### VOD and Live content
+
+| Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Sidecar caption |
+| --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
+| HLS TS    | ✔️ | ✔️  | Not applicable | Not applicable | ✔️ | ✔️ | ✔️ |
+| HLS CMAF  | ✔️ | ✔️ | Not  applicable | Not applicable | ✔️ | ✔️ | ✔️ |
+| DASH CMAF | ✔️ | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable |
+
+##### Low Latency Live Streaming
+
+| Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Live Transcription |
+| --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
+| HLS TS    | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) |
+| HLS CMAF  | ✔️ | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) |
+| DASH CMAF | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 [More details](./results/macOS.md)
 
-### Ubuntu v18.04.3 LTS+
+### Android v9
 
-Tested on:
+##### VOD and Live content
 
-- ![chrome](../icons/chrome.png) Chrome (v79.0.3945.130+)
-- ![firefox](../icons/firefox.png) Firefox (v76.0.1+)
+| Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Sidecar caption |
+| --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
+| HLS TS    | ✔️ | Not applicable  | Not applicable | Not applicable | Not applicable | ✔️ | ✔️ |
+| HLS CMAF  | ✔️ | Not applicable | Not  applicable | Not applicable | Not applicable | ✔️ | ✔️ |
+| DASH CMAF | ✔️ | ✔️ | ✔️ | Not applicable | Not applicable | Not applicable | ✔️ |
 
-| Format | Clear | Token | Widevine | PlayReady | FairPlay | AES-128 | Captions |
-| --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: |
-| HLS TS    | ✔️ | ⚠️ | Not applicable | Not applicable | Not applicable | ✔️ | ✔️ |
-| HLS CMAF  | ✔️ | ⚠️ | ✔️ | ❌ | Not applicable | ❌ | ✔️ |
-| DASH CMAF | ⚠️ | ⚠️ | ⚠️ | ❌ | Not applicable | ❌ | ✔️ |
+##### Low Latency Live Streaming
 
-[More details](./results/ubuntu.md)
-
-### Android v8+
-
-Tested on:
-
-- ![chrome](../icons/chrome.png) Chrome (v83.0.4103.97+)
-- ![firefox](../icons/firefox.png) Firefox (v68.9+)
-
-| Format | Clear | Token | Widevine | PlayReady | FairPlay | AES-128 | Captions |
-| --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: |
-| HLS TS    | ✔️ | ⚠️ | Not applicable | Not applicable | Not applicable | ✔️ | ✔️ |
-| HLS CMAF  | ⚠️ | ❌ | ❌ | ❌ | Not applicable | ❌ | ⚠️ |
-| DASH CMAF | ⚠️ | ⚠️ | ⚠️ | ❌ | Not applicable | ❌ | ✔️ |
+| Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Live Transcription |
+| --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
+| HLS TS    | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) |
+| HLS CMAF  | ✔️ | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) |
+| DASH CMAF | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 [More details](./results/android.md)
 
-### iOS v13.5.1+
+### AndroidTV v9
 
-Tested on:
+##### VOD and Live content
 
-- ![chrome](../icons/chrome.png) Chrome (v83.0.4103.88+)
-- ![safari](../icons/safari.png) Safari (v13.1+)
+| Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Sidecar caption |
+| --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
+| HLS TS    | ✔️ | Not applicable  | Not applicable | Not applicable | Not applicable | ✔️ | ✔️ |
+| HLS CMAF  | ✔️ | Not applicable | Not  applicable | Not applicable | Not applicable | ✔️ | ✔️ |
+| DASH CMAF | ✔️ | ✔️ | ✔️ | Not applicable | Not applicable | Not applicable | ✔️ |
 
-| Format | Clear | Token | Widevine | PlayReady | FairPlay | AES-128 | Captions |
-| --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: |
-| HLS TS    | ✔️ | ⚠️ | Not applicable | Not applicable | Not tested | ✔️ | ✔️ |
-| HLS CMAF  | ✔️ | ❌ | ❌ | Not applicable | Not tested | ❌ | ✔️ |
-| DASH CMAF | ❌ | ❌ | Not applicable | Not applicable | Not applicable | ❌ | ❌ |
+##### Low Latency Live Streaming
 
-[More details](./results/iOS.md)
+| Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Live Transcription |
+| --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
+| HLS TS    | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) |
+| HLS CMAF  | ✔️ | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) |
+| DASH CMAF | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+
+[More details](./results/androidTV.md)
+
+### iOS v13.6
+
+##### VOD and Live content
+
+| Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Sidecar caption |
+| --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
+| HLS TS    | ✔️ | ✔️  | Not applicable | Not applicable | ✔️ | ✔️ | ✔️ |
+| HLS CMAF  | ✔️ | ✔️ | Not  applicable | Not applicable | ✔️ | ✔️ | ✔️ |
+| DASH CMAF | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable |
+
+##### Low Latency Live Streaming
+
+| Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Live Transcription |
+| --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
+| HLS TS    | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) |
+| HLS CMAF  | ✔️ | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) |
+| DASH CMAF | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+
+[More details](./results/ios.md)
+
+### tvOS v13.4.8
+
+##### VOD and Live content
+
+| Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Sidecar caption |
+| --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
+| HLS TS    | ✔️ | ❌([#6](issues.md#issue-6)) | Not applicable | Not applicable | ❌([#6](issues.md#issue-6))  | ✔️ | ✔️ |
+| HLS CMAF  | ✔️ | ❌([#6](issues.md#issue-6)) | Not  applicable | Not applicable | ❌([#6](issues.md#issue-6))  | ✔️ | ✔️ |
+| DASH CMAF | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable |
+
+##### Low Latency Live Streaming
+
+| Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Live Transcription |
+| --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
+| HLS TS    | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) |
+| HLS CMAF  | ✔️ | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) |
+| DASH CMAF | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+
+[More details](./results/tvOS.md)
+
+### ipadOS v13.6
+
+##### VOD and Live content
+
+| Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Sidecar caption |
+| --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
+| HLS TS    | ✔️ | ✔️  | Not applicable | Not applicable | ✔️ | ✔️ | ✔️ |
+| HLS CMAF  | ✔️ | ✔️ | Not  applicable | Not applicable | ✔️ | ✔️ | ✔️ |
+| DASH CMAF | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable |
+
+##### Low Latency Live Streaming
+
+| Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Live Transcription |
+| --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
+| HLS TS    | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) |
+| HLS CMAF  | ✔️ | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) |
+| DASH CMAF | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+
+[More details](./results/ipadOS.md)
+
+### webOS v3.0
+
+##### VOD and Live content
+
+| Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Sidecar caption |
+| --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
+| HLS TS    | ❌([#3](issues.md#issue-3)) | Not applicable  | Not applicable | Not applicable | Not applicable | ❌([#3](issues.md#issue-3)) | ✔️ |
+| HLS CMAF  | ❌([#3](issues.md#issue-3)) | Not applicable | Not  applicable | Not applicable | Not applicable | ✔️ | ✔️ |
+| DASH CMAF | ✔️ | ✔️ | ✔️ | ✔️ | Not applicable | Not applicable | ✔️ |
+
+##### Low Latency Live Streaming
+
+| Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Live Transcription |
+| --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
+| HLS TS    | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) |
+| HLS CMAF  | ✔️ | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) |
+| DASH CMAF | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+
+[More details](./results/webOS.md)
+
+### tizen v4.0
+
+##### VOD and Live content
+
+| Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Sidecar caption |
+| --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
+| HLS TS    | ❌([#5](issues.md#issue-5)) | Not  applicable  | Not applicable | Not applicable | Not applicable  | ❌([#5](issues.md#issue-5)) | ✔️ |
+| HLS CMAF  | ❌([#5](issues.md#issue-5)) | Not  applicable | Not  applicable | Not applicable | Not applicable  | ✔️ | ✔️ |
+| DASH CMAF | ✔️ | ✔️ | ✔️ | ✔️ | Not applicable | Not applicable | ✔️ |
+
+##### Low Latency Live Streaming
+
+| Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Live Transcription |
+| --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
+| HLS TS    | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) |
+| HLS CMAF  | ✔️ | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) |
+| DASH CMAF | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+
+[More details](./results/tizen.md)
+
+### ubuntu
+
+##### VOD and Live content
+
+| Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Sidecar captions |
+| --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :------: | :------: | :------: |
+| HLS TS    | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) |
+| HLS CMAF  | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) |
+| DASH CMAF | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) |
+
+##### Low Latency Live Streaming
+
+| Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Sidecar captions |
+| --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :------: | :------: | :------: |
+| HLS TS    | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) |
+| HLS CMAF  | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) |
+| DASH CMAF | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) |
+
+[More details](./results/ubuntu.md)
+
+### chromecast v2.0
+
+##### VOD and Live content
+
+| Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Sidecar caption |
+| --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
+| HLS TS    | ✔️ | Not applicable  | Not applicable | Not applicable | Not applicable | ✔️ | ✔️ |
+| HLS CMAF  | ✔️ | Not applicable | Not  applicable | Not applicable | Not applicable | ✔️ | ✔️ |
+| DASH CMAF | ✔️ | ✔️ | ✔️ | Not applicable | Not applicable | Not applicable | ✔️ |
+
+##### Low Latency Live Streaming
+
+| Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Live Transcription |
+| --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
+| HLS TS    | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) |
+| HLS CMAF  | ✔️ | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) |
+| DASH CMAF | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+
+[More details](./results/chromecast.md)

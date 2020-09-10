@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <link rel="stylesheet" type="text/css" href='https://cdn.myth.theoplayer.com/338b7556-57ed-43ab-a92b-7e37f1a104e9/ui.css'> <!-- adds THEOplayer CSS -->
+    <link rel="stylesheet" type="text/css" href='//cdn.theoplayer.com/dash/theoplayer/ui.css'> <!-- adds THEOplayer CSS -->
     <link rel="shortcut icon" type="image/png" href="../images/ams.png">
       <style>
       .theoplayer-container {
@@ -96,8 +96,11 @@
               </p>
             </div>
           </div>
-
         </form>
+        <div id="result" class="my-4 p-4 bg-gray-200 rounded shadow">
+          <h3 class="my-0 mb-2 text-xl font-bold">Player Events</h3>
+          <div id="playerEvents" class="w-full h-64 bg-white border-0 rounded shadow overflow-y-scroll"></div>
+        </div>
       </main>
 
     <footer class="h-16 flex items-center justify-center bg-black">

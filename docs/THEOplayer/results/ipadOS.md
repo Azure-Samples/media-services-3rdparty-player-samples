@@ -1,4 +1,4 @@
-# Test results for THEOplayer on macOS vCatalina 10.15.6
+# Test results for THEOplayer on ipadOS v13.6
 
 References:
 
@@ -16,7 +16,7 @@ Preset: "AdaptiveStreaming"
 | --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
 | HLS TS    | ✔️ | ✔️  | Not applicable | Not applicable | ✔️ | ✔️ | ✔️ |
 | HLS CMAF  | ✔️ | ✔️ | Not  applicable | Not applicable | ✔️ | ✔️ | ✔️ |
-| DASH CMAF | ✔️ | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable |
+| DASH CMAF | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable |
 
 More details about issues [here](issues.md).
 
@@ -30,7 +30,7 @@ PresetName: "Default720p"
 | --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
 | HLS TS    | ✔️ | ✔️  | Not applicable | Not applicable | ✔️ | ✔️ | ✔️ |
 | HLS CMAF  | ✔️ | ✔️ | Not  applicable | Not applicable | ✔️ | ✔️ | ✔️ |
-| DASH CMAF | ✔️ | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable |
+| DASH CMAF | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable |
 
 
 More details about issues [here](issues.md).

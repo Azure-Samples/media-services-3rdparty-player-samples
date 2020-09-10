@@ -1,4 +1,4 @@
-# Test results for Video.js on iOS v13.5.1+
+# Test results for THEOplayer on iOS v13.6
 
 References:
 
@@ -6,17 +6,17 @@ References:
 
 - ❌ No browser is supported.
 
-- ![safari](../../icons/safari.png) ![chrome](../../icons/chrome.png) Scenario supported in the given browser.
+- ![firefox](../../icons/firefox.png) ![chrome](../../icons/chrome.png) ![edge](../../icons/edge.png) ![edge-new](../../icons/edge-new.png) ![safari](../../icons/safari.png) Scenario supported in the given browser.
 
 ## VOD
 
 Preset: "AdaptiveStreaming"
 
-| Format | Clear | DRM Token | AES-128 Token | Widevine | PlayReady | FairPlay | AES-128 | Sidecar caption |
-| --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
-| HLS TS    | ✔️ | Not tested  | ![safari](../../icons/safari.png) | Not applicable | Not applicable | Not tested | ✔️ | ✔️ |
-| HLS CMAF  | ✔️ | ❌([#4](issues.md#issue-4)) | ❌([#3](issues.md#issue-3)) | ❌([#4](issues.md#issue-4)) | Not applicable | Not tested | ❌([#3](issues.md#issue-3)) | ✔️ |
-| DASH CMAF | ❌([#4](issues.md#issue-4)) | Not applicable | ❌([#4](issues.md#issue-4)) | Not applicable | Not applicable | Not applicable | ❌([#4](issues.md#issue-4)) | ❌([#4](issues.md#issue-4)) |
+| Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Sidecar caption |
+| --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
+| HLS TS    | ✔️ | ✔️  | Not applicable | Not applicable | ✔️ | ✔️ | ✔️ |
+| HLS CMAF  | ✔️ | ✔️ | Not  applicable | Not applicable | ✔️ | ✔️ | ✔️ |
+| DASH CMAF | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable |
 
 More details about issues [here](issues.md).
 
@@ -26,11 +26,12 @@ EncodingType: "Standard"
 
 PresetName: "Default720p"
 
-| Format | Clear | DRM Token | AES-128 Token | Widevine | PlayReady | FairPlay | AES-128 | Live Transcription |
-| --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
-| HLS TS    | ✔️ | Not tested  | ✔️ | Not applicable | Not applicable | Not tested | ✔️ | ✔️ |
-| HLS CMAF  | ✔️ | ❌([#4](issues.md#issue-4)) | ❌([#3](issues.md#issue-3)) | ❌([#4](issues.md#issue-4)) | Not applicable | Not tested | ❌([#3](issues.md#issue-3)) | ✔️ |
-| DASH CMAF | ❌([#4](issues.md#issue-4)) | Not applicable | ❌([#4](issues.md#issue-4)) | Not applicable | Not applicable | Not applicable | ❌([#4](issues.md#issue-4)) | ❌([#4](issues.md#issue-4)) |
+| Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Sidecar caption |
+| --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
+| HLS TS    | ✔️ | ✔️  | Not applicable | Not applicable | ✔️ | ✔️ | ✔️ |
+| HLS CMAF  | ✔️ | ✔️ | Not  applicable | Not applicable | ✔️ | ✔️ | ✔️ |
+| DASH CMAF | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable |
+
 
 More details about issues [here](issues.md).
 
@@ -40,10 +41,10 @@ EncodingType: "Standard"
 
 PresetName: "Default720p"
 
-| Format | Clear | DRM Token | AES-128 Token | Widevine | PlayReady | FairPlay | AES-128 |
-| --------- | :---: | :---: | :----------------------------------------------------------: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| HLS TS    | ✔️ | Not tested  | ❌([#3](issues.md#issue-3)) | Not applicable | Not applicable | Not tested | ✔️ |
-| HLS CMAF  | ✔️ | ❌([#4](issues.md#issue-4)) | ❌([#3](issues.md#issue-3)) | ❌([#4](issues.md#issue-4)) | Not applicable | Not tested | ❌([#3](issues.md#issue-3)) |
-| DASH CMAF | ❌([#4](issues.md#issue-4)) | Not applicable | ❌([#4](issues.md#issue-4)) | Not applicable | Not applicable | Not applicable | ❌([#4](issues.md#issue-4)) |
+| Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Live Transcription |
+| --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
+| HLS TS    | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) |
+| HLS CMAF  | ✔️ | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) |
+| DASH CMAF | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 More details about issues [here](issues.md).
