@@ -17,6 +17,7 @@ Its official documentation can be found [here](https://docs.portal.theoplayer.co
 
 There is also a THEOplayer [landing page](https://azure.microsoft.com/en-us/blog/azure-media-services-announces-new-collaboration-with-theoplayer/ "Azure Media Services collaboration with THEOplayer") for Azure Media Services customers to help you get started. Here you can insert the streaming URLs you get from the Microsoft Azure Management portal and see them in action.
 
+------------
 
 ## Implementing the player
 
@@ -124,6 +125,7 @@ ui : {
 
 Save your `.html`, put it on a running web server and browse to it to see your video playing in THEOplayer.
 
+------------
 
 ### Set up captions
 
@@ -153,6 +155,8 @@ ads: [{
     "skipOffset": 2
 }]
 ```
+
+------------
 
 ### Set up AES-128 encryption
 
@@ -205,6 +209,9 @@ segment-00010.ts.enc
 #EXT-X-TARGETDURATION:5
 #EXT-X-ENDLIST
 ```
+
+------------
+
 ### Set up DRM protection
 
 THEOplayer supports Fairplay, PlayReady and Widevine by default. To connect to such a DRM system, developers can use a ContentProtectionDescription (or DRMConfiguration, depending on the SDK). However, more often than not, developers are working with a multi-DRM vendor. These vendors take care of their DRM needs. The last challenge for developers is to integrate the provided DRM solution in a video player. THEOplayer is partnered with many multi-DRM vendors to lighten this burden. In our partnerships, we validate the compatibly and often provide integrations. 
@@ -276,6 +283,9 @@ if (HLS) {
 }
 </script>
 ```
+
+------------
+
 ## Implementation reference
 
 For an implementation reference sample please check the following [link](../../src/THEOplayer) which contains a complete basic implementation of THEOplayer.
