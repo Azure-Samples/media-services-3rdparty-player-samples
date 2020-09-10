@@ -46,6 +46,7 @@ class TheoPlayer extends BasePlayer {
                   "certificateURL": this.fairPlayCertificate
               }
           };
+      }
 
       player.source = {
         "sources": [{
