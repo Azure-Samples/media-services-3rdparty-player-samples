@@ -31,7 +31,7 @@ One or more URI's to HLS stream manifests (.m3u8), or MPEG-DASH stream manifests
 In this guide, we'll start from a basic HTML file, with no reference to THEOplayer. In the second step, we'll explain what the THEOplayer library is, and how you can include it, together with the default THEOplayer UI. In the third step, we'll describe how you add a THEOplayer powered video to a web page. In the fourth and final step, we'll give a final overview.
 
 
-##### Set up an HTML file.
+##### Setup an HTML file.
 
 When THEOplayer is used as a web video player, we will need a webpage to put the video on.
 
@@ -144,7 +144,7 @@ textTracks: [{
 2. Call the function using the language label (or 3-letter-language code if you change x.label to x.language)
 &nbsp;
 
-### Set up advertisement
+### Setup advertisement
 
 ##### Copy and paste the below array:
 &nbsp;
@@ -158,7 +158,7 @@ ads: [{
 
 ------------
 
-### Set up AES-128 encryption
+### Setup AES-128 encryption
 
 THEOplayer supports decryption and playback of HLS streams with AES-128 content protection out of the box, without extra configuration in the player. In order to play AES-128 content protected streams, the decryption key and an optional initialization vector have to be provided in the manifest. When configured correctly, THEOplayer allows playback of AES-128 content protected streams on all supported devices in real time. It allows for the usage of a single key, or a rotating key.
 
@@ -212,7 +212,7 @@ segment-00010.ts.enc
 
 ------------
 
-### Set up DRM protection
+### Setup DRM protection
 
 THEOplayer supports Fairplay, PlayReady and Widevine by default. To connect to such a DRM system, developers can use a ContentProtectionDescription (or DRMConfiguration, depending on the SDK). However, more often than not, developers are working with a multi-DRM vendor. These vendors take care of their DRM needs. The last challenge for developers is to integrate the provided DRM solution in a video player. THEOplayer is partnered with many multi-DRM vendors to lighten this burden. In our partnerships, we validate the compatibly and often provide integrations. 
 
