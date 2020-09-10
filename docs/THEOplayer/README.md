@@ -126,7 +126,7 @@ ui : {
 Save your `.html`, put it on a running web server and browse to it to see your video playing in THEOplayer.
 
 
-1. Setup captions
+### Set up captions
 
 ##### Copy and paste the below function:
 &nbsp;
@@ -143,7 +143,7 @@ textTracks: [{
 2. Call the function using the language label (or 3-letter-language code if you change x.label to x.language)
 &nbsp;
 
-1. Setup advertisement
+### Set up advertisement
 
 ##### Copy and paste the below array:
 &nbsp;
