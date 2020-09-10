@@ -17,7 +17,6 @@ Its official documentation can be found [here](https://docs.portal.theoplayer.co
 
 There is also a THEOplayer [landing page](https://azure.microsoft.com/en-us/blog/azure-media-services-announces-new-collaboration-with-theoplayer/ "Azure Media Services collaboration with THEOplayer") for Azure Media Services customers to help you get started. Here you can insert the streaming URLs you get from the Microsoft Azure Management portal and see them in action.
 
-------------
 
 ## Implementing the player
 
