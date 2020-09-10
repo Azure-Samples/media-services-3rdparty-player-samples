@@ -324,8 +324,8 @@ Tested on:
 
 | Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Live Transcription |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
-| HLS TS    | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) |
-| HLS CMAF  | ✔️ | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) |
+| HLS TS    | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
+| HLS CMAF  | ✔️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
 | DASH CMAF | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 [More details](./results/windows.md)
@@ -350,8 +350,8 @@ Tested on:
 
 | Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Live Transcription |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
-| HLS TS    | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) |
-| HLS CMAF  | ✔️ | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) |
+| HLS TS    | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
+| HLS CMAF  | ✔️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
 | DASH CMAF | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 [More details](./results/macOS.md)
@@ -370,8 +370,8 @@ Tested on:
 
 | Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Live Transcription |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
-| HLS TS    | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) |
-| HLS CMAF  | ✔️ | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) |
+| HLS TS    | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
+| HLS CMAF  | ✔️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
 | DASH CMAF | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 [More details](./results/android.md)
@@ -390,8 +390,8 @@ Tested on:
 
 | Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Live Transcription |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
-| HLS TS    | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) |
-| HLS CMAF  | ✔️ | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) |
+| HLS TS    | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
+| HLS CMAF  | ✔️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
 | DASH CMAF | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 [More details](./results/androidTV.md)
@@ -410,8 +410,8 @@ Tested on:
 
 | Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Live Transcription |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
-| HLS TS    | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) |
-| HLS CMAF  | ✔️ | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) |
+| HLS TS    | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
+| HLS CMAF  | ✔️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
 | DASH CMAF | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 [More details](./results/ios.md)
@@ -422,16 +422,16 @@ Tested on:
 
 | Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Sidecar caption |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
-| HLS TS    | ✔️ | ❌([#6](issues.md#issue-6)) | Not applicable | Not applicable | ❌([#6](issues.md#issue-6))  | ✔️ | ✔️ |
-| HLS CMAF  | ✔️ | ❌([#6](issues.md#issue-6)) | Not  applicable | Not applicable | ❌([#6](issues.md#issue-6))  | ✔️ | ✔️ |
+| HLS TS    | ✔️ | ⚠️ | Not applicable | Not applicable | ⚠️  | ✔️ | ✔️ |
+| HLS CMAF  | ✔️ | ⚠️ | Not  applicable | Not applicable | ⚠️  | ✔️ | ✔️ |
 | DASH CMAF | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable |
 
 ##### Low Latency Live Streaming
 
 | Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Live Transcription |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
-| HLS TS    | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) |
-| HLS CMAF  | ✔️ | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) |
+| HLS TS    | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
+| HLS CMAF  | ✔️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
 | DASH CMAF | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 [More details](./results/tvOS.md)
@@ -450,8 +450,8 @@ Tested on:
 
 | Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Live Transcription |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
-| HLS TS    | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) |
-| HLS CMAF  | ✔️ | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) |
+| HLS TS    | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
+| HLS CMAF  | ✔️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
 | DASH CMAF | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 [More details](./results/ipadOS.md)
@@ -462,16 +462,16 @@ Tested on:
 
 | Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Sidecar caption |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
-| HLS TS    | ❌([#3](issues.md#issue-3)) | Not applicable  | Not applicable | Not applicable | Not applicable | ❌([#3](issues.md#issue-3)) | ✔️ |
-| HLS CMAF  | ❌([#3](issues.md#issue-3)) | Not applicable | Not  applicable | Not applicable | Not applicable | ✔️ | ✔️ |
+| HLS TS    | ⚠️ | Not applicable  | Not applicable | Not applicable | Not applicable | ⚠️ | ✔️ |
+| HLS CMAF  | ⚠️ | Not applicable | Not  applicable | Not applicable | Not applicable | ✔️ | ✔️ |
 | DASH CMAF | ✔️ | ✔️ | ✔️ | ✔️ | Not applicable | Not applicable | ✔️ |
 
 ##### Low Latency Live Streaming
 
 | Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Live Transcription |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
-| HLS TS    | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) |
-| HLS CMAF  | ✔️ | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) |
+| HLS TS    | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
+| HLS CMAF  | ✔️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
 | DASH CMAF | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 [More details](./results/webOS.md)
@@ -482,16 +482,16 @@ Tested on:
 
 | Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Sidecar caption |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
-| HLS TS    | ❌([#5](issues.md#issue-5)) | Not  applicable  | Not applicable | Not applicable | Not applicable  | ❌([#5](issues.md#issue-5)) | ✔️ |
-| HLS CMAF  | ❌([#5](issues.md#issue-5)) | Not  applicable | Not  applicable | Not applicable | Not applicable  | ✔️ | ✔️ |
+| HLS TS    | ⚠️ | Not  applicable  | Not applicable | Not applicable | Not applicable  | ⚠️ | ✔️ |
+| HLS CMAF  | ⚠️ | Not  applicable | Not  applicable | Not applicable | Not applicable  | ✔️ | ✔️ |
 | DASH CMAF | ✔️ | ✔️ | ✔️ | ✔️ | Not applicable | Not applicable | ✔️ |
 
 ##### Low Latency Live Streaming
 
 | Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Live Transcription |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
-| HLS TS    | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) |
-| HLS CMAF  | ✔️ | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) |
+| HLS TS    | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
+| HLS CMAF  | ✔️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
 | DASH CMAF | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 [More details](./results/tizen.md)
@@ -502,17 +502,17 @@ Tested on:
 
 | Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Sidecar captions |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :------: | :------: | :------: |
-| HLS TS    | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) |
-| HLS CMAF  | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) |
-| DASH CMAF | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) |
+| HLS TS    | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
+| HLS CMAF  | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
+| DASH CMAF | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
 
 ##### Low Latency Live Streaming
 
 | Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Sidecar captions |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :------: | :------: | :------: |
-| HLS TS    | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) |
-| HLS CMAF  | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) |
-| DASH CMAF | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) | ❌([#2](issues.md#issue-2)) |
+| HLS TS    | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
+| HLS CMAF  | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
+| DASH CMAF | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
 
 [More details](./results/ubuntu.md)
 
@@ -530,8 +530,8 @@ Tested on:
 
 | Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Live Transcription |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
-| HLS TS    | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) |
-| HLS CMAF  | ✔️ | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) | ❌([#1](issues.md#issue-1)) |
+| HLS TS    | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
+| HLS CMAF  | ✔️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
 | DASH CMAF | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 [More details](./results/chromecast.md)
