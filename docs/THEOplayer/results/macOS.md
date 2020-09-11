@@ -6,7 +6,7 @@ References:
 
 - ❌ No browser is supported.
 
-- ![firefox](../../icons/firefox.png) ![chrome](../../icons/chrome.png) ![edge](../../icons/edge.png) ![edge-new](../../icons/edge-new.png) ![safari](../../icons/safari.png) Scenario supported in the given browser.
+- ![firefox](../../icons/firefox.png) ![chrome](../../icons/chrome.png) ![edge-new](../../icons/edge-new.png) ![safari](../../icons/safari.png) Scenario supported in the given browser.
 
 ## VOD
 
@@ -26,7 +26,7 @@ EncodingType: "Standard"
 
 PresetName: "Default720p"
 
-| Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Sidecar caption |
+| Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Live Transcription |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
 | HLS TS    | ✔️ | ✔️  | Not applicable | Not applicable | ✔️ | ✔️ | ✔️ |
 | HLS CMAF  | ✔️ | ✔️ | Not  applicable | Not applicable | ✔️ | ✔️ | ✔️ |

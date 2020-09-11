@@ -2,11 +2,11 @@
 
 References:
 
-- ✔️ All browsers are supported.
+- ✔️ SDK is supported.
 
-- ❌ No browser is supported.
+- ❌ SDK is not supported.
 
-- ![firefox](../../icons/firefox.png) ![chrome](../../icons/chrome.png) ![edge](../../icons/edge.png) ![edge-new](../../icons/edge-new.png) ![safari](../../icons/safari.png) Scenario supported in the given browser.
+- ![tizen](../../icons/tizen.png) Scenario supported.
 
 ## VOD
 
@@ -26,7 +26,7 @@ EncodingType: "Standard"
 
 PresetName: "Default720p"
 
-| Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Sidecar caption |
+| Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Live Transcription |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
 | HLS TS    | ❌([#5](issues.md#issue-5)) | Not  applicable  | Not applicable | Not applicable | Not applicable  | ❌([#5](issues.md#issue-5)) | ✔️ |
 | HLS CMAF  | ❌([#5](issues.md#issue-5)) | Not  applicable | Not  applicable | Not applicable | Not applicable  | ✔️ | ✔️ |

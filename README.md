@@ -70,6 +70,7 @@ To see the test results, please check:
   
 - [Video.js](/docs/video.js#test-results)
 - [Shaka Player](/docs/shaka#test-results)
+- [THEOplayer](/docs/THEOplayer#test-results)
 
 ## How to set up your player
 

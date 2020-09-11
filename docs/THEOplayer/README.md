@@ -141,9 +141,6 @@ textTracks: [{
 }]
 ```
 
-2. Call the function using the language label (or 3-letter-language code if you change x.label to x.language)
-&nbsp;
-
 ### Setup advertisement
 
 ##### Copy and paste the below array:

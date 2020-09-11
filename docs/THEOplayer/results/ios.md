@@ -2,11 +2,11 @@
 
 References:
 
-- ✔️ All browsers are supported.
+- ✔️ All browsers and native SDK are supported.
 
-- ❌ No browser is supported.
+- ❌ All browsers and native SDK are not supported.
 
-- ![firefox](../../icons/firefox.png) ![chrome](../../icons/chrome.png) ![edge](../../icons/edge.png) ![edge-new](../../icons/edge-new.png) ![safari](../../icons/safari.png) Scenario supported in the given browser.
+- ![safari](../../icons/safari.png) ![chrome](../../icons/chrome.png) ![iOS](../../icons/ios.png) Scenario supported.
 
 ## VOD
 

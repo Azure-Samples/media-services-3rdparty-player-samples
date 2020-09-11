@@ -26,7 +26,7 @@ EncodingType: "Standard"
 
 PresetName: "Default720p"
 
-| Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Sidecar caption |
+| Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Live Transcription |
 | --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
 | HLS TS    | ✔️ | Not applicable  | Not applicable | Not applicable | Not applicable | ✔️ | ✔️ |
 | HLS CMAF  | ✔️ | Not applicable | Not  applicable | Not applicable | Not applicable | ✔️ | ✔️ |

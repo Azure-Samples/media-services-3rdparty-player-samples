@@ -56,20 +56,20 @@ class TheoPlayer extends BasePlayer {
         }],
 
         // advertisement configuration
-        //ads: [{
-        //   "sources": "//cdn.theoplayer.com/demos/preroll.xml",
-        //    "timeOffset": "start",
-        //    "skipOffset": 2
-        //}]
+        /* ads: [{
+          "sources": "//cdn.theoplayer.com/demos/preroll.xml",
+          "timeOffset": "start",
+          "skipOffset": 2
+        }] */
 
         // subtitles configuration
-        textTracks : [{
+        /* textTracks: [{
           "default": true, //optional
           "kind": "subtitles", //optional - find other values at https://support.theoplayer.com/hc/en-us/articles/214350425#TextTrackDescription
           "label": "English subs", //optional - this will appear in your UI
           "src": "transcript.vtt", //path/to/your-subs-track1.vtt
           "srclang": "en"
-        }]
+        }] */
       }
 
       var logEvent = function(event) {
