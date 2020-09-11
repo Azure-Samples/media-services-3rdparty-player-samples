@@ -332,6 +332,7 @@ Tested on:
 Tested on:
 
 - ![chrome](../icons/chrome.png) Chrome (v83.0.4103.97+)
+- ![newedge](../icons/edge-new.png) Edge Chromium-based (v83.0.478.50+)
 - ![firefox](../icons/firefox.png) Firefox (v77.0.1+)
 - ![safari](../icons/safari.png) Safari (v77.0.1+)
 
@@ -355,6 +356,10 @@ Tested on:
 
 ### Android v9
 
+Tested on:
+
+- ![android](../icons/android.png) Android SDK (v9)
+
 ##### VOD and Live content
 
 | Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Sidecar caption |
@@ -374,6 +379,10 @@ Tested on:
 [More details](./results/android.md)
 
 ### AndroidTV v9
+
+Tested on:
+
+- ![android](../icons/android.png) Android SDK (v9)
 
 ##### VOD and Live content
 
@@ -395,6 +404,10 @@ Tested on:
 
 ### iOS v13.6
 
+Tested on:
+
+- ![safari](../../icons/safari.png) ![chrome](../../icons/chrome.png) ![iOS SDK](../../icons/ios.png) Scenario supported.
+
 ##### VOD and Live content
 
 | Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Sidecar caption |
@@ -414,6 +427,10 @@ Tested on:
 [More details](./results/ios.md)
 
 ### tvOS v13.4.8
+
+Tested on:
+
+- ![tvOS](../../icons/tvos.png) tvOS SDK (v13.4.8)
 
 ##### VOD and Live content
 
@@ -435,6 +452,10 @@ Tested on:
 
 ### ipadOS v13.6
 
+Tested on:
+
+- ![safari](../../icons/safari.png) ![chrome](../../icons/chrome.png) ![ipadOS](../../icons/ipados.png) Scenario supported.
+
 ##### VOD and Live content
 
 | Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Sidecar caption |
@@ -455,6 +476,10 @@ Tested on:
 
 ### webOS v3.0
 
+Tested on:
+
+- ![webOS](../../icons/webos.png) webOS SDK (v3.0)
+
 ##### VOD and Live content
 
 | Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Sidecar caption |
@@ -473,7 +498,11 @@ Tested on:
 
 [More details](./results/webOS.md)
 
-### tizen v4.0
+### Tizen v4.0
+
+Tested on:
+
+- ![tizen](../../icons/tizen.png) tizen SDK (v4.0)
 
 ##### VOD and Live content
 
@@ -493,15 +522,19 @@ Tested on:
 
 [More details](./results/tizen.md)
 
-### ubuntu
+### Ubuntu v18.04.4 LTS
+
+Tested on:
+
+- ![edge-new](../../icons/edge-new.png) ![chrome](../../icons/chrome.png) Scenario supported in the given browser.
 
 ##### VOD and Live content
 
-| Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Sidecar captions |
-| --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :------: | :------: | :------: |
-| HLS TS    | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
-| HLS CMAF  | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
-| DASH CMAF | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
+| Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Sidecar caption |
+| --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
+| HLS TS    | ✔️ | Not applicable  | Not applicable | ⚠️ | Not applicable | ⚠️ | ✔️ |
+| HLS CMAF  | ✔️ | Not applicable | Not  applicable | ⚠️ | Not applicable | ⚠️ | ✔️ |
+| DASH CMAF | ✔️ | ✔️ | ✔️ | ⚠️ | Not applicable | ⚠️ | ✔️ |
 
 ##### Low Latency Live Streaming
 
