@@ -170,10 +170,10 @@ class BasePlayer {
     playerEvents.scrollTop = playerEvents.scrollHeight
   }
 
-  interceptLog (type, log) {
-    return () => {
+  interceptLog (type) {
+    return function () {
       this.addMessage(type, Array.from(arguments).filter(Boolean).join(' '))
-    }
+    }.bind(this)
   }
 }
 
