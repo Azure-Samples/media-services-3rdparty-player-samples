@@ -12,27 +12,23 @@ urlFragment: "media-services-3rdparty-player-samples"
 
 ## Overview
 
-This repository contains samples, documentation, and platform/browser feature tables for using popular 3rd party player frameworks that support HLS and/or MPEG-DASH delivery from Azure Media Services (AMS). This guide also includes the steps needed to configure VOD and Live content from Azure Media Services to facilitate the testing of each 3rd party player.
+This repository contains samples, documentation, and platform/browser feature tables for using popular 3rd party player frameworks that support HLS and/or MPEG-DASH delivery from Azure Media Services (AMS).
 
 These are the main components of this repository:
 
-1. [Setup](#setup)
+1. [Set up](#set-up)
 
 2. [Samples](#samples)
 
 3. [Test results](#test-results)
 
-4. [How to setup your player](#how-to-setup-your-player)
-
-## Setup
+## Set up
 
 This project uses PowerShell [setup](/setup) scripts to generate content (VOD and Live) in Azure Media Services, and provides tools to test the 3rd party players in different combinations of features, streaming formats, and content protection.
 
-For example, this is the _Index_ page generated after running the setup scripts. It contains the playback endpoints for all the features, formats, and content protection options available in Azure Media Services along with links to test them on each 3rd party player sample:
+For example, this is the *_Index_* page generated after running the setup scripts. It contains the playback endpoints for all the features, formats, and content protection options available in Azure Media Services along with links to test them on each 3rd party player sample:
 
 ![Index](docs/images/index.jpg)
-
-For a detailed guide on how to run them, please check the [Setup](/setup) section.
 
 ## Samples
 
@@ -46,7 +42,7 @@ To see the sample code, please check:
 
 ## Test results
   
-The samples were tested with VOD and Live content generated with the [Setup](/setup) in the following browsers:
+The samples were tested with VOD and Live content generated with the setup script in the following browsers:
 
 - Windows 10 v1909+
   - ![chrome](docs/icons/chrome.png) Chrome (v83.0.4103.97+)
@@ -74,26 +70,18 @@ To see the test results, please check:
 
 ## How to set up your player
 
-The documentation contains instructions on how to implement your own player, covering the following items:
+To set up your player, follow the below instructions:
 
-- Implementing the player
-- Set up captions
-- Set up token authentication
-- Set up AES-128 encryption
-- Set up DRM protection
-
-To see the documentation, please check:
-
-- [Video.js](/docs/video.js)
-- [Shaka Player](/docs/shaka)
-- [THEOplayer](/docs/THEOplayer)
+- [How to use the Video.js player with Azure Media Services](https://docs.microsoft.com/azure/media-services/latest/how-to-video-js-player)
+- [How to use the Shaka player with Azure Media Services](https://docs.microsoft.com/azure/media-services/latest/how-to-shaka-player)
+- [How to use the THEOplayer with Azure Media Services](https://docs.microsoft.com/azure/media-services/latest/how-to-theo-player)
 
 ## Root contents
 
 | File/folder         | Description                                |
 |---------------------|--------------------------------------------|
 | `src`               | Folder with 3rd party player samples                |
-| `docs`              | Folder with 3rd party player documentation and test results|
+| `docs`              | Folder with test results|
 | `setup`             | Folder with AMS setup scripts             |
 | `.gitignore`        | Define what to ignore at commit time      |
 | `CHANGELOG.md`      | List of changes to the sample             |

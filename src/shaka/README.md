@@ -2,7 +2,7 @@
 
 - [Overview](#overview)
 - [How to use](#how-to-use)
-  - [Set up development environment](#setup-development-environment)
+  - [Set up development environment](#set-up-development-environment)
   - [Using sample player](#using-sample-player)
   - [Sample details](#sample-details)
 
