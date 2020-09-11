@@ -538,11 +538,11 @@ Tested on:
 
 ##### Low Latency Live Streaming
 
-| Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Sidecar captions |
-| --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :------: | :------: | :------: |
-| HLS TS    | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
-| HLS CMAF  | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
-| DASH CMAF | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ | ⚠️ |
+| Format | Clear | DRM Token | Widevine | PlayReady | FairPlay | AES-128 | Sidecar caption |
+| --------- | :---: | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
+| HLS TS    | ✔️ | Not applicable  | Not applicable | ⚠️ | Not applicable | ⚠️ | ✔️ |
+| HLS CMAF  | ✔️ | Not applicable | Not  applicable | ⚠️ | Not applicable | ⚠️ | ✔️ |
+| DASH CMAF | ✔️ | ✔️ | ✔️ | ⚠️ | Not applicable | ⚠️ | ✔️ |
 
 [More details](./results/ubuntu.md)
 
