@@ -94,7 +94,7 @@ Follow these instructions if you need to implement your own instance of the play
 
 6. Replace `ManifestURI`  with the HLS or DASH URL from the streaming locator of your asset which can be found on the streaming locator page in the Azure portal.
 
-    ![streaming locator URLs](https://docs.microsoft.com/en-us/azure/media-services/latest/media/how-to-shaka-player/streaming-urls.png)
+    ![streaming URLs](../images/streaming-urls.png)
 
 7. Controlling the player:
 
