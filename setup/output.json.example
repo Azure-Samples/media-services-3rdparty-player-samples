@@ -28,5 +28,6 @@
   "PlayReadyLicenseURL": "",
   "FairPlayLicenseURL": "",
   "FairPlayPublicCertPath": "",
+  "KeyDeliveryUrl": "",
   "Token": ""
 }

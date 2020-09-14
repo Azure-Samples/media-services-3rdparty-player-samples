@@ -144,10 +144,7 @@ verifyAndActivateCDNInEndpoint
 
 SuccessMessage "Starting Streaming Endpoint and Live Event..."
 
-$streamingEndpointData = az ams streaming-endpoint start `
---name default `
---resource-group $config.ResourceGroup `
---account-name $config.MediaServiceAccount | ConvertFrom-Json
+./start-endpoint.ps1
 $liveEventData = az ams live-event start `
 --name $config.liveStream.liveEventName `
 --resource-group $config.ResourceGroup `

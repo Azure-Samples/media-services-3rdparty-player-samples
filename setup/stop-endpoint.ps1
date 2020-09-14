@@ -7,7 +7,7 @@ if ($liveEvent) {
 }
 
 ActivityMessage "Stopping Streaming Endpoint..."
-$stop = az ams streaming-endpoint stop `
+$null = az ams streaming-endpoint stop `
 --name default `
 --resource-group $config.ResourceGroup `
 --account-name $config.MediaServiceAccount
