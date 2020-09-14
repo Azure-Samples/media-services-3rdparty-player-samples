@@ -16,8 +16,47 @@ class BasePlayer {
     this.playReadyLicenseUrl = this.getUrlParameter('playReady')
     this.fairPlayLicenseUrl = this.getUrlParameter('fairPlay')
     this.fairPlayCertificate = this.getUrlParameter('fairPlayCertificate')
+    this.autoPlay = this.getUrlParameter('autoPlay')
+    this.logLevel = this.getUrlParameter('logLevel')
+    this.encryptionKeyUrl = this.getUrlParameter('encryption')
+    this.player = {}
 
     this.initPage()
+  }
+
+  parseStreamingSettingsToText () {
+    let format = '<b>Format</b>: '
+    let protection = '<b>Protection</b>: '
+    let authorizationToken = '<b>Token</b>: '
+
+    if (this.manifest) {
+      format += `${this.manifest.includes('m3u8') ? 'HLS' : 'DASH'} ${this.manifest.includes('cmaf') ? 'CMAF' : 'TS'}`
+
+      let procTech = 'None'
+      if (this.manifest.includes('encryption=cbcs')) {
+        procTech = 'DRM with CBCS encryption'
+      } else if (this.manifest.includes('encryption=cenc')) {
+        procTech = 'DRM with CENC encryption'
+      } else if (this.manifest.includes('encryption=cbc')) {
+        procTech = 'AES-128'
+      }
+      protection += procTech
+
+      authorizationToken += this.token ? 'ON' : 'OFF'
+    }
+
+    const pluginsInfo = this.getPluginsInfo()
+    let plugins = '<b>Plugins</b>: '
+    if (pluginsInfo !== null) {
+      plugins += Object.keys(pluginsInfo).reduce((acc, key) => {
+        return `<br>&nbsp;&nbsp;${acc}${key}: ${pluginsInfo[key]}`
+      }, '')
+    } else {
+      plugins += 'None'
+    }
+
+    const version = `<b>Player</b>: ${this.getPlayerInfo()}`
+    return `${version}<br>${plugins}<br>${format}<br>${protection}<br>${authorizationToken}`
   }
 
   $ (id) {
@@ -25,8 +64,14 @@ class BasePlayer {
   }
 
   initPage () {
+    this.$('streamingSettings').innerHTML = this.parseStreamingSettingsToText()
+
     this.$('captionCheckbox').addEventListener('click', this.configureCaption.bind(this))
     this.$('tokenCheckbox').addEventListener('click', this.configureToken.bind(this))
+
+    if (this.$('encryptionCheckbox')) {
+      this.$('encryptionCheckbox').addEventListener('click', this.configureEncryption.bind(this))
+    }
 
     if (this.$('widevineCheckbox')) {
       this.$('widevineCheckbox').addEventListener('click', this.configureWidevine.bind(this))
@@ -44,8 +89,22 @@ class BasePlayer {
       this.$('fairPlayCertificateCheckbox').addEventListener('click', this.configureFairPlayCertificate.bind(this))
     }
 
-    this.video = this.$('video')
+    if (this.$('fairPlayCertificateCheckbox')) {
+      this.$('fairPlayCertificateCheckbox').addEventListener('click', this.configureFairPlayCertificate.bind(this))
+    }
+
+    if (this.$('autoPlayCheckbox')) {
+      this.$('autoPlayCheckbox').addEventListener('click', this.configureAutoPlay.bind(this))
+    }
+
+    this.video = document.getElementsByTagName('video')[0]
     this.$('manifestInput').value = this.manifest
+
+    if (this.encryptionKeyUrl && this.$('encryptionInput')) {
+      this.$('encryptionInput').value = this.encryptionKeyUrl
+      this.$('encryptionCheckbox').checked = true
+      this.configureEncryption()
+    }
 
     if (this.caption) {
       this.$('captionInput').value = this.caption
@@ -83,6 +142,17 @@ class BasePlayer {
       this.configureFairPlayCertificate()
     }
 
+    this.$('autoPlayCheckbox').checked = this.autoPlay ? this.autoPlay === 'true' : true
+    this.$('autoPlayInput').value = this.autoPlay ? this.autoPlay : 'true'
+    if (!this.$('autoPlayCheckbox').checked) {
+      this.video.removeAttribute('muted')
+      this.video.removeAttribute('autoplay')
+    }
+
+    if (this.keyDeliveryUrl && this.$('keyDeliveryUrl')) {
+      this.$('keyDeliveryUrl').value = this.keyDeliveryUrl
+    }
+
     if (this.format === 'hls' && this.$('selectHls')) {
       this.$('selectHls').selected = 'true'
     }
@@ -90,6 +160,11 @@ class BasePlayer {
     if (this.format === 'dash' && this.$('selectDash')) {
       this.$('selectDash').selected = 'true'
     }
+
+    if (!this.logLevel) {
+      this.logLevel = '3'
+    }
+    this.$('selectLogLevel').value = this.logLevel
   }
 
   chooseFormat () {
@@ -111,12 +186,24 @@ class BasePlayer {
     }
   }
 
+  configureEncryption () {
+    this.$('encryptionInput').disabled = !this.$('encryptionCheckbox').checked
+
+    if (this.$('encryptionInput').disabled) {
+      this.$('encryptionInput').value = ''
+    }
+  }
+
   configureToken () {
     this.$('tokenInput').disabled = !this.$('tokenCheckbox').checked
 
     if (this.$('tokenInput').disabled) {
       this.$('tokenInput').value = ''
     }
+  }
+
+  getInputToken () {
+    return this.$('tokenInput').value
   }
 
   configureWidevine () {
@@ -151,6 +238,32 @@ class BasePlayer {
     }
   }
 
+  configureAutoPlay () {
+    this.$('autoPlayInput').value = this.$('autoPlayCheckbox').checked ? 'true' : 'false'
+  }
+
+  addErrorMessage (message) {
+    this.addMessage('ERROR', message)
+  }
+
+  addWarningMessage (message) {
+    if (this.logLevel > 1) {
+      this.addMessage('WARNING', message)
+    }
+  }
+
+  addInfoMessage (message) {
+    if (this.logLevel > 2) {
+      this.addMessage('INFO', message)
+    }
+  }
+
+  addDebugMessage (message) {
+    if (this.logLevel > 3) {
+      this.addMessage('DEBUG', message)
+    }
+  }
+
   addMessage (type, message) {
     if (!message) {
       return
@@ -174,6 +287,21 @@ class BasePlayer {
     return function () {
       this.addMessage(type, Array.from(arguments).filter(Boolean).join(' '))
     }.bind(this)
+  }
+
+  getLocation (href) {
+    const l = document.createElement('a')
+    l.href = href
+    return l
+  }
+
+  getPlayerInfo () {
+    return ''
+  }
+
+  getPluginsInfo () {
+    // override in each player as key-value pair with format label: version
+    return null
   }
 }
 

@@ -408,3 +408,48 @@ video {
   bottom: 0;
   left: 0;
 }
+
+.mobileShow {
+  display: none;
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  .mobileShow {
+    display: inline;
+  }
+}
+
+.fixed {
+  position: inherit;
+  top: 50%;
+}
+
+@media screen and (min-width: 3100px) {
+  .fixed {
+    left: 20%;
+  }
+}
+
+@media screen and (min-width: 2560px) and (max-width: 3099px) {
+  .fixed {
+    left: 10%;
+  }
+}
+
+@media screen and (min-width: 2300px) and (max-width: 2559px) {
+  .fixed {
+    left: 5%;
+  }
+}
+
+@media screen and (min-width: 1920px) and (max-width: 2299px) {
+  .fixed {
+    left: 15px;
+  }
+}
+
+@media only screen and (min-width: 1919px) {
+  .fixed {
+    position: fixed;
+  }
+}
