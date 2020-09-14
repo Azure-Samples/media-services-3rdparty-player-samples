@@ -38,6 +38,10 @@ To see the sample code, please check:
 
 - [Video.js](/src/video.js)
 - [Shaka Player](/src/shaka)
+- [hls.js](/src/hls.js)
+- [dash.js](/src/dash.js)
+- [ExoPlayer](/src/exoplayer)
+- [AVPlayer](/src/avplayer)
 
 ## Test results
   
@@ -65,6 +69,10 @@ To see the test results, please check:
   
 - [Video.js](/docs/video.js#test-results)
 - [Shaka Player](/docs/shaka#test-results)
+- [hls.js](/docs/hls.js#test-results)
+- [dash.js](/docs/dash.js#test-results)
+- [ExoPlayer](/docs/exoplayer#test-results)
+- [AVPlayer](/docs/avplayer#test-results)
 
 ## How to set up your player
 
@@ -72,6 +80,10 @@ To set up your player, follow the below instructions:
 
 - [How to use the Video.js player with Azure Media Services](https://docs.microsoft.com/azure/media-services/latest/how-to-video-js-player)
 - [How to use the Shaka player with Azure Media Services](https://docs.microsoft.com/azure/media-services/latest/how-to-shaka-player)
+- [How to use the hls.js player with Azure Media Services](/docs/hls.js/how-to-hls-js-player.md)
+- [How to use the dash.js player with Azure Media Services](/docs/dash.js/how-to-dash-js-player.md)
+- [How to use the ExoPlayer with Azure Media Services](/docs/exoplayer/how-to-exoplayer.md)
+- [How to use the AVPlayer with Azure Media Services](/docs/avplayer/how-to-avplayer.md)
 
 ## Root contents
 
