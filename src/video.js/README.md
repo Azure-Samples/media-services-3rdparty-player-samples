@@ -2,7 +2,7 @@
 
 - [Overview](#overview)
 - [How to use](#how-to-use)
-  - [Setup development environment](#setup-development-environment)
+  - [Set up development environment](#set-up-development-environment)
   - [Using sample player](#using-sample-player)
   - [Sample details](#sample-details)
 
@@ -14,7 +14,7 @@ Documentation on how to implement your own player and test results with differen
 
 ## How to use
 
-### Setup development environment
+### Set up development environment
 
 - Install [NodeJS v8+](https://nodejs.org/en/download/ "NodeJS v8+").
 
@@ -38,5 +38,11 @@ This player sample contains different options that you can set using query strin
 - PlayReady License: URL for PlayReady license required to play PlayReady content.
 - FairPlay License: URL for FairPlay license required to play FairPlay content.
 - FairPlay Certificate: URL to the FairPlay Certificate to use for playing FairPlay content.
+- Auto Play: checked as default, will play the video as soon as it's loaded. The video will be muted due to browser requirement.
+- Log Level: Choose the type of log you want to see in "Player Events" such as INFORMATION, ERROR, DEBUG or WARNING.
+  - INFORMATION (default): only show log, log.warn, and log.error messages.
+  - ERROR: only show log.error messages.
+  - WARNING: only show log.warn and log.error messages.
+  - DEBUG: show log, log.debug, log.warn, and log.error messages.
 
 ![Video.js Player Sample](../../docs/images/videojs.jpg)

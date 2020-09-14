@@ -33,9 +33,18 @@ Documentation on how to implement your own player and test results with differen
 
 This player sample contains different options that you can set using query strings or manually set them once it's loaded.
 
-- Manifest: Endpoint URL to the Azure Media Service content which is different for each case depending on the protocol and encryption method used
-- Captions: URL for the video .vtt file needed to display captions
-- Token: JWT authentication token needed when using an encryption method (DRM or AES-128)
-- FairPlay Certificate: URL to the FairPlay Certificate to use for playing FairPlay content
+- Manifest: Endpoint URL to the Azure Media Service content which is different for each case depending on the protocol and encryption method used.
+- Captions: URL for the video .vtt file needed to display captions.
+- Token: JWT authentication token needed when using an encryption method (DRM or AES-128).
+- Widevine License: URL for Widevine license. This field is not requiered if the manifest contains the license URL.
+- PlayReady License: URL for PlayReady license. This field is not requiered if the manifest contains the license URL.
+- FairPlay Certificate: URL to the FairPlay Certificate to use for playing FairPlay content.
+- Auto Play: checked as default, will play the video as soon as it's loaded. The video will be muted due to browser requirement.
+- Log Level: Choose the type of log you want to see in "Player Events" such as INFORMATION, WARNING, ERROR, V1 and V2.
+  - INFORMATION: This log is for messages to the user about what is happening. For example, when we update a manifest.
+  - WARNING: This log is for possible errors or things that may be surprising to a user. For example, if we work around unusual or bad content, we should warn that they should fix their content. Deprecation messages and messages the app shouldn't ignore should use alwaysWarn instead.
+  - DEBUG: This log is to aid *users* in debugging their content. This should be for logs about the content and what we do with it. For example, when we change streams or what we are choosing.
+  - V1: This log is for debugging Shaka Player itself. This may be logs about internal states or events. This may also be for more verbose logs about content, such as for segment appends.
+  - V2: This log is for tracing and debugging Shaka Player. These logs will happen a lot, for example, logging every segment append or every update check. These are mostly used for tracking which calls happen through the code.
 
 ![Shaka Player Sample](../../docs/images/shaka.jpg)
