@@ -13,8 +13,8 @@ Preset: "AdaptiveStreaming"
 
 | Format | Clear | DRM Token | AES-128 Token | FairPlay | AES-128 | Sidecar caption |
 | ------ | :---: | :-------: | :-----------: | :------: | :-----: | :-------------: |
-| HLS TS |  ✔️    |           |      ✔️       |          |    ✔️      | ❌        |
-| HLS CMAF |  ✔️  |           |    ✔️         |          |     ✔️     |   ❌      |
+| HLS TS |  ✔️    |           |      ✔️       |          |    ✔️      | ❌ ([#1](issues.md#issue-1)) |
+| HLS CMAF |  ✔️  |           |    ✔️         |          |     ✔️     |   ❌ ([#1](issues.md#issue-1))  |
 
 
 
