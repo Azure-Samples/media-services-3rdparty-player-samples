@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>THEOplayer Demo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href='//cdn.theoplayer.com/dash/theoplayer/ui.css'> <!-- adds THEOplayer CSS -->
+    <link rel="shortcut icon" type="image/png" href="../images/ams.png">
+      <style>
+      .theoplayer-container {
+        height: 684px;
+        position: relative;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="h-16 px-4 flex items-center justify-between bg-black">
+      <a href="#default" class="flex items-center no-underline">
+        <img src="../images/ams.png">
+        <span class="px-4 text-gray-500">Azure Media Services</span>
+      </a>
+      <img src="../images/microsoft.png" class="h-full">
+    </header>
+      <main class="container px-4 mx-auto font-sans">
+        <form method='GET'>
+          <input type="hidden" name="loglevel" id="loglevelInput">
+          <h1 class="my-4 text-center text-2xl font-bold">THEOplayer <span id="player-version"></span> with Azure Media Services</h1>
+  
+          <div class="my-4 p-4 bg-gray-200 rounded shadow">
+            <div id="video" class="theoplayer-container video-js theoplayer-skin w-full rounded shadow"></div>
+          </div>
+
+          <div class="my-4 p-4 bg-gray-200 rounded shadow">
+            <h3 class="my-0 mb-2 text-xl font-bold">Manifest</h3>
+            <input name="manifest" id="manifestInput" class="w-full h-8 px-2 rounded shadow border-0" required placeholder="URL">
+            <p class="mt-2 text-sm text-gray-500 italic">HLS and DASH are supported</p>
+
+            <h3 class="my-2 text-xl font-bold">Advanced Options</h3>
+
+            <div>
+              <div class="my-2 flex flex-col md:flex-row md:items-center" style="display:none">
+                <span class="md:w-1/4 mb-2 md:mb-0 flex items-center text-sm">
+                  <input type="checkbox" id="captionCheckbox" class="mr-2">
+                  Captions
+                </span>
+                <input name="caption" id="captionInput" class="md:w-3/4 h-8 px-2 rounded shadow border-0" placeholder="URL" disabled>
+              </div>
+
+              <div class="my-2 flex flex-col md:flex-row md:items-center">
+                <span class="md:w-1/4 mb-2 md:mb-0 flex items-center text-sm">
+                  <input type="checkbox" id="tokenCheckbox" class="mr-2">
+                  Token
+                </span>
+                <input name="token" id="tokenInput" class="md:w-3/4 h-8 px-2 rounded shadow border-0" placeholder="JWT" disabled>
+              </div>
+
+              <div class="my-2 flex flex-col md:flex-row md:items-center">
+                <span class="md:w-1/4 mb-2 md:mb-0 flex items-center text-sm">
+                  <input type="checkbox" id="widevineCheckbox" class="mr-2">
+                  Widevine License
+                </span>
+                <input name="widevine" id="widevineInput" class="md:w-3/4 h-8 px-2 rounded shadow border-0"
+                  placeholder="URL" disabled>
+              </div>
+
+              <div class="my-2 flex flex-col md:flex-row md:items-center">
+                <span class="md:w-1/4 mb-2 md:mb-0 flex items-center text-sm">
+                  <input type="checkbox" id="playReadyCheckbox" class="mr-2">
+                  PlayReady License
+                </span>
+                <input name="playReady" id="playReadyInput" class="md:w-3/4 h-8 px-2 rounded shadow border-0"
+                  placeholder="URL" disabled>
+              </div>
+
+              <div class="my-2 flex flex-col md:flex-row md:items-center">
+                <span class="md:w-1/4 mb-2 md:mb-0 flex items-center text-sm">
+                  <input type="checkbox" id="fairPlayCheckbox" class="mr-2">
+                  FairPlay License
+                </span>
+                <input name="fairPlay" id="fairPlayInput" class="md:w-3/4 h-8 px-2 rounded shadow border-0"
+                  placeholder="URL" disabled>
+              </div>
+
+              <div class="my-2 flex flex-col md:flex-row md:items-center">
+                <span class="md:w-1/4 mb-2 md:mb-0 flex items-center text-sm">
+                  <input type="checkbox" id="fairPlayCertificateCheckbox" class="mr-2">
+                  FairPlay Certificate
+                </span>
+                <input name="fairPlayCertificate" id="fairPlayCertificateInput" class="md:w-3/4 h-8 px-2 rounded shadow border-0"
+                  placeholder="URL" disabled>
+              </div>
+
+              <p class="text-right mt-4">
+                <button class="h-8 px-2 text-white bg-indigo-500 rounded shadow cursor-pointer" type="submit">Load Stream</button>
+              </p>
+            </div>
+          </div>
+        </form>
+        <div id="result" class="my-4 p-4 bg-gray-200 rounded shadow">
+          <h3 class="my-0 mb-2 text-xl font-bold">Player Events</h3>
+          <div id="playerEvents" class="w-full h-64 bg-white border-0 rounded shadow overflow-y-scroll"></div>
+        </div>
+      </main>
+
+    <footer class="h-16 flex items-center justify-center bg-black">
+      <p class="text-gray-500">© Microsoft Corporation 2020</p>
+    </footer>
+    <script type="text/javascript" src="//cdn.theoplayer.com/dash/theoplayer/THEOplayer.js"></script>
+    <script type="module" src="index.js"></script>
+  </body>
+</html>

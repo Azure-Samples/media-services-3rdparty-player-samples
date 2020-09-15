@@ -42,6 +42,7 @@ To see the sample code, please check:
 - [dash.js](/src/dash.js)
 - [ExoPlayer](/src/exoplayer)
 - [AVPlayer](/src/avplayer)
+- [THEOplayer](/src/THEOplayer)
 
 ## Test results
   
@@ -73,6 +74,7 @@ To see the test results, please check:
 - [dash.js](/docs/dash.js#test-results)
 - [ExoPlayer](/docs/exoplayer#test-results)
 - [AVPlayer](/docs/avplayer#test-results)
+- [THEOplayer](/docs/THEOplayer#test-results)
 
 ## How to set up your player
 
@@ -84,6 +86,7 @@ To set up your player, follow the below instructions:
 - [How to use the dash.js player with Azure Media Services](/docs/dash.js/how-to-dash-js-player.md)
 - [How to use the ExoPlayer with Azure Media Services](/docs/exoplayer/how-to-exoplayer.md)
 - [How to use the AVPlayer with Azure Media Services](/docs/avplayer/how-to-avplayer.md)
+- [How to use the THEOplayer with Azure Media Services](https://docs.microsoft.com/azure/media-services/latest/how-to-theo-player)
 
 ## Root contents
 
