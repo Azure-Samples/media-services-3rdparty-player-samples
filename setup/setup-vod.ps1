@@ -10,7 +10,7 @@ if ($asset) {
   WarningMessage "The video Asset already exists"
 } else {
   ActivityMessage "Creating Video Asset..."
-  $inputAsset = az ams asset create `
+  $null = az ams asset create `
   --account-name $config.MediaServiceAccount `
   --name $config.VOD.video `
   --resource-group $config.ResourceGroup | ConvertFrom-Json
@@ -22,25 +22,25 @@ if ($asset) {
   --name $config.VOD.video | ConvertFrom-Json
   $assetContainer = $assetData.container
   ActivityMessage "Uploading video file..."
-  $upload = az storage blob upload `
+  $null = az storage blob upload `
   -c $assetContainer `
   -f $config.VOD.video `
   --name $config.VOD.video `
   --account-name $config.StorageAccount | ConvertFrom-Json
   SuccessMessage "Video file uploaded"
 
-  $vtt = az ams transform create `
+  $null = az ams transform create `
   --account-name $config.MediaServiceAccount `
   --name vtttransform `
   --preset AudioAnalyzer `
   --resource-group $config.ResourceGroup | ConvertFrom-Json
 
-  $vttOutputAsset = az ams asset create `
+  $null = az ams asset create `
   --account-name $config.MediaServiceAccount `
   --name "vttoutputasset" `
   --resource-group $config.ResourceGroup | ConvertFrom-Json
   SuccessMessage "vtt Output asset Created"
-  ActivityMessage "Analyzing audio..."  
+  ActivityMessage "Analyzing audio..."
   $vttassetData = az ams asset show `
   --account-name $config.MediaServiceAccount `
   --resource-group $config.ResourceGroup `
@@ -60,7 +60,7 @@ if ($asset) {
     --resource-group $config.ResourceGroup `
     --transform-name vtttransform | ConvertFrom-Json
   } While ($vttJob.state -ne "Finished")
-  $vttFile = az storage blob download `
+  $null = az storage blob download `
   --account-name $config.StorageAccount `
   --container-name $vttassetData.container `
   --name "transcript.vtt" `
@@ -75,7 +75,7 @@ $outputAsset = az ams asset list `
 if ($outputAsset) {
   WarningMessage  "The output Asset already exists"
 } else {
-  $transform = az ams transform create `
+  $null = az ams transform create `
   --account-name $config.MediaServiceAccount `
   --name defaulttransform `
   --preset $config.VOD.preset `
@@ -87,7 +87,7 @@ if ($outputAsset) {
   --resource-group $config.ResourceGroup | ConvertFrom-Json
   SuccessMessage "Output asset Created"
   ActivityMessage "Starting encode..."
-  $job = az ams job start `
+  $null = az ams job start `
   --output-assets "defaultoutputasset=" `
   --account-name $config.MediaServiceAccount `
   --input-asset-name $config.VOD.video `

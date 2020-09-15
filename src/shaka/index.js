@@ -3,12 +3,9 @@ import BasePlayer from '../js/common.js'
 class ShakaPlayer extends BasePlayer {
   async initPlayer () {
     shaka.polyfill.installAll()
-    document.getElementById('player-version').innerHTML = shaka.Player.version
-    const loglevel = parseInt(this.getUrlParameter('loglevel')) || shaka.log.Level.INFO
-    shaka.log.setLevel(loglevel)
-    this.$('loglevelInput').value = loglevel
+    shaka.log.setLevel(parseInt(this.logLevel))
 
-    switch (loglevel) {
+    switch (parseInt(this.logLevel)) {
       case 6:
         shaka.log.v2 = this.interceptLog('V2')
         break
@@ -34,8 +31,19 @@ class ShakaPlayer extends BasePlayer {
       window.player = player
       player.addEventListener('error', this.ErrHandler.bind(this))
 
+      if (this.playReadyLicenseUrl || this.widevineLicenseUrl) {
+        player.configure({
+          drm: {
+            servers: {
+              'com.widevine.alpha': this.widevineLicenseUrl,
+              'com.microsoft.playready': this.playReadyLicenseUrl
+            }
+          }
+        })
+      }
+
       if (this.token) {
-        player.getNetworkingEngine().registerRequestFilter(function (type, request) {
+        player.getNetworkingEngine().registerRequestFilter((type, request) => {
           if (type === shaka.net.NetworkingEngine.RequestType.LICENSE) {
             request.headers.Authorization = 'Bearer ' + this.token
           }
@@ -78,6 +86,18 @@ class ShakaPlayer extends BasePlayer {
       const originalError = err.detail.data[0]
       this.addMessage('ERROR', 'HTTP Error ' + originalError.data[1] + ' at ' + originalError.data[0])
     }
+  }
+
+  // override method
+  getPlayerInfo () {
+    return `Shaka player ${shaka.Player.version}`
+  }
+
+  // override method
+  getPluginsInfo () {
+    const plugins = []
+    plugins.Mux = 'v5.6.3'
+    return plugins
   }
 }
 

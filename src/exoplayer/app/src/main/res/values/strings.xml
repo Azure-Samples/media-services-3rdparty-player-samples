@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">ExoPlayer Sample</string>
+    <string name="choose_a_format">Choose a format:</string>
+    <string name="manifest">Manifest</string>
+    <string name="hls_and_dash_are_supported">HLS and DASH are supported</string>
+    <string name="advanced_options">Advanced options</string>
+    <string name="caption">Caption</string>
+    <string name="token">Token</string>
+    <string name="jwt">JWT</string>
+    <string name="widevine">Widevine</string>
+    <string name="widevineLicense">Widevine license</string>
+    <string name="auto_play">Auto Play</string>
+    <string name="url">URL</string>
+    <string name="load_stream">Load Stream</string>
+    <string name="player_events">Player Events</string>
+    <string name="HLS">HLS</string>
+    <string name="DASH">DASH</string>
+    <string name="Player">&lt;big>&lt;b>Player:&lt;/b>&lt;/big> ExoPlayer V%1$s </string>
+    <string name="Format">&lt;big>&lt;b>Format:&lt;/b>&lt;/big> %1$s %2$s </string>
+    <string name="Protection">&lt;big>&lt;b>Protection:&lt;/b>&lt;/big> %1$s </string>
+    <string name="Token">&lt;big>&lt;b>Token:&lt;/b>&lt;/big> %1$s </string>
+    <string name="DRMWithEncryption">DRM with %1$s encryption</string>
+    <string name="INFO">INFO</string>
+    <string name="ERROR">ERROR</string>
+</resources>

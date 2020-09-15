@@ -14,8 +14,6 @@ class VideojsPlayer extends BasePlayer {
     const subtitleLang = 'eng'
     const subtitleLabel = 'test'
 
-    document.getElementById('player-version').innerHTML = 'v' + videojs.VERSION
-
     videojs.Hls.xhr.beforeRequest = this.setupTokenForDecrypt.bind(this)
 
     let typeUrl = Types.hlsType
@@ -74,17 +72,40 @@ class VideojsPlayer extends BasePlayer {
     };
   }
 
-  getInputToken () {
-    return this.$('tokenInput').value
-  }
-
   setupTokenForDecrypt (options) {
-    if (options.uri.includes('keydeliver')) {
+    const urlLocation = this.getLocation(options.uri)
+    var authentication = false
+
+    if (this.encryptioKeyUrl && this.encryptioKeyUrl.indexOf(urlLocation.hostname) !== -1) {
+      authentication = true
+    }
+    if (this.widevineLicenseUrl && this.widevineLicenseUrl.indexOf(urlLocation.hostname) !== -1) {
+      authentication = true
+    }
+    if (this.fairPlayLicenseUrl && this.fairPlayLicenseUrl.indexOf(urlLocation.hostname) !== -1) {
+      authentication = true
+    }
+    if (this.playReadyLicenseUrl && this.playReadyLicenseUrl.indexOf(urlLocation.hostname) !== -1) {
+      authentication = true
+    }
+
+    if (authentication) {
       options.headers = options.headers || {}
       options.headers.Authorization = 'Bearer=' + this.getInputToken()
     }
-
     return options
+  }
+
+  // override method
+  getPlayerInfo () {
+    return `Video.js v${videojs.VERSION}`
+  }
+
+  // override method
+  getPluginsInfo () {
+    const plugins = []
+    plugins['videojs-contrib-eme'] = 'v3.7.0'
+    return plugins
   }
 }
 

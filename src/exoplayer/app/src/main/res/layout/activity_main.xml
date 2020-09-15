@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.exoplayer2.ui.PlayerView
+            android:id="@+id/player_view"
+            android:layout_width="fill_parent"
+            android:layout_height="224dp"
+            android:layout_margin="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/contentbox"
+            android:layout_width="392dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/rectanglebg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/player_view" />
+
+        <TextView
+            android:id="@+id/player_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="14dp"
+            android:text="@string/Player"
+            android:textColor="#000000"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/contentbox"
+            app:layout_constraintTop_toTopOf="@+id/contentbox" />
+
+        <TextView
+            android:id="@+id/content_format"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:text="@string/Format"
+            android:textColor="#000000"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/contentbox"
+            app:layout_constraintTop_toBottomOf="@+id/player_version" />
+
+        <TextView
+            android:id="@+id/content_protection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:text="@string/Protection"
+            android:textColor="#000000"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/contentbox"
+            app:layout_constraintTop_toBottomOf="@+id/content_format" />
+
+        <TextView
+            android:id="@+id/content_token"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:text="@string/Token"
+            android:textColor="#000000"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/contentbox"
+            app:layout_constraintTop_toBottomOf="@+id/content_protection" />
+
+        <TextView
+            android:id="@+id/mainContainer"
+            android:layout_width="392dp"
+            android:layout_height="460dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/rectanglebg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/contentbox" />
+
+        <TextView
+            android:id="@+id/mainContainer_title1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="14dp"
+            android:text="@string/manifest"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/mainContainer"
+            app:layout_constraintTop_toTopOf="@+id/mainContainer" />
+
+        <TextView
+            android:id="@+id/mainContainer_subtitle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="7dp"
+            android:text="@string/choose_a_format"
+            android:textColor="#737383"
+            app:layout_constraintStart_toStartOf="@+id/mainContainer"
+            app:layout_constraintTop_toBottomOf="@+id/mainContainer_title1" />
+
+        <Spinner
+            android:id="@+id/protocol"
+            android:layout_width="122dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="148dp"
+            android:layout_marginTop="4dp"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown"
+            app:layout_constraintLeft_toRightOf="@+id/mainContainer_subtitle1"
+            app:layout_constraintStart_toStartOf="@+id/mainContainer"
+            app:layout_constraintTop_toBottomOf="@+id/mainContainer_title1" />
+
+        <EditText
+            android:id="@+id/urlInput"
+            android:layout_width="368dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="20dp"
+            android:autofillHints="manifestURL"
+            android:background="@drawable/edit_text_bg"
+            android:ems="10"
+            android:hint="@string/url"
+            android:inputType="textUri"
+            android:paddingStart="10dp"
+            android:textColor="#737383"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="@+id/mainContainer"
+            app:layout_constraintTop_toBottomOf="@+id/mainContainer_subtitle1"
+            tools:ignore="RtlSymmetry" />
+
+        <TextView
+            android:id="@+id/format_supported"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="7dp"
+            android:text="@string/hls_and_dash_are_supported"
+            android:textColor="#737383"
+            app:layout_constraintStart_toStartOf="@+id/mainContainer"
+            app:layout_constraintTop_toBottomOf="@+id/urlInput" />
+
+        <TextView
+            android:id="@+id/mainContainer_title2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/advanced_options"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/mainContainer"
+            app:layout_constraintTop_toBottomOf="@+id/format_supported" />
+
+        <CheckBox
+            android:id="@+id/checkBox_caption"
+            android:layout_width="94dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/caption"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/mainContainer"
+            app:layout_constraintTop_toBottomOf="@+id/mainContainer_title2" />
+
+        <CheckBox
+            android:id="@+id/checkBox_token"
+            android:layout_width="123dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/token"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/mainContainer"
+            app:layout_constraintTop_toBottomOf="@+id/checkBox_caption" />
+
+        <CheckBox
+            android:id="@+id/checkBox_widevine"
+            android:layout_width="123dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="56dp"
+            android:text="@string/widevine"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/mainContainer"
+            app:layout_constraintTop_toBottomOf="@+id/checkBox_caption" />
+
+        <EditText
+            android:id="@+id/input_token"
+            android:layout_width="234dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="148dp"
+            android:layout_marginTop="12dp"
+            android:autofillHints="JWTToken"
+            android:background="@drawable/edit_text_bg"
+            android:ems="10"
+            android:hint="@string/jwt"
+            android:inputType="textPersonName"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:textColor="#737383"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="@+id/mainContainer"
+            app:layout_constraintTop_toBottomOf="@+id/input_caption" />
+
+        <EditText
+            android:id="@+id/input_widevine"
+            android:layout_width="234dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="148dp"
+            android:layout_marginTop="56dp"
+            android:autofillHints="widevineUrl"
+            android:background="@drawable/edit_text_bg"
+            android:ems="10"
+            android:hint="@string/widevineLicense"
+            android:inputType="textPersonName"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:textColor="#737383"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="@+id/mainContainer"
+            app:layout_constraintTop_toBottomOf="@+id/input_caption" />
+
+        <EditText
+            android:id="@+id/input_caption"
+            android:layout_width="234dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="148dp"
+            android:layout_marginTop="16dp"
+            android:autofillHints="CaptionsURL"
+            android:background="@drawable/edit_text_bg"
+            android:ems="10"
+            android:hint="@string/url"
+            android:inputType="textPersonName"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:textColor="#737383"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="@+id/mainContainer"
+            app:layout_constraintTop_toBottomOf="@+id/mainContainer_title2" />
+
+        <CheckBox
+            android:id="@+id/checkBox_auto_play"
+            android:layout_width="123dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="56dp"
+            android:checked="true"
+            android:text="@string/auto_play"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/mainContainer"
+            app:layout_constraintTop_toBottomOf="@+id/checkBox_token" />
+
+        <Button
+            android:id="@+id/play_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/button_loadstream"
+            android:onClick="startContentFromURL"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="@string/load_stream"
+            android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="@+id/mainContainer"
+            app:layout_constraintEnd_toEndOf="@+id/mainContainer"
+            app:layout_constraintTop_toBottomOf="@+id/input_widevine" />
+
+        <TextView
+            android:id="@+id/eventContainer"
+            android:layout_width="392dp"
+            android:layout_height="1050dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/rectanglebg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mainContainer" />
+
+        <TextView
+            android:id="@+id/eventContainer_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/player_events"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/eventContainer"
+            app:layout_constraintTop_toTopOf="@+id/eventContainer" />
+
+        <Spinner
+            android:id="@+id/logLevel"
+            android:layout_width="wrap_content"
+            android:layout_height="33dp"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown"
+            android:layout_marginTop="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/eventView"
+            app:layout_constraintTop_toBottomOf="@+id/eventContainer_title"
+            app:layout_constraintStart_toStartOf="@id/eventContainer_title"/>
+
+        <TextView
+            android:id="@+id/eventView"
+            android:layout_width="360dp"
+            android:layout_height="920dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/edit_text_bg"
+            android:padding="5dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:layout_marginStart="5dp"
+            app:layout_constraintStart_toStartOf="@id/eventContainer_title"
+            app:layout_constraintTop_toBottomOf="@+id/logLevel" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

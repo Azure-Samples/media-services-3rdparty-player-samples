@@ -1,17 +1,25 @@
+function Write-ColorOutput($ForegroundColor, $message)
+{
+  $fc = $host.UI.RawUI.ForegroundColor
+  $host.UI.RawUI.ForegroundColor = $ForegroundColor
+  Write-Output $message
+  $host.UI.RawUI.ForegroundColor = $fc
+}
+
 function ActivityMessage ($message) {
-  Write-Host -ForegroundColor White $message
+  Write-ColorOutput white $message
 }
 
 function WarningMessage ($message) {
-  Write-Host -ForegroundColor Yellow $message
+  Write-ColorOutput yellow $message
 }
 
 function ErrorMessage ($message) {
-  Write-Host -ForegroundColor Red $message
+  Write-ColorOutput red $message
 }
 
 function SuccessMessage ($message) {
-  Write-Host -ForegroundColor Green $message
+  Write-ColorOutput green $message
 }
 
 if (!(Test-Path "config.json" -PathType leaf)) {
@@ -33,7 +41,7 @@ function verifyAndActivateCDNInEndpoint()
   --resource-group $config.ResourceGroup | ConvertFrom-Json
   if (!$endpoint.cdnEnabled) {
     ActivityMessage "Configuring CDN to endpoint..."
-    $updateEndpoint = az ams streaming-endpoint update `
+    $null = az ams streaming-endpoint update `
     --cdn-profile StandardVerizon `
     --name default `
     --account-name $config.MediaServiceAccount `
@@ -82,17 +90,18 @@ function validateBasicConfig () {
 }
 function urlOutput ($urlTest) {
   $list = @()
-  $urlTest| ForEach-Object -Process {
+  $urlTest | ForEach-Object -Process {
     if($_.streamingProtocol -eq 'Hls'){
       $encCenc = $_.url | Select-String -Pattern 'cenc'
       $cbcsAapl = $_.url | Select-String -Pattern 'cbcs-aapl'
       $HLSV4 = $_.url | Select-String -Pattern 'm3u8-aapl'
       $typeHLS = if ($HLSV4) {"HLS TS"} else {"HLS CMAF"}
-      $typeEnc = if ($encCenc) {"CENC (Widevine + PlayReady)"} else {if($cbcsAapl){"CBCS (FairPlay)"} else{""}}
+
+      $typeEnc = if ($encCenc) {"CENC (Widevine + PlayReady)"} else {if($cbcsAapl){"CBCS (FairPlay)"} else {""}}
+      $encryption = if ($encCenc) {"CENC"} else {if($cbcsAapl){"CBCS"} else {""}}
+
       if (!$encCenc -or !$HLSV4) {
-        $list += @{"streamingProtocol"="$($typeHLS) $($typeEnc)";"url"=$_.url;}
-        WarningMessage "Protocol: $($typeHLS) $($typeEnc)"
-        SuccessMessage $_.url
+        $list += @{"format"="HLS"; "encryption"=$encryption; "description"="$($typeHLS) $($typeEnc)"; "url"=$_.url}
       }
     }
     if($_.streamingProtocol -eq 'Dash'){
@@ -100,10 +109,10 @@ function urlOutput ($urlTest) {
       if ($DASHCMAF) {
         $encCenc = $_.url | Select-String -Pattern 'cenc'
         $cbcsAapl = $_.url | Select-String -Pattern 'cbcs-aapl'
-        $typeEnc = if ($encCenc) {"CENC (Widevine + PlayReady)"} else {if($cbcsAapl){"CBCS (FairPlay)"} else{""}}
-        $list += @{"streamingProtocol"="DASH CMAF $($typeEnc)";"url"=$_.url}
-        WarningMessage "Protocol: DASH CMAF $($typeEnc)"
-        SuccessMessage $_.url
+        $typeEnc = if ($encCenc) {"CENC (Widevine + PlayReady)"} else {if($cbcsAapl){"CBCS (FairPlay)"} else {""}}
+
+        $encryption = if ($encCenc) {"CENC"} else {if ($cbcsAapl){"CBCS"} else {""}}
+        $list += @{"format"="DASH"; "encryption"=$encryption; "description"="DASH CMAF $($typeEnc)"; "url"=$_.url}
       }
     }
   }
@@ -114,61 +123,61 @@ function generateURLs{
   ActivityMessage "Generating URLs for all protocols..."
 
   if ($output.VOD.clear) {
-    ActivityMessage "Clear VOD Paths"
+    ActivityMessage "Generating Clear VOD Paths..."
     $newVODClear = urlOutput $output.VOD.clear
     $output.VOD.clear = $newVODClear
   }
 
   if ($output.VOD.DRMOpen) {
-    ActivityMessage "DRM Open VOD Paths"
+    ActivityMessage "Generating DRM Open VOD Paths..."
     $newVODRMOpen = urlOutput $output.VOD.DRMOpen
     $output.VOD.DRMOpen = $newVODRMOpen
   }
 
   if ($output.VOD.DRMToken) {
-    ActivityMessage "DRM with token VOD Paths"
+    ActivityMessage "Generating DRM with token VOD Paths..."
     $newVODRMToken = urlOutput $output.VOD.DRMToken
     $output.VOD.DRMToken = $newVODRMToken
   }
 
   if ($output.VOD.encryptionOpen) {
-    ActivityMessage "Encryption VOD Paths"
+    ActivityMessage "Generating Encryption VOD Paths..."
     $newVODEncOpen = urlOutput $output.VOD.encryptionOpen
     $output.VOD.encryptionOpen = $newVODEncOpen
   }
 
   if ($output.VOD.encryptionToken) {
-    ActivityMessage "Encryption with token VOD Paths"
+    ActivityMessage "Generating Encryption with token VOD Paths..."
     $newVODEncToken = urlOutput $output.VOD.encryptionToken
     $output.VOD.encryptionToken = $newVODEncToken
   }
 
   if ($output.LiveStream.clear) {
-    ActivityMessage "Clear Live Stream Paths"
+    ActivityMessage "Generating Clear Live Stream Paths..."
     $newLiveStreamClear = urlOutput $output.LiveStream.clear
     $output.LiveStream.clear = $newLiveStreamClear
   }
 
   if ($output.LiveStream.DRMOpen) {
-    ActivityMessage "DRM Open Live Stream Paths"
+    ActivityMessage "Generating DRM Open Live Stream Paths..."
     $newLiveStreamDRMOpen = urlOutput $output.LiveStream.DRMOpen
     $output.LiveStream.DRMOpen = $newLiveStreamDRMOpen
   }
 
   if ($output.LiveStream.DRMToken) {
-    ActivityMessage "DRM with token Live Stream Paths"
+    ActivityMessage "Generating DRM with token Live Stream Paths..."
     $newLiveStreamRMToken = urlOutput $output.LiveStream.DRMToken
     $output.LiveStream.DRMToken = $newLiveStreamRMToken
   }
 
   if ($output.LiveStream.encryptionOpen) {
-    ActivityMessage "Encryption Live Stream Paths"
+    ActivityMessage "Generating Encryption Live Stream Paths..."
     $newLiveStreamEncOpen = urlOutput $output.LiveStream.encryptionOpen
     $output.LiveStream.encryptionOpen = $newLiveStreamEncOpen
   }
 
   if ($output.LiveStream.encryptionToken) {
-    ActivityMessage "Encryption with token Live Stream Paths"
+    ActivityMessage "Generating Encryption with token Live Stream Paths..."
     $newLiveStreamEncToken = urlOutput $output.LiveStream.encryptionToken
     $output.LiveStream.encryptionToken = $newLiveStreamEncToken
   }
@@ -289,7 +298,7 @@ function AddVODURLsToOutputJSON () {
   }
 
   $output.token = ""
-  $token = generateJWTToken $config.token.issuer $config.token.audience $config.token.key $config.token.duration
+  $token = generateJWTToken -Issuer $config.token.issuer -Audience $config.token.audience -Key $config.token.key -Duration $config.token.duration
   $output.token = $token
 
   SaveOutputInJsonFile
@@ -405,7 +414,7 @@ function AddLiveStreamURLsToOutputJSON () {
   }
   $output.LiveStream.mode = $config.liveStream.mode
   $output.token = @()
-  $token = generateJWTToken $config.token.issuer $config.token.audience $config.token.key
+  $token = generateJWTToken -Issuer $config.token.issuer -Audience $config.token.audience -Key $config.token.key
   $output.token = $token
   Write-Output "Test token: $($token)"
 
@@ -465,13 +474,13 @@ function generateJWTToken {
 }
 
 function getLicenseURLs($manifestUrl){
-  Write-Host $manifestUrl
   [xml]$doc = (New-Object System.Net.WebClient).DownloadString($manifestUrl)
   $licenseUrl = [System.Uri]$doc.MPD.Period.AdaptationSet.ContentProtection.laurl.licenseUrl[0]
 
   $output.WidevineLicenseURL = $licenseUrl.Scheme + "://" + $licenseUrl.Host + "/Widevine/"
   $output.PlayReadyLicenseURL = $licenseUrl.Scheme + "://" + $licenseUrl.Host + "/PlayReady/"
   $output.FairPlayLicenseURL = $licenseUrl.Scheme + "://" + $licenseUrl.Host + "/FairPlay/"
+  $output.KeyDeliveryUrl = $licenseUrl.Scheme + "://" + $licenseUrl.Host + "/"
   if ($config.fairPlayCertificate){
     $output.FairPlayCertificate = Split-Path $config.fairPlayCertificate -leaf
   }
@@ -482,16 +491,16 @@ function updateLicenseURLs(){
 
   if ($output.VOD.DRMOpen) {
     $output.VOD.DRMOpen | ForEach-Object -Process {
-      $isDASH = $_.streamingProtocol | Select-String -Pattern 'DASH'
+      $isDASH = $_.format | Select-String -Pattern 'DASH'
       if ($isDASH) {
         getLicenseURLs $_.url
       }
-    } 
+    }
   }
 
   if ($output.LiveStream.DRMOpen) {
     $output.LiveStream.DRMOpen | ForEach-Object -Process {
-      $isDASH = $_.streamingProtocol | Select-String -Pattern 'DASH'
+      $isDASH = $_.format | Select-String -Pattern 'DASH'
       if ($isDASH) {
         getLicenseURLs $_.url
       }

@@ -78,7 +78,7 @@ This document contains the instructions for generating streaming content (both V
 7. Update the configuration
 
     Open the `config.json` to select the names of the Azure resources that you'll use. **If these resources doesn't exist, the script will create them for you**:
-    
+
     ```json
     "ResourceGroup": "amsplayerresource",
     "StorageAccount": "amsplayerstorage",
@@ -110,15 +110,16 @@ This document contains the instructions for generating streaming content (both V
 
     **Note:** Find detailed information of what each script does[below](#documentation).
 
-    While running the `setup-vod.ps1` script, you'll be asked if you want to start the default streaming endpoint and, if you do, your content will be ready to be played. 
-    
+    While running the `setup-vod.ps1` script, you'll be asked if you want to start the default streaming endpoint and, if you do, your content will be ready to be played.
+
     **Note:** Keep in mind that once the streaming endpoint is started you will begin to be charged (more information in the [Avoiding extra costs](#Avoiding-extra-costs) section). You can always start the default streaming endpoint later by executing the following command:
-    
+
     ```powershell
     .\start-endpoint.ps1
     ```
+
     After running the `setup-vod.ps1` script, an `output.json` file in the `src` folder will be generated, containing the VOD manifests URLs, a token (for testing), the license URLs, and the content keys IDs (one for the DRM open and one for the DRM with token protected content). More information about the `output.json` file can be found in the [Documentation](#outputjson) section.
-    
+
     Also, a `transcript.vtt` file, generated using Video Indexer, will be downloaded into the `src` folder.
 
     Execute the following script to start a live stream:
@@ -160,9 +161,10 @@ This document contains the instructions for generating streaming content (both V
 ### Avoiding extra costs
 
 There are three main cost-generators when you set up the content:
-  - The `streaming endpoint` in running state.
-  - The `live event` in running state.
-  - The `blob storage`.
+
+- The `streaming endpoint` in running state.
+- The `live event` in running state.
+- The `blob storage`.
 
 More information about Azure Media Services pricing is [here](https://azure.microsoft.com/en-us/pricing/details/media-services/). You can also find the encoding price for the VOD, but as the scripts use a short video to encode and as it's run just once, the cost should be negligible.
 
@@ -290,7 +292,7 @@ In the `config.json.example` there is an extra parameter called `disabled-option
 
 The output of each script will be saved in this file located in the `src` folder. The file will contain all the information required to test the different features on each players, including ingest URLs, manifest URLs, token, licence URLs, licence keys, and captions.
 
-The file is also consumed by the index page of the sample player to generate the links to the different content. 
+The file is also consumed by the index page of the sample player to generate the links to the different content.
 
 ```json
 {
@@ -323,6 +325,7 @@ The file is also consumed by the index page of the sample player to generate the
   "PlayReadyLicenseURL": "",
   "FairPlayLicenseURL": "",
   "FairPlayPublicCertPath": "",
+  "KeyDeliveryUrl": "",
   "Token": ""
 }
 ```
@@ -581,7 +584,8 @@ What this script does:
 
 1. Enables the storage account specified in `config.json` file to host a static website.
 2. Uploads to the blob storage the samples.
-3. Prints the URL to access the static website.
+3. Uploads to the blob the output.json.
+4. Prints the URL to access the static website.
 
 Requirements:
 
@@ -591,8 +595,25 @@ Requirements:
   - `StorageAccount`
   - `FairPlayPublicCertPath` Only if FairPlay is configured.
 
+Optional parameters:
+
+- output: --output, upload only output.json and exclude the samples.
+- samples: --samples, upload only samples and exclude the output.json.
+
 Run:
 
 ```powershell
 .\upload-samples.ps1
+```
+
+To upload only output.json:
+
+```powershell
+.\upload-samples.ps1 --output
+```
+
+To upload only samples:
+
+```powershell
+.\upload-samples.ps1 --samples
 ```

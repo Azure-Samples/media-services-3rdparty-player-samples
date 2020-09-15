@@ -8,29 +8,21 @@
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <link rel="shortcut icon" type="image/png" href="images/ams.png">
 
-  <script src="js/index.js"></script>
+  <script type="module" src="js/index.js"></script>
 </head>
 
 <body>
   <header class="h-16 px-4 flex items-center justify-between bg-black">
-    <a href="#default" class="flex items-center no-underline">
+    <a href="" class="flex items-center no-underline">
       <img src="images/ams.png">
       <span class="px-4 text-gray-500">Azure Media Services</span>
     </a>
     <img src="images/microsoft.png" class="h-full">
   </header>
 
-  <main class="container px-4 mx-auto font-sans">
-    <div class="my-4 p-4 bg-gray-200 rounded shadow" id="videojs-links">
-      <h3 class="my-0 mb-2 text-xl font-bold"><a href="video.js/index.html">Video.js</a></h3>
-    </div>
-    <div class="my-4 p-4 bg-gray-200 rounded shadow" id="shaka-links">
-      <h3 class="my-0 mb-2 text-xl font-bold"><a href="shaka/index.html">Shaka</a></h3>
-    </div>
-    <div class="my-4 p-4 bg-gray-200 rounded shadow" id="theoplayer-links">
-      <h3 class="my-0 mb-2 text-xl font-bold"><a href="THEOplayer/index.html">THEOplayer</a></h3>
-    </div>
- </main>
+  <main class="container px-4 mx-auto font-sans" id="playersContainer" >
+        <h1 class="my-4 text-center text-2xl font-bold">Media Services 3rd Party Player Samples</h1>
+  </main>
 
   <footer class="h-16 flex items-center justify-center bg-black" >
     <p class="text-gray-500">© Microsoft Corporation 2020</p>

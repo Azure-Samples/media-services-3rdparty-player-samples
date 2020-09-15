@@ -12,7 +12,7 @@
 
 <body>
   <header class="h-16 px-4 flex items-center justify-between bg-black">
-    <a href="#default" class="flex items-center no-underline">
+    <a href="../" class="flex items-center no-underline">
       <img src="../images/ams.png">
       <span class="px-4 text-gray-500">Azure Media Services</span>
     </a>
@@ -20,16 +20,17 @@
   </header>
 
   <main class="container px-4 mx-auto font-sans">
-    <form method='GET'>
+    <form method="GET">
 
       <input type="hidden" name="loglevel" id="loglevelInput">
-      <h1 class="my-4 text-center text-2xl font-bold">Video.js player <span id="player-version"></span> with Azure Media Services</h1>
-      <h3 class="my-0 text-center text-2xl">(with videojs-contrib-eme v3.7.0)</h3>
+      <h1 class="my-4 text-center text-2xl font-bold">Video.js player with Azure Media Services</h1>
 
       <div class="my-4 p-4 bg-gray-200 rounded shadow">
-        <video id="video" class="video-js vjs-default-skin vjs-16-9" controls data-setup="{}">
+        <video id="video" class="video-js vjs-default-skin vjs-16-9" controls data-setup="{}" muted autoplay>
         </video>
       </div>
+
+      <div class="my-4 p-4 bg-gray-200 rounded shadow fixed" id="streamingSettings"></div>
 
       <div class="my-4 p-4 bg-gray-200 rounded shadow">
         <h3 class="my-0 mb-2 text-xl font-bold">Manifest</h3>
@@ -105,6 +106,26 @@
               placeholder="URL" disabled>
           </div>
 
+          <div class="my-2 flex flex-col md:flex-row md:items-center">
+            <span class="md:w-1/4 mb-2 md:mb-0 flex items-center text-sm">
+              <input type="checkbox" id="autoPlayCheckbox" class="mr-2">
+              Auto Play
+            </span>
+            <input name="autoPlay" id="autoPlayInput" class="md:w-3/4 h-8 px-2 rounded shadow border-0"
+                placeholder="URL" hidden>
+
+            <span class="md:w-1/4 mb-2 md:mb-0 items-center text-sm">
+              <label for="selectLogLevel">Log Level:</label>
+              <select id="selectLogLevel" name="logLevel" class="rounded shadow border-0">
+                <option value="4">DEBUG</option>
+                <option value="3">INFO</option>
+                <option value="2">WARNING</option>
+                <option value="1">ERROR</option>
+              </select>
+            </span>
+
+          </div>          
+
         </div>
 
         <p class="text-right mt-4">
@@ -123,6 +144,7 @@
     <p class="text-gray-500">© Microsoft Corporation 2020</p>
   </footer>
   <script src="https://vjs.zencdn.net/7.8.2/video.js"></script>
+  <!-- update label whenever we update plugin version -->
   <script src="https://cdn.jsdelivr.net/npm/videojs-contrib-eme@3.7.0/dist/videojs-contrib-eme.min.js"></script>
   <script type="module" src="index.js"></script>
 </body>
