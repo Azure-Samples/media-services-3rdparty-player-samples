@@ -1,0 +1,79 @@
+{
+  "ResourceGroup": "amsplayerresource",
+  "StorageAccount": "amsplayerstorage",
+  "MediaServiceAccount": "amsplayeraccount",
+  "Location": "westus2",
+  "CKP": {
+    "DRMOpen": {
+      "name": "drmopen",
+      "options": [
+        {
+          "name": "widevineopen",
+          "type": "--widevine-template",
+          "typeValue": "\"{}\""
+        },
+        {
+          "name": "playreadyopen",
+          "type": "--play-ready-template",
+          "typeValue": "@payload/playreadylicense.json"
+        }
+      ]
+    },
+    "DRMToken": {
+      "name": "drmtokenized",
+      "options": [
+        {
+          "name": "widevinetoken",
+          "type": "--widevine-template",
+          "typeValue": "\"{}\""
+        },
+        {
+          "name": "playreadytoken",
+          "type": "--play-ready-template",
+          "typeValue": "@payload/playreadylicense.json"
+        }
+      ]
+    },
+    "encryptionOpen": {
+      "name": "clearkeyopen",
+      "options": [
+        {
+          "name": "clearkeyopen",
+          "type": "--clear-key-configuration",
+          "typeValue": ""
+        }
+      ]
+    },
+    "encryptionToken": {
+      "name": "clearkeytoken",
+      "options": [
+        {
+          "name": "clearkeytoken",
+          "type": "--clear-key-configuration",
+          "typeValue": ""
+        }
+      ]
+    }
+  },
+  "token": {
+    "type": "Jwt",
+    "keyType": "Symmetric",
+    "key": "Symmetric Key 40 characters",
+    "issuer": "randomissuer",
+    "audience": "randomaudience",
+    "duration": "604800"
+  },
+  "VOD": {
+    "video": "sample-vod.mp4",
+    "preset": "AdaptiveStreaming"
+  },
+  "liveStream": {
+    "liveEventName": "liveeventname",
+    "assetName": "liveassetname",
+    "encodingType": "Standard",
+    "presetName": "Default720p",
+    "liveOutputName": "liveoutput",
+    "mode": "default"
+  },
+  "FairPlayPublicCertPath": ""
+}

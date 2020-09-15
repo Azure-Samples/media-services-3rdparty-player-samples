@@ -1,0 +1,110 @@
+{
+  "VOD": {
+    "clear": [
+      {
+        "streamingProtocol": "HLS TS ",
+        "url": "https://amsplayeraccount-usw22.streaming.media.azure.net/d13f566a-ab6c-4ce8-a35e-e041b191908c/sample-vod.ism/manifest(format=m3u8-aapl)"
+      },
+      {
+        "streamingProtocol": "HLS CMAF ",
+        "url": "https://amsplayeraccount-usw22.streaming.media.azure.net/d13f566a-ab6c-4ce8-a35e-e041b191908c/sample-vod.ism/manifest(format=m3u8-cmaf)"
+      },
+      {
+        "streamingProtocol": "DASH CMAF ",
+        "url": "https://amsplayeraccount-usw22.streaming.media.azure.net/d13f566a-ab6c-4ce8-a35e-e041b191908c/sample-vod.ism/manifest(format=mpd-time-cmaf)"
+      }
+    ],
+    "DRMOpen": [
+      {
+        "streamingProtocol": "HLS CMAF CENC (Widevine + PlayReady)",
+        "url": "https://amsplayeraccount-usw22.streaming.media.azure.net/4d97814d-e53a-4bab-ad12-e1e8ff23c5e8/sample-vod.ism/manifest(format=m3u8-cmaf,encryption=cenc)"
+      },
+      {
+        "streamingProtocol": "DASH CMAF CENC (Widevine + PlayReady)",
+        "url": "https://amsplayeraccount-usw22.streaming.media.azure.net/4d97814d-e53a-4bab-ad12-e1e8ff23c5e8/sample-vod.ism/manifest(format=mpd-time-cmaf,encryption=cenc)"
+      },
+      {
+        "streamingProtocol": "HLS TS CBCS (FairPlay)",
+        "url": "https://amsplayeraccount-usw22.streaming.media.azure.net/4d97814d-e53a-4bab-ad12-e1e8ff23c5e8/sample-vod.ism/manifest(format=m3u8-aapl,encryption=cbcs-aapl)"
+      },
+      {
+        "streamingProtocol": "HLS CMAF CBCS (FairPlay)",
+        "url": "https://amsplayeraccount-usw22.streaming.media.azure.net/4d97814d-e53a-4bab-ad12-e1e8ff23c5e8/sample-vod.ism/manifest(format=m3u8-cmaf,encryption=cbcs-aapl)"
+      }
+    ],
+    "DRMToken": [
+      {
+        "streamingProtocol": "HLS CMAF CENC (Widevine + PlayReady)",
+        "url": "https://amsplayeraccount-usw22.streaming.media.azure.net/83463c29-9b8c-400e-aa37-7f5460fcbc5a/sample-vod.ism/manifest(format=m3u8-cmaf,encryption=cenc)"
+      },
+      {
+        "streamingProtocol": "DASH CMAF CENC (Widevine + PlayReady)",
+        "url": "https://amsplayeraccount-usw22.streaming.media.azure.net/83463c29-9b8c-400e-aa37-7f5460fcbc5a/sample-vod.ism/manifest(format=mpd-time-cmaf,encryption=cenc)"
+      },
+      {
+        "streamingProtocol": "HLS TS CBCS (FairPlay)",
+        "url": "https://amsplayeraccount-usw22.streaming.media.azure.net/83463c29-9b8c-400e-aa37-7f5460fcbc5a/sample-vod.ism/manifest(format=m3u8-aapl,encryption=cbcs-aapl)"
+      },
+      {
+        "streamingProtocol": "HLS CMAF CBCS (FairPlay)",
+        "url": "https://amsplayeraccount-usw22.streaming.media.azure.net/83463c29-9b8c-400e-aa37-7f5460fcbc5a/sample-vod.ism/manifest(format=m3u8-cmaf,encryption=cbcs-aapl)"
+      }
+    ],
+    "encryptionOpen": [
+      {
+        "streamingProtocol": "HLS TS ",
+        "url": "https://amsplayeraccount-usw22.streaming.media.azure.net/4b131103-a502-400f-add8-a8484001cf3e/sample-vod.ism/manifest(format=m3u8-aapl,encryption=cbc)"
+      },
+      {
+        "streamingProtocol": "HLS CMAF ",
+        "url": "https://amsplayeraccount-usw22.streaming.media.azure.net/4b131103-a502-400f-add8-a8484001cf3e/sample-vod.ism/manifest(format=m3u8-cmaf,encryption=cbc)"
+      },
+      {
+        "streamingProtocol": "DASH CMAF ",
+        "url": "https://amsplayeraccount-usw22.streaming.media.azure.net/4b131103-a502-400f-add8-a8484001cf3e/sample-vod.ism/manifest(format=mpd-time-cmaf,encryption=cbc)"
+      }
+    ],
+    "encryptionToken": [
+      {
+        "streamingProtocol": "HLS TS ",
+        "url": "https://amsplayeraccount-usw22.streaming.media.azure.net/32621365-19dd-4c48-83ec-a6c31777f6e9/sample-vod.ism/manifest(format=m3u8-aapl,encryption=cbc)"
+      },
+      {
+        "streamingProtocol": "HLS CMAF ",
+        "url": "https://amsplayeraccount-usw22.streaming.media.azure.net/32621365-19dd-4c48-83ec-a6c31777f6e9/sample-vod.ism/manifest(format=m3u8-cmaf,encryption=cbc)"
+      },
+      {
+        "streamingProtocol": "DASH CMAF ",
+        "url": "https://amsplayeraccount-usw22.streaming.media.azure.net/32621365-19dd-4c48-83ec-a6c31777f6e9/sample-vod.ism/manifest(format=mpd-time-cmaf,encryption=cbc)"
+      }
+    ],
+    "subtitle": "",
+    "DRMOpenKIDCENC": "8d8eca7d-0538-43bf-b153-4cef56c1c6e9",
+    "DRMOpenKIDCBCS": "24bef394-eb5f-440b-8825-45005779eed2",
+    "DRMTokenKIDCENC": "5b8c2c8e-741e-43d1-b508-be8d6e80d892",
+    "DRMTokenKIDCBCS": "4334b0ff-e6b0-4901-ab2d-8094b79d12ad"
+  },
+  "LiveStream": {
+    "mode": "default",
+    "ingestURLs": [
+      "rtmp://liveeventname-amsplayeraccount2-usw22.channel.media.azure.net:1935/live/29556d84b53a4f2eafd5db2804fb78b4",
+      "rtmp://liveeventname-amsplayeraccount2-usw22.channel.media.azure.net:1936/live/29556d84b53a4f2eafd5db2804fb78b4",
+      "rtmps://liveeventname-amsplayeraccount2-usw22.channel.media.azure.net:2935/live/29556d84b53a4f2eafd5db2804fb78b4",
+      "rtmps://liveeventname-amsplayeraccount2-usw22.channel.media.azure.net:2936/live/29556d84b53a4f2eafd5db2804fb78b4"
+    ],
+    "clear": [],
+    "DRMOpen": [],
+    "DRMToken": [],
+    "encryptionOpen": [],
+    "encryptionToken": [],
+    "DRMOpenKIDCENC": "dc159012-e233-4dda-8a4f-ad40501c1833",
+    "DRMOpenKIDCBCS": "3b3211fe-6b93-45b0-af14-b7a4ffc56cc7",
+    "DRMTokenKIDCENC": "9968c4f6-9014-457a-af03-beb07ca3b3cc",
+    "DRMTokenKIDCBCS": "d086852b-54c2-49c3-bbb3-5dafa6bb5b19"
+  },
+  "WidevineLicenseURL": "https://amsplayeraccount.keydelivery.westus2-2.media.azure.net/Widevine/",
+  "PlayReadyLicenseURL": "https://amsplayeraccount.keydelivery.westus2-2.media.azure.net/PlayReady/",
+  "FairPlayLicenseURL": "https://amsplayeraccount.keydelivery.westus2-2.media.azure.net/FairPlay/",
+  "FairPlayPublicCertPath": "",
+  "Token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDAzNDI3MjQsImF1ZCI6InJhbmRvbWF1ZGllbmNlIiwiaXNzIjoicmFuZG9taXNzdWVyIn0.QCDQpWb-bCQ4gMkzx7WYKnWKrdIl2rrYY74CZSLJzMM"
+}

@@ -38,6 +38,7 @@ To see the sample code, please check:
 
 - [Video.js](/src/video.js)
 - [Shaka Player](/src/shaka)
+- [THEOplayer](/src/THEOplayer)
 
 ## Test results
   
@@ -65,6 +66,7 @@ To see the test results, please check:
   
 - [Video.js](/docs/video.js#test-results)
 - [Shaka Player](/docs/shaka#test-results)
+- [THEOplayer](/docs/THEOplayer#test-results)
 
 ## How to set up your player
 
@@ -72,6 +74,7 @@ To set up your player, follow the below instructions:
 
 - [How to use the Video.js player with Azure Media Services](https://docs.microsoft.com/azure/media-services/latest/how-to-video-js-player)
 - [How to use the Shaka player with Azure Media Services](https://docs.microsoft.com/azure/media-services/latest/how-to-shaka-player)
+- [How to use the THEOplayer with Azure Media Services](https://docs.microsoft.com/azure/media-services/latest/how-to-theo-player)
 
 ## Root contents
 
