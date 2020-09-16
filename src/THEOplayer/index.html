@@ -30,6 +30,8 @@
           <div class="my-4 p-4 bg-gray-200 rounded shadow">
             <div id="video" class="theoplayer-container video-js theoplayer-skin w-full rounded shadow"></div>
           </div>
+          
+	  <div style="display:none" class="my-4 p-4 bg-gray-200 rounded shadow fixed" id="streamingSettings"></div>
 
           <div class="my-4 p-4 bg-gray-200 rounded shadow">
             <h3 class="my-0 mb-2 text-xl font-bold">Manifest</h3>
@@ -90,6 +92,24 @@
                 <input name="fairPlayCertificate" id="fairPlayCertificateInput" class="md:w-3/4 h-8 px-2 rounded shadow border-0"
                   placeholder="URL" disabled>
               </div>
+	      
+	      <div style="display:none" class="my-2 flex flex-col md:flex-row md:items-center">
+		<span class="md:w-1/4 mb-2 md:mb-0 flex items-center text-sm">
+		  <input type="checkbox" id="autoPlayCheckbox" class="mr-2">
+		  Auto Play
+		</span>
+		<input name="autoPlay" id="autoPlayInput" class="md:w-3/4 h-8 px-2 rounded shadow border-0"
+		    placeholder="URL" hidden>
+
+		<span class="md:w-1/4 mb-2 md:mb-0 items-center text-sm">
+		  <label for="selectLogLevel">Log Level:</label>
+		  <select id="selectLogLevel" name="logLevel" class="rounded shadow border-0">
+		    <option value="4">DEBUG</option>
+		    <option value="3">INFO</option>
+		    <option value="1">ERROR</option>
+		  </select>
+		</span>
+	      </div>            
 
               <p class="text-right mt-4">
                 <button class="h-8 px-2 text-white bg-indigo-500 rounded shadow cursor-pointer" type="submit">Load Stream</button>
