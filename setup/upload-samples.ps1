@@ -67,6 +67,8 @@ if ($sources) {
   uploadFile "hls.js/*.html"
   uploadFile "dash.js/*.js"
   uploadFile "dash.js/*.html"
+  uploadFile "THEOplayer/*.js"
+  uploadFile "THEOplayer/*.html"
 
   if ($config.FairPlayPublicCertPath -and (Test-Path -Path $config.FairPlayPublicCertPath)){
     uploadFile $config.FairPlayPublicCertPath
