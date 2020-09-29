@@ -139,7 +139,9 @@ Tested on:
 
 Tested on:
 
-- ![safari](../icons/safari.png) ![chrome](../icons/chrome.png) ![iOS SDK](../icons/ios.png) Scenario supported.
+- ![safari](../icons/safari.png)
+- ![chrome](../icons/chrome.png)
+- ![iOS SDK](../icons/ios.png)
 
 ##### VOD and Live content
 
@@ -187,7 +189,9 @@ Tested on:
 
 Tested on:
 
-- ![safari](../icons/safari.png) ![chrome](../icons/chrome.png) ![ipadOS](../icons/ipados.png) Scenario supported.
+- ![safari](../icons/safari.png)
+- ![chrome](../icons/chrome.png)
+- ![ipadOS](../icons/ipados.png)
 
 ##### VOD and Live content
 
@@ -259,7 +263,8 @@ Tested on:
 
 Tested on:
 
-- ![edge-new](../icons/edge-new.png) ![chrome](../icons/chrome.png) Scenario supported in the given browser.
+- ![edge-new](../icons/edge-new.png)
+- ![chrome](../icons/chrome.png)
 
 ##### VOD and Live content
 
