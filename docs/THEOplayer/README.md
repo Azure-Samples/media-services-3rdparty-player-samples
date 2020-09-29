@@ -139,9 +139,9 @@ Tested on:
 
 Tested on:
 
-- ![safari](../icons/safari.png)
-- ![chrome](../icons/chrome.png)
-- ![iOS SDK](../icons/ios.png)
+- ![safari](../icons/safari.png) Safari (v77.0.1+)
+- ![chrome](../icons/chrome.png) Chrome (v83.0.4103.97+)
+- ![iOS SDK](../icons/ios.png) iOS (v13.6)
 
 ##### VOD and Live content
 
@@ -189,9 +189,9 @@ Tested on:
 
 Tested on:
 
-- ![safari](../icons/safari.png)
-- ![chrome](../icons/chrome.png)
-- ![ipadOS](../icons/ipados.png)
+- ![safari](../icons/safari.png) Safari (v77.0.1+)
+- ![chrome](../icons/chrome.png) Chrome (v83.0.4103.97+)
+- ![iOS SDK](../icons/ios.png) ipadOS (v13.6)
 
 ##### VOD and Live content
 
@@ -263,8 +263,8 @@ Tested on:
 
 Tested on:
 
-- ![edge-new](../icons/edge-new.png)
-- ![chrome](../icons/chrome.png)
+- ![edge-new](../icons/edge-new.png) Edge Chromium-based (v83.0.478.50+)
+- ![chrome](../icons/chrome.png) Chrome (v83.0.4103.97+)
 
 ##### VOD and Live content
 
