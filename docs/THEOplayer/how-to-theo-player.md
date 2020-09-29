@@ -23,7 +23,7 @@ There is also a THEOplayer [landing page](https://azure.microsoft.com/en-us/blog
 In this user guide we will guide you through the process of setting up THEOplayer on your website. There’s only a few things you need to get started, most of which you will already have available if you are building a website.
 
 A webserver - This will host your webpages.
-A domain name - For example `www.theoplayer.com`.
+A domain name - For example `theoplayer.com`.
 A THEOplayer license - This gives you access to the THEOplayer library and allows you to use it on the aforementioned domain.
 One or more URI's to HLS stream manifests (.m3u8), or MPEG-DASH stream manifests (.mpd), of the video streams that you want to show on your website.
 
