@@ -86,7 +86,7 @@ To set up your player, follow the below instructions:
 - [How to use the dash.js player with Azure Media Services](/docs/dash.js/how-to-dash-js-player.md)
 - [How to use the ExoPlayer with Azure Media Services](/docs/exoplayer/how-to-exoplayer.md)
 - [How to use the AVPlayer with Azure Media Services](/docs/avplayer/how-to-avplayer.md)
-- [How to use the THEOplayer with Azure Media Services](https://docs.microsoft.com/azure/media-services/latest/how-to-theo-player)
+- [How to use the THEOplayer with Azure Media Services](/docs/THEOplayer/how-to-theo-player.md)
 
 ## Root contents
 
