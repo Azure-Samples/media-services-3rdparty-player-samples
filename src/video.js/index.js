@@ -89,7 +89,7 @@ class VideojsPlayer extends BasePlayer {
       authentication = true
     }
 
-    if (authentication) {
+    if (authentication || options.uri.includes("keydeliver")) {
       options.headers = options.headers || {}
       options.headers.Authorization = 'Bearer=' + this.getInputToken()
     }
