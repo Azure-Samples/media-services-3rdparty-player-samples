@@ -7,7 +7,8 @@ const configuration = {
     { name: 'dash.js', link: 'dash.js/index.html', formats: ['DASH'], encryptions: ['CENC', 'CBC'] },
     { name: 'ExoPlayer', link: 'azure-samples://exoplayer', formats: ['DASH', 'HLS'], encryptions: ['CENC', 'CBC'], mobile: true },
     { name: 'AVPlayer', link: 'azure-samples://avplayer', formats: ['HLS'], encryptions: ['CBC', 'CBCS'], mobile: true },
-    { name: 'THEOplayer', link: 'THEOplayer/index.html', formats: ['DASH', 'HLS'], encryptions: ['CENC', 'CBCS', 'CBC'] }
+    { name: 'THEOplayer', link: 'THEOplayer/index.html', formats: ['DASH', 'HLS'], encryptions: ['CENC', 'CBCS', 'CBC'] },
+    { name: 'NexPlayer', link: 'NexPlayer/index.html', formats: ['DASH', 'HLS'], encryptions: ['CENC', 'CBCS', 'CBC'] }
   ]
 }
 
