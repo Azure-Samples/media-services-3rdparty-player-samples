@@ -43,7 +43,7 @@ To see the sample code, please check:
 - [ExoPlayer](/src/exoplayer)
 - [AVPlayer](/src/avplayer)
 - [THEOplayer](/src/THEOplayer)
-
+- [NexPlayer](/src/NexPlayer)
 ## Test results
   
 The samples were tested with VOD and Live content generated with the setup script in the following browsers:
