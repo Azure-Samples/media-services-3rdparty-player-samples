@@ -1,4 +1,4 @@
-# Test results for NexPlayer on Android v8+
+# Test results for NexPlayer on v18.04.3 LTS+
 
 References:
 
