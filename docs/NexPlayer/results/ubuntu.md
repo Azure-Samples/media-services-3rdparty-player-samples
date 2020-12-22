@@ -6,7 +6,7 @@ References:
 
 - ❌ No browser is supported.
 
-- ![firefox](../../icons/firefox.png) ![chrome](../../icons/chrome.png) ![edge](../../icons/edge.png) ![android](../../icons/android.png) Scenario supported.
+- ![firefox](../../icons/firefox.png) ![chrome](../../icons/chrome.png) ![edge](../../icons/edge.png) Scenario supported.
 
 ## VOD
 
