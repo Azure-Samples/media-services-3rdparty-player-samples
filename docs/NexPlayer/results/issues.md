@@ -12,7 +12,7 @@ This feature is not implemented yet.
 
 Live Stream with Low Latency
 
-This feature is not implemented yet. Only working correctly on web browsers.
+This feature is implemented on web browsers at the moment.
 
 
 ------

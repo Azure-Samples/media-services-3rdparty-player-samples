@@ -6,7 +6,7 @@
 
 ## Overview
 
-NexPlayer is the market leader player SDK for premium video apps. NexPlayer ensures the best video streaming quality across all devices with the most advanced features and 24/7 customer support. Available for Android, iOS, Fire TV, LG webOS, Samsung Tizen, HTML5, Chromecast, Xbox and PlayStation apps.
+The NexPlayer HTML5 Player is a fully customizable media player that enables HLS and MPEG-DASH streaming with broadcast quality video across all platforms, browsers and devices. Premium OTT services can now provide an outstanding user experience thanks to a flexible feature set including the latest playback capabilities, advanced DRM content protection and advertisements like client-side ad insertion (CSAI) with VPAID, VMAP, VAST and server-side ad insertion (SSAI). 
 
 Its official documentation can be found [here](https://nexplayersdk.com// "NexPlayer documentation").
 

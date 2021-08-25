@@ -4,7 +4,7 @@ References:
 
 - ✔️ All browsers are supported,
 
-- ❌ ❌ No browser is supported.
+- ❌ No browser is supported.
 
 - ![chrome](../../icons/chrome.png) ![safari](../../icons/safari.png) Scenario supported in the given browser.
 
