@@ -14,9 +14,9 @@ Preset: "AdaptiveStreaming"
 
 | Format | Clear | Widevine | PlayReady | FairPlay | AES-128 | Captions |
 | --------- | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
-| HLS TS    | ✔️ | Not tested | Not applicable | ![safari](./assets/safari.png) | ✔️ | ✔️ |
-| HLS CMAF  | ✔️ | ![chrome](./assets/chrome.png) | Not applicable | ![safari](./assets/safari.png) | Not tested | ✔️ |
-| DASH CMAF | ![chrome](./assets/chrome.png) | ![chrome](./assets/chrome.png) | Not applicable | Not applicable | Not applicable | ✔️ |
+| HLS TS    | ✔️ | Not tested | Not applicable | ![safari](../../icons/safari.png) | ✔️ | ✔️ |
+| HLS CMAF  | ✔️ | ![chrome](../../icons/chrome.png) | Not applicable | ![safari](../../icons/safari.png) | Not tested | ✔️ |
+| DASH CMAF | ![chrome](../../icons/chrome.png) | ![chrome](../../icons/chrome.png) | Not applicable | Not applicable | Not applicable | ✔️ |
 
 More details about issues [here](issues.md).
 
@@ -28,9 +28,9 @@ PresetName: "Default720p"
 
 | Format | Clear | Widevine | PlayReady | FairPlay | AES-128 | Live Transcription |
 | --------- | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
-| HLS TS    | ✔️ | Not tested | Not applicable | ![safari](./assets/safari.png) | ✔️ | ❌([#1](issues.md#issue-1)) |
-| HLS CMAF  | ✔️ | ![chrome](./assets/chrome.png) | Not applicable | ![safari](./assets/safari.png) | Not tested | ❌([#1](issues.md#issue-1)) |
-| DASH CMAF | ![chrome](./assets/chrome.png) | ![chrome](./assets/chrome.png) | Not applicable | Not applicable | Not applicable | ❌([#1](issues.md#issue-1)) |
+| HLS TS    | ✔️ | Not tested | Not applicable | ![safari](../../icons/safari.png) | ✔️ | ❌([#1](issues.md#issue-1)) |
+| HLS CMAF  | ✔️ | ![chrome](../../icons/chrome.png) | Not applicable | ![safari](../../icons/safari.png) | Not tested | ❌([#1](issues.md#issue-1)) |
+| DASH CMAF | ![chrome](../../icons/chrome.png) | ![chrome](../../icons/chrome.png) | Not applicable | Not applicable | Not applicable | ❌([#1](issues.md#issue-1)) |
 
 
 More details about issues [here](issues.md).
@@ -45,6 +45,6 @@ PresetName: "Default720p"
 | --------- | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: |
 | HLS TS    | ✔️ | Not tested | Not applicable | Not applicable | Not tested |
 | HLS CMAF  | ✔️ | Not tested | Not applicable | Not applicable | Not tested |
-| DASH CMAF | ![chrome](./assets/chrome.png) | Not tested | Not tested | Not applicable | Not applicable |
+| DASH CMAF | ![chrome](../../icons/chrome.png) | Not tested | Not tested | Not applicable | Not applicable |
 
 More details about issues [here](issues.md).
