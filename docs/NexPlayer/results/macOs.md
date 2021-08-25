@@ -1,4 +1,4 @@
-# Test results for NexPlayer on MacOS v10.15.5+
+# Test results for NexPlayer on macOS v10.15.6+
 
 References:
 
@@ -6,17 +6,17 @@ References:
 
 - ❌ No browser is supported.
 
-- ![safari](../../icons/safari.png) ![chrome](../../icons/chrome.png) Scenario supported.
+- ![firefox](../../icons/firefox.png) ![chrome](../../icons/chrome.png) ![edge-new](../../icons/edge-new.png) ![safari](../../icons/safari.png) Scenario supported in the given browser.
 
 ## VOD
 
 Preset: "AdaptiveStreaming"
 
-| Format | Clear  | Widevine | PlayReady | FairPlay | AES-128 | Sidecar caption |
+| Format | Clear | Widevine | PlayReady | FairPlay | AES-128 | Captions |
 | --------- | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
-| HLS TS    | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
-| HLS CMAF  | ✔️ | ✔️ | ✔️ | ✔️ | ❌ | ✔️ |
-| DASH CMAF | ✔️ | ✔️ | ✔️ | ❌ | ❌ | ✔️ |
+| HLS TS    | ✔️ | Not tested | Not applicable | ![safari](./assets/safari.png) | ✔️ | ✔️ |
+| HLS CMAF  | ✔️ | ![chrome](./assets/chrome.png) ![firefox](./assets/firefox.png) ![newedge](./assets/edge-new.png) | Not applicable | ![safari](./assets/safari.png) | Not tested | ✔️ |
+| DASH CMAF | ![chrome](./assets/chrome.png) ![firefox](./assets/firefox.png) ![newedge](./assets/edge-new.png) | ![chrome](./assets/chrome.png) ![firefox](./assets/firefox.png) ![newedge](./assets/edge-new.png) | Not applicable | Not applicable | Not applicable | ✔️ |
 
 More details about issues [here](issues.md).
 
@@ -28,9 +28,9 @@ PresetName: "Default720p"
 
 | Format | Clear | Widevine | PlayReady | FairPlay | AES-128 | Live Transcription |
 | --------- | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
-| HLS TS    | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ❌ |
-| HLS CMAF  | ✔️ | ✔️ | ✔️ | ✔️ | ❌ | ❌ |
-| DASH CMAF | ✔️ | ✔️ | ✔️ | ❌ | ❌ | ✔️ |
+| HLS TS    | ✔️ | Not tested | Not applicable | ![safari](./assets/safari.png) | ✔️ | ❌([#1](issues.md#issue-1)) |
+| HLS CMAF  | ✔️ | ![chrome](./assets/chrome.png) ![firefox](./assets/firefox.png) ![newedge](./assets/edge-new.png) | Not applicable | ![safari](./assets/safari.png) | Not tested | ❌([#1](issues.md#issue-1)) |
+| DASH CMAF | ![chrome](./assets/chrome.png) ![firefox](./assets/firefox.png) ![newedge](./assets/edge-new.png) | ![chrome](./assets/chrome.png) ![firefox](./assets/firefox.png) ![newedge](./assets/edge-new.png) | Not applicable | Not applicable | Not applicable | ❌([#1](issues.md#issue-1)) |
 
 
 More details about issues [here](issues.md).
@@ -43,8 +43,8 @@ PresetName: "Default720p"
 
 | Format | Clear | Widevine | PlayReady | FairPlay | AES-128 |
 | --------- | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: |
-| HLS TS    | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
-| HLS CMAF  | ✔️ | ✔️ | ✔️ | ✔️ | ❌ |
-| DASH CMAF | ✔️ | ✔️ | ✔️ | ❌ | ❌ |
+| HLS TS    | ✔️ | Not tested | Not applicable | Not tested | Not tested | 
+| HLS CMAF  | ✔️ | Not tested | Not applicable | Not tested | Not tested | 
+| DASH CMAF | ✔️ | Not tested | Not applicable | Not applicable | Not applicable | 
 
 More details about issues [here](issues.md).

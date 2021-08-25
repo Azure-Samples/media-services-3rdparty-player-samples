@@ -75,6 +75,7 @@ To see the test results, please check:
 - [ExoPlayer](/docs/exoplayer#test-results)
 - [AVPlayer](/docs/avplayer#test-results)
 - [THEOplayer](/docs/THEOplayer#test-results)
+- [NexPlayer](/docs/NexPlayer#test-results)
 
 ## How to set up your player
 
@@ -87,6 +88,7 @@ To set up your player, follow the below instructions:
 - [How to use the ExoPlayer with Azure Media Services](/docs/exoplayer/how-to-exoplayer.md)
 - [How to use the AVPlayer with Azure Media Services](/docs/avplayer/how-to-avplayer.md)
 - [How to use the THEOplayer with Azure Media Services](/docs/THEOplayer/how-to-theo-player.md)
+- [How to use the NexPlayer with Azure Media Services](/docs/NexPlayer/how-to-nex-player.md)
 
 ## Root contents
 

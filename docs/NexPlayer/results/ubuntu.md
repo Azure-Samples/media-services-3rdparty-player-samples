@@ -1,4 +1,4 @@
-# Test results for NexPlayer on v18.04.3 LTS+
+# Test results for NexPlayer on Windows 10 v1909+
 
 References:
 
@@ -6,17 +6,17 @@ References:
 
 - ❌ No browser is supported.
 
-- ![firefox](../../icons/firefox.png) ![chrome](../../icons/chrome.png) ![edge](../../icons/edge.png) Scenario supported.
+- ![chrome](../../icons/chrome.png) ![safari](../../icons/safari.png) Scenario supported in the given browser.
 
 ## VOD
 
 Preset: "AdaptiveStreaming"
 
-| Format | Clear  | Widevine | PlayReady | FairPlay | AES-128 | Sidecar caption |
+| Format | Clear | Widevine | PlayReady | FairPlay | AES-128 | Captions |
 | --------- | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
-| HLS TS    | ✔️  | Not applicable | Not applicable | Not applicable | ✔️ | ✔️ |
-| HLS CMAF  | ✔️  | ✔️ | Not applicable | Not applicable | ❌ | ✔️ |
-| DASH CMAF | ✔️ | ✔️ | ✔️ | Not applicable | ❌ | ✔️ |
+| HLS TS    | ✔️ | Not tested | Not applicable | ![safari](./assets/safari.png) | ✔️ | ✔️ |
+| HLS CMAF  | ✔️ | ![chrome](./assets/chrome.png) | Not applicable | ![safari](./assets/safari.png) | Not tested | ✔️ |
+| DASH CMAF | ![chrome](./assets/chrome.png) | ![chrome](./assets/chrome.png) | Not applicable | Not applicable | Not applicable | ✔️ |
 
 More details about issues [here](issues.md).
 
@@ -28,9 +28,9 @@ PresetName: "Default720p"
 
 | Format | Clear | Widevine | PlayReady | FairPlay | AES-128 | Live Transcription |
 | --------- | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
-| HLS TS    | ✔️ | Not applicable | Not applicable | Not applicable | ✔️ | ❌ |
-| HLS CMAF  | ✔️ | ✔️ | ❌ | Not applicable | ❌ | ❌ |
-| DASH CMAF | ✔️ | ✔️ | ✔️ | Not applicable | ❌ | ✔️ |
+| HLS TS    | ✔️ | Not tested | Not applicable | ![safari](./assets/safari.png) | ✔️ | ❌([#1](issues.md#issue-1)) |
+| HLS CMAF  | ✔️ | ![chrome](./assets/chrome.png) | Not applicable | ![safari](./assets/safari.png) | Not tested | ❌([#1](issues.md#issue-1)) |
+| DASH CMAF | ![chrome](./assets/chrome.png) | ![chrome](./assets/chrome.png) | Not applicable | Not applicable | Not applicable | ❌([#1](issues.md#issue-1)) |
 
 
 More details about issues [here](issues.md).
@@ -43,8 +43,8 @@ PresetName: "Default720p"
 
 | Format | Clear | Widevine | PlayReady | FairPlay | AES-128 |
 | --------- | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: |
-| HLS TS    | ✔️ | Not applicable | Not applicable | Not applicable | ✔️ |
-| HLS CMAF  | ✔️ | ✔️ |  Not applicable |  Not applicable | ❌ |
-| DASH CMAF | ✔️ | ✔️ | Not applicable |  Not applicable | ❌ |
+| HLS TS    | ✔️ | Not tested | Not applicable | Not applicable | Not tested |
+| HLS CMAF  | ✔️ | Not tested | Not applicable | Not applicable | Not tested |
+| DASH CMAF | ![chrome](./assets/chrome.png) | Not tested | Not tested | Not applicable | Not applicable |
 
 More details about issues [here](issues.md).

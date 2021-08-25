@@ -2,21 +2,21 @@
 
 References:
 
-- ✔️ All browsers are supported.
+- ✔️ All browsers are supported,
 
-- ❌ No browser is supported.
+- ❌ ❌ No browser is supported.
 
-- ![safari](../../icons/safari.png) ![chrome](../../icons/chrome.png) Scenario supported.
+- ![chrome](../../icons/chrome.png) ![safari](../../icons/safari.png) Scenario supported in the given browser.
 
 ## VOD
 
 Preset: "AdaptiveStreaming"
 
-| Format | Clear  | Widevine | PlayReady | FairPlay | AES-128 | Sidecar caption |
+| Format | Clear | Widevine | PlayReady | FairPlay | AES-128 | Captions |
 | --------- | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
-| HLS TS    | ✔️ | Not applicable | Not applicable | ✔️ | ✔️ | ✔️ |
-| HLS CMAF  | ✔️ | Not applicable | Not applicable | ✔️ | ✔️ | ✔️ |
-| DASH CMAF | ❌ | Not applicable | Not applicable | ❌ | ❌ | ❌ |
+| HLS TS    | ✔️ | Not tested | Not applicable | ![safari](../../icons/safari.png) | ✔️ | ✔️ |
+| HLS CMAF  | ✔️ | ![chrome](../../icons/chrome.png) | Not applicable | ![safari](../../icons/safari.png) | Not tested  | ✔️ |
+| DASH CMAF | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable | ✔️ |
 
 More details about issues [here](issues.md).
 
@@ -28,9 +28,9 @@ PresetName: "Default720p"
 
 | Format | Clear | Widevine | PlayReady | FairPlay | AES-128 | Live Transcription |
 | --------- | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
-| HLS TS    | ✔️ | Not applicable | Not applicable | ✔️ | ✔️ | ❌ |
-| HLS CMAF  | ✔️ | Not applicable | Not applicable | ✔️ | ❌ | ❌ |
-| DASH CMAF | ❌ | Not applicable | Not applicable | ❌ | ❌ | ❌ |
+| HLS TS    | ✔️ | Not tested | Not applicable | ![safari](../../icons/safari.png) | ✔️ | ❌([#1](issues.md#issue-1)) |
+| HLS CMAF  | ✔️ | ![chrome](../../icons/chrome.png) | Not applicable | ![safari](../../icons/safari.png) | Not tested  | ❌([#1](issues.md#issue-1)) |
+| DASH CMAF | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable |
 
 
 More details about issues [here](issues.md).
@@ -43,8 +43,8 @@ PresetName: "Default720p"
 
 | Format | Clear | Widevine | PlayReady | FairPlay | AES-128 |
 | --------- | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: |
-| HLS TS    | ✔️ | Not applicable | Not applicable | ✔️ | ✔️ |
-| HLS CMAF  | ✔️ | Not applicable | Not applicable | ✔️ | ❌ |
-| DASH CMAF | ❌ | Not applicable | Not applicable | ❌ | ❌ |
+| HLS TS    | ✔️ | Not tested | Not applicable | Not tested | Not tested |
+| HLS CMAF  | ✔️ | Not tested | Not applicable | Not tested | Not tested |
+| DASH CMAF | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable |
 
 More details about issues [here](issues.md).
