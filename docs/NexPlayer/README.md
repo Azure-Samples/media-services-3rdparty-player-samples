@@ -105,9 +105,9 @@ Tested on:
 
 | Format | Clear | Widevine | PlayReady | FairPlay | AES-128 |
 | --------- | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: |
-| HLS TS    | ✔️ | Not tested | Not applicable | Not tested | Not tested | 
-| HLS CMAF  | ✔️ | Not tested | Not applicable | Not tested | Not tested | 
-| DASH CMAF | ✔️ | Not tested | Not applicable | Not applicable | Not applicable | 
+| HLS TS    | ✔️ | ⚠️ | Not applicable | ⚠️ | ⚠️ | 
+| HLS CMAF  | ✔️ | ⚠️ | Not applicable | ⚠️ | ⚠️ | 
+| DASH CMAF | ✔️ | ⚠️ | Not applicable | Not applicable | Not applicable | 
 
 [More details](./results/ubuntu.md)
 
@@ -131,9 +131,9 @@ Tested on:
 
 | Format | Clear | Widevine | PlayReady | FairPlay | AES-128 | 
 | --------- | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: |
-| HLS TS    | ✔️ | Not tested | Not applicable | Not applicable | Not tested | 
-| HLS CMAF  | ✔️ | Not tested | Not applicable | Not applicable | Not tested | 
-| DASH CMAF | ✔️ | Not tested | Not applicable | Not applicable | Not applicable | 
+| HLS TS    | ✔️ | ⚠️ | Not applicable | Not applicable | ⚠️ | 
+| HLS CMAF  | ✔️ | ⚠️ | Not applicable | Not applicable | ⚠️ | 
+| DASH CMAF | ✔️ | ⚠️ | Not applicable | Not applicable | Not applicable | 
 
 [More details](./results/android.md)
 
@@ -159,8 +159,8 @@ Tested on:
 
 | Format | Clear | Widevine | PlayReady | FairPlay | AES-128 | 
 | --------- | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: |
-| HLS TS    | ✔️ | Not tested | Not applicable | Not tested | Not tested | 
-| HLS CMAF  | ✔️ | Not tested | Not applicable | Not tested | Not tested | 
+| HLS TS    | ✔️ | ⚠️ | Not applicable | ⚠️ | ⚠️ | 
+| HLS CMAF  | ✔️ | ⚠️ | Not applicable | ⚠️ | ⚠️ | 
 | DASH CMAF | Not applicable | Not applicable | Not applicable | Not applicable | Not applicable |
 
 [More details](./results/ios.md)
@@ -183,9 +183,9 @@ Tested on:
 
 | Format | Clear | Widevine | PlayReady | FairPlay | AES-128 | 
 | --------- | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: |
-| HLS TS    | ⚠️ | Not tested | Not applicable | Not applicable | Not tested | 
-| HLS CMAF  | ⚠️ | Not tested | Not applicable | Not applicable | Not tested | 
-| DASH CMAF | ⚠️ | Not tested | Not tested | Not applicable | Not applicable |
+| HLS TS    | ⚠️ | ⚠️ | Not applicable | Not applicable | ⚠️ | 
+| HLS CMAF  | ⚠️ | ⚠️ | Not applicable | Not applicable | ⚠️ | 
+| DASH CMAF | ⚠️ | ⚠️ | ⚠️ | Not applicable | Not applicable |
 
 [More details](./results/webOS.md)
 
@@ -207,9 +207,9 @@ Tested on:
 
 | Format | Clear | Widevine | PlayReady | FairPlay | AES-128 | 
 | --------- | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: |
-| HLS TS    | ⚠️ | Not tested | Not applicable | Not applicable | Not tested | 
-| HLS CMAF  | ⚠️ | Not tested | Not applicable | Not applicable | Not tested | 
-| DASH CMAF | ⚠️ | Not tested | Not tested | Not applicable | Not applicable |
+| HLS TS    | ⚠️ | ⚠️ | Not applicable | Not applicable | ⚠️ | 
+| HLS CMAF  | ⚠️ | ⚠️ | Not applicable | Not applicable | ⚠️ | 
+| DASH CMAF | ⚠️ | ⚠️ | ⚠️ | Not applicable | Not applicable |
 
 [More details](./results/tizen.md)
 
@@ -231,9 +231,9 @@ Tested on:
 
 | Format | Clear | Widevine | PlayReady | FairPlay | AES-128 | 
 | --------- | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: |
-| HLS TS    | ⚠️ | Not applicable | Not applicable | Not applicable | Not tested | 
-| HLS CMAF  | ⚠️ | Not applicable | Not applicable | Not applicable | Not tested | 
-| DASH CMAF | ⚠️ | Not applicable | Not tested | Not applicable | Not applicable |
+| HLS TS    | ⚠️ | Not applicable | Not applicable | Not applicable | ⚠️ | 
+| HLS CMAF  | ⚠️ | Not applicable | Not applicable | Not applicable | ⚠️ | 
+| DASH CMAF | ⚠️ | Not applicable | ⚠️ | Not applicable | Not applicable |
 
 [More details](./results/xbox.md)
 
@@ -255,9 +255,9 @@ Tested on:
 
 | Format | Clear | Widevine | PlayReady | FairPlay | AES-128 | 
 | --------- | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: |
-| HLS TS    | ⚠️ | Not applicable | Not applicable | Not applicable | Not tested | 
-| HLS CMAF  | ⚠️ | Not applicable | Not applicable | Not applicable | Not tested | 
-| DASH CMAF | ⚠️ | Not applicable | Not tested | Not applicable | Not applicable |
+| HLS TS    | ⚠️ | Not applicable | Not applicable | Not applicable | ⚠️ | 
+| HLS CMAF  | ⚠️ | Not applicable | Not applicable | Not applicable | ⚠️ | 
+| DASH CMAF | ⚠️ | Not applicable | ⚠️ | Not applicable | Not applicable |
 
 [More details](./results/ps5.md)
 
@@ -279,8 +279,8 @@ Tested on:
 
 | Format | Clear | Widevine | PlayReady | FairPlay | AES-128 | 
 | --------- | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: |
-| HLS TS    | ⚠️ | Not applicable | Not applicable | Not applicable | Not tested | 
-| HLS CMAF  | ⚠️ | Not applicable | Not applicable | Not applicable | Not tested | 
-| DASH CMAF | ⚠️ | Not applicable | Not tested | Not applicable | Not applicable |
+| HLS TS    | ⚠️ | Not applicable | Not applicable | Not applicable | ⚠️ | 
+| HLS CMAF  | ⚠️ | Not applicable | Not applicable | Not applicable | ⚠️ | 
+| DASH CMAF | ⚠️ | Not applicable | ⚠️ | Not applicable | Not applicable |
 
 [More details](./results/ps4.md)
