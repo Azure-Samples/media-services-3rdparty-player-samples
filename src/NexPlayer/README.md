@@ -31,13 +31,13 @@ Documentation on how to implement your own player and test results with differen
 This player sample contains different options embedded into the player, that you can set once it's loaded.
 
 - Manifest: Endpoint URL to the Azure Media Service content. This URL is different for each case depending on the protocol and encryption method used.
-- Closed Captions and Subtitles: Nexplayer supports WebVTT subtitles and closed captions. About the available subtitles can be retrieved with the textTracks attribute of the video element.
-- Multiple audio: NexPlayer supports multiple audio and language tracks in one single video – both for live and on demand streaming. Using streams with multiple audio features provides multiple language tracks for your video content. 
-- Playback: NexPlayer offers more advanced options to control the playback. This feature tells the player whether to start playback with the volume muted or not. Once the callback is received, the playback can be controlled with the NexPlayer instance and the associated video element.
-- Adaptive bitrate: Increase viewer experience by optimizing video ABR.
-- Widevine License: URL for Widevine license required to play Widevine content.
-- PlayReady License: URL for PlayReady license required to play PlayReady content.
-- FairPlay License: URL for FairPlay license required to play FairPlay content.
+- Closed Captions and Subtitles: Nexplayer supports WebVTT subtitles and closed captions. Available subtitles can be retrieved via the textTracks attribute of the video element.
+- Multiple audio: NexPlayer supports multiple audio and language tracks in one single video – both for live and on demand streaming. Using streams with multiple audio features provides multiple language tracks for your video content.
+- Playback: NexPlayer offers more advanced options to control the playback. This feature tells the player whether to start playback with the volume muted or not. Once the callback is received, the playback can be controlled within the NexPlayer instance and the associated video element.
+- Adaptive bitrate: Enhance viewer experience by optimizing video ABR.
+- Widevine License: URL to the Widevine license required to play Widevine content.
+- PlayReady License: URL to the PlayReady license required to play PlayReady content.
+- FairPlay License: URL to the FairPlay license required to play FairPlay content.
 - FairPlay Certificate: URL to the FairPlay Certificate to use for playing FairPlay content.
 
 ![NexPlayer Sample](../../docs/images/NexPlayer.png)
