@@ -17,7 +17,7 @@ class BasePlayer {
     this.fairPlayLicenseUrl = this.getUrlParameter('fairPlay')
     this.fairPlayCertificate = this.getUrlParameter('fairPlayCertificate')
     this.FieldNameCertificate = this.getUrlParameter('FieldNameCertificate')
-    this.FiledValueCertificate = this.getUrlParameter('FiledValueCertificate')
+    this.FieldValueCertificate = this.getUrlParameter('FieldValueCertificate')
     this.autoPlay = this.getUrlParameter('autoPlay')
     this.logLevel = this.getUrlParameter('logLevel')
     this.encryptionKeyUrl = this.getUrlParameter('encryption')
@@ -97,8 +97,8 @@ class BasePlayer {
     if (this.$('FieldNameCheckbox')) {
       this.$('FieldNameCheckbox').addEventListener('click', this.configureFieldName.bind(this))
     }
-    if (this.$('FiledValueCheckbox')) {
-      this.$('FiledValueCheckbox').addEventListener('click', this.configureFiledValue.bind(this))
+    if (this.$('FieldValueCheckbox')) {
+      this.$('FieldValueCheckbox').addEventListener('click', this.configureFieldValue.bind(this))
     }
 
     if (this.$('autoPlayCheckbox')) {
@@ -154,10 +154,10 @@ class BasePlayer {
       this.$('FieldNameCheckbox').checked = true
       this.configureFieldName()
     }
-    if (this.FiledValueCertificate && this.$('FiledValueCheckbox')) {
-      this.$('filedValue').value = this.FiledValueCertificate
-      this.$('FiledValueCheckbox').checked = true
-      this.configureFiledValue()
+    if (this.FieldValueCertificate && this.$('FieldValueCheckbox')) {
+      this.$('fieldValue').value = this.FieldValueCertificate
+      this.$('FieldValueCheckbox').checked = true
+      this.configureFieldValue()
     }
 
     this.$('autoPlayCheckbox').checked = this.autoPlay ? this.autoPlay === 'true' : true
@@ -264,11 +264,11 @@ class BasePlayer {
     }
   }
 
-  configureFiledValue(){
-    this.$('filedValue').disabled = !this.$('FiledValueCheckbox').checked
+  configureFieldValue(){
+    this.$('fieldValue').disabled = !this.$('FieldValueCheckbox').checked
 
-    if (this.$('filedValue').disabled) {
-      this.$('filedValue').value = ''
+    if (this.$('fieldValue').disabled) {
+      this.$('fieldValue').value = ''
     }
   }
 

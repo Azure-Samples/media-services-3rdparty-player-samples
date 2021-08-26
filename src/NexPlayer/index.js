@@ -77,7 +77,7 @@ class NexPlayer extends BasePlayer {
             NexDRMType:'com.microsoft.playready',
             NexDRMKey: this.playReadyLicenseUrl,
             NexHeaders:[{FieldName: this.FieldNameCertificate, 
-                        FiledValue: this.FiledValueCertificate,
+                        FieldValue: this.FieldValueCertificate,
                         }]
         }
       } else if (this.widevineLicenseUrl) {
@@ -85,7 +85,7 @@ class NexPlayer extends BasePlayer {
             NexDRMType:'com.widevine.alpha',
             NexDRMKey: this.widevineLicenseUrl,
             NexHeaders:[{FieldName: this.FieldNameCertificate, 
-                        FiledValue: this.FiledValueCertificate,
+                        FieldValue: this.FieldValueCertificate,
                         }]
             }
       } else if (this.fairPlayLicenseUrl && this.fairPlayCertificate) {
@@ -97,7 +97,7 @@ class NexPlayer extends BasePlayer {
       }
     
     nexplayer.Setup({
-    key:  '5fd7334083f21507bc353f7f',
+    key:  'tg1tll70cg80g5fafiya2yrl',
     div: document.getElementById('player'),
     mutedAtStart: true,
     callbacksForPlayer: callBackWithPlayers,
