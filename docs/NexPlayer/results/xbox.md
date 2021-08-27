@@ -12,7 +12,7 @@ References:
 
 Preset: "AdaptiveStreaming"
 
-| Format | Clear | Widevine | PlayReady | FairPlay | AES-128 | Captions |
+| Format | Clear | Widevine | PlayReady | FairPlay | AES-128 | Live Transcription |
 | --------- | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
 | HLS TS    | ✔️ | Not applicable | Not applicable | Not applicable | ❌  | ✔️ |
 | HLS CMAF  | ✔️ | Not applicable | Not applicable | Not applicable | Not tested  | ✔️ | 
@@ -28,8 +28,8 @@ PresetName: "Default720p"
 
 | Format | Clear | Widevine | PlayReady | FairPlay | AES-128 | Captions |
 | --------- | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
-| HLS TS    | ✔️ | Not applicable | Not applicable | Not applicable | ❌([#3](issues.md#issue-3))  | ✔️ |
-| HLS CMAF  | ✔️ | Not applicable | Not applicable | Not applicable | Not tested  | ✔️ | 
+| HLS TS    | ✔️ | Not applicable | Not applicable | Not applicable | ❌([#3](issues.md#issue-3))  | ❌([#1](issues.md#issue-1)) |
+| HLS CMAF  | ✔️ | Not applicable | Not applicable | Not applicable | Not tested  | ❌([#1](issues.md#issue-1)) | 
 | DASH CMAF | ✔️ | Not applicable | ✔️ | Not applicable | Not applicable | ✔️ |
 
 

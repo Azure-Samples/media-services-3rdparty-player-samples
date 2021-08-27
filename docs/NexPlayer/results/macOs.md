@@ -30,7 +30,7 @@ PresetName: "Default720p"
 | --------- | :---: | :----------------------------------------------------------: | :------: | :----------------------------------------------------------: | :------: | :------: |
 | HLS TS    | ✔️ | Not tested | Not applicable | ![safari](../../icons/safari.png) | ✔️ | ❌([#1](issues.md#issue-1)) |
 | HLS CMAF  | ✔️ | ![chrome](../../icons/chrome.png) ![firefox](../../icons/firefox.png) ![newedge](../../icons/edge-new.png) | Not applicable | ![safari](../../icons/safari.png) | Not tested | ❌([#1](issues.md#issue-1)) |
-| DASH CMAF | ![chrome](../../icons/chrome.png) ![firefox](../../icons/firefox.png) ![newedge](../../icons/edge-new.png) | ![chrome](../../icons/chrome.png) ![firefox](../../icons/firefox.png) ![newedge](../../icons/edge-new.png) | Not applicable | Not applicable | Not applicable | ❌([#1](issues.md#issue-1)) |
+| DASH CMAF | ![chrome](../../icons/chrome.png) ![firefox](../../icons/firefox.png) ![newedge](../../icons/edge-new.png) | ![chrome](../../icons/chrome.png) ![firefox](../../icons/firefox.png) ![newedge](../../icons/edge-new.png) | Not applicable | Not applicable | Not applicable | ✔️ |
 
 
 More details about issues [here](issues.md).
