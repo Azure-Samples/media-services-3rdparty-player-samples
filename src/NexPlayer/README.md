@@ -20,7 +20,7 @@ Documentation on how to implement your own player and test results with differen
 
 ### Using sample player
 
-1. You will require a NexPlayer licence if you plan on running NexPlayer in your production environment. You can start your free trial [here](https://nexplayersdk.com/html5-player/). You do not require a licence to run on localhost.
+1. You will require a NexPlayer license if you plan on running NexPlayer in your production environment. You can start your free trial [here](https://nexplayersdk.com/html5-player/). You do not require a license to run on localhost.
 2. Clone this repository.
 3. Navigate through the console to the example's folder (src/) and run `npx http-server`. (*)
 4. Open the browser of your choice and go to `http://localhost:8080/`.
