@@ -36,8 +36,8 @@ This player sample contains different options that you can set using query strin
 - Manifest: Endpoint URL to the Azure Media Service content which is different for each case depending on the protocol and encryption method used.
 - Captions: URL for the video .vtt file needed to display captions.
 - Token: JWT authentication token needed when using an encryption method (DRM or AES-128).
-- Widevine License: URL for Widevine license. This field is not requiered if the manifest contains the license URL.
-- PlayReady License: URL for PlayReady license. This field is not requiered if the manifest contains the license URL.
+- Widevine License: URL for Widevine license. This field is not required if the manifest contains the license URL.
+- PlayReady License: URL for PlayReady license. This field is not required if the manifest contains the license URL.
 - FairPlay Certificate: URL to the FairPlay Certificate to use for playing FairPlay content.
 - Auto Play: checked as default, will play the video as soon as it's loaded. The video will be muted due to browser requirement.
 - Log Level: Choose the type of log you want to see in "Player Events" such as INFORMATION, WARNING, ERROR, V1 and V2.
