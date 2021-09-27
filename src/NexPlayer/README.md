@@ -8,7 +8,7 @@
 
 ## Overview
 
-The NexPlayer HTML5 Player is a fully customizable media player that enables HLS and MPEG-DASH streaming with broadcast quality video across all platforms, browsers and devices. Premium OTT services can now provide an outstanding user experience thanks to a flexible feature set including the latest playback capabilities, advanced DRM content protection and advertisements like client-side ad insertion (CSAI) with VPAID, VMAP, VAST and server-side ad insertion (SSAI). 
+The NexPlayer HTML5 Player is a fully customizable media player that enables HLS and MPEG-DASH streaming with broadcast quality video across all platforms, browsers, and devices. Premium OTT services can now provide an outstanding user experience thanks to a flexible feature set including the latest playback capabilities, advanced DRM content protection, and advertisements like client-side ad insertion (CSAI) with VPAID, VMAP, VAST, and server-side ad insertion (SSAI). 
 
 Documentation on how to implement your own player and test results with different formats and browsers [here](../../docs/NexPlayer).
 
