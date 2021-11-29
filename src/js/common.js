@@ -16,6 +16,8 @@ class BasePlayer {
     this.playReadyLicenseUrl = this.getUrlParameter('playReady')
     this.fairPlayLicenseUrl = this.getUrlParameter('fairPlay')
     this.fairPlayCertificate = this.getUrlParameter('fairPlayCertificate')
+    this.FieldNameCertificate = this.getUrlParameter('FieldNameCertificate')
+    this.FieldValueCertificate = this.getUrlParameter('FieldValueCertificate')
     this.autoPlay = this.getUrlParameter('autoPlay')
     this.logLevel = this.getUrlParameter('logLevel')
     this.encryptionKeyUrl = this.getUrlParameter('encryption')
@@ -92,6 +94,12 @@ class BasePlayer {
     if (this.$('fairPlayCertificateCheckbox')) {
       this.$('fairPlayCertificateCheckbox').addEventListener('click', this.configureFairPlayCertificate.bind(this))
     }
+    if (this.$('FieldNameCheckbox')) {
+      this.$('FieldNameCheckbox').addEventListener('click', this.configureFieldName.bind(this))
+    }
+    if (this.$('FieldValueCheckbox')) {
+      this.$('FieldValueCheckbox').addEventListener('click', this.configureFieldValue.bind(this))
+    }
 
     if (this.$('autoPlayCheckbox')) {
       this.$('autoPlayCheckbox').addEventListener('click', this.configureAutoPlay.bind(this))
@@ -140,6 +148,16 @@ class BasePlayer {
       this.$('fairPlayCertificateInput').value = this.fairPlayCertificate
       this.$('fairPlayCertificateCheckbox').checked = true
       this.configureFairPlayCertificate()
+    }
+    if (this.FieldNameCertificate && this.$('FieldNameCheckbox')) {
+      this.$('fieldName').value = this.FieldNameCertificate
+      this.$('FieldNameCheckbox').checked = true
+      this.configureFieldName()
+    }
+    if (this.FieldValueCertificate && this.$('FieldValueCheckbox')) {
+      this.$('fieldValue').value = this.FieldValueCertificate
+      this.$('FieldValueCheckbox').checked = true
+      this.configureFieldValue()
     }
 
     this.$('autoPlayCheckbox').checked = this.autoPlay ? this.autoPlay === 'true' : true
@@ -235,6 +253,22 @@ class BasePlayer {
 
     if (this.$('fairPlayCertificateInput').disabled) {
       this.$('fairPlayCertificateInput').value = ''
+    }
+  }
+
+  configureFieldName(){
+    this.$('fieldName').disabled = !this.$('FieldNameCheckbox').checked
+
+    if (this.$('fieldName').disabled) {
+      this.$('fieldName').value = ''
+    }
+  }
+
+  configureFieldValue(){
+    this.$('fieldValue').disabled = !this.$('FieldValueCheckbox').checked
+
+    if (this.$('fieldValue').disabled) {
+      this.$('fieldValue').value = ''
     }
   }
 

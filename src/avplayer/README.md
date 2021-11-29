@@ -16,7 +16,7 @@ Its official documentation can be found [here](https://developer.apple.com/docum
 
 ### Set up development environment
 
-- Install Xcode 11 + from the App Store in your Apple device.
+- Install Xcode 11 + from the App Store on your Apple device.
 
 ### Using sample player
 
@@ -28,7 +28,7 @@ Its official documentation can be found [here](https://developer.apple.com/docum
 
 4. Copy the link to your manifest URL and paste it in the `Manifest URL` field and click `Load Stream`.
 
-    Alternatively, you can run the set up scripts to generate content, and host a static website with an index that will list links that use deep linking to open the app from any browser.
+    Alternatively, you can run the setup scripts to generate content, and host a static website with an index that will list links that use deep linking to open the app from any browser.
     The scheme and host used to open the app is `azure-samples://avplayer`, and the links include in this URLs all the data required for the player to reproduce the content.
     Note these links will appear only when the index is opened from a mobile device.
 

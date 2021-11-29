@@ -24,7 +24,7 @@ These are the main components of this repository:
 
 ## Set up
 
-This project uses PowerShell [setup](/setup) scripts to generate content (VOD and Live) in Azure Media Services, and provides tools to test the 3rd party players in different combinations of features, streaming formats, and content protection.
+This project uses PowerShell [setup](/setup) scripts to generate content (VOD and Live) in Azure Media Services and provides tools to test the 3rd party players in different combinations of features, streaming formats, and content protection.
 
 For example, this is the *_Index_* page generated after running the setup scripts. It contains the playback endpoints for all the features, formats, and content protection options available in Azure Media Services along with links to test them on each 3rd party player sample:
 
@@ -43,7 +43,7 @@ To see the sample code, please check:
 - [ExoPlayer](/src/exoplayer)
 - [AVPlayer](/src/avplayer)
 - [THEOplayer](/src/THEOplayer)
-
+- [NexPlayer](/src/NexPlayer)
 ## Test results
   
 The samples were tested with VOD and Live content generated with the setup script in the following browsers:
@@ -75,6 +75,7 @@ To see the test results, please check:
 - [ExoPlayer](/docs/exoplayer#test-results)
 - [AVPlayer](/docs/avplayer#test-results)
 - [THEOplayer](/docs/THEOplayer#test-results)
+- [NexPlayer](/docs/NexPlayer#test-results)
 
 ## How to set up your player
 
@@ -87,6 +88,7 @@ To set up your player, follow the below instructions:
 - [How to use the ExoPlayer with Azure Media Services](/docs/exoplayer/how-to-exoplayer.md)
 - [How to use the AVPlayer with Azure Media Services](/docs/avplayer/how-to-avplayer.md)
 - [How to use the THEOplayer with Azure Media Services](/docs/THEOplayer/how-to-theo-player.md)
+- [How to use the NexPlayer with Azure Media Services](/docs/NexPlayer/how-to-nex-player.md)
 
 ## Root contents
 
@@ -104,7 +106,7 @@ To set up your player, follow the below instructions:
 ## Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
-Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
+Contributor License Agreement (CLA) declaring that you have the right to grant us
 the rights to use your contribution. For details, visit <https://cla.opensource.microsoft.com>.
 
 When you submit a pull request, a CLA bot will automatically determine whether you need to provide
