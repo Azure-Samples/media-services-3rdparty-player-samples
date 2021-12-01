@@ -10,6 +10,8 @@ The NexPlayer HTML5 Player is a fully customizable media player that enables HLS
 
 Its official documentation can be found [here](https://nexplayersdk.com// "NexPlayer documentation").
 
+You can view our online demo [here](https://html5demo.nexplayersdk.com).
+
 For detailed instructions on how to implement the player, see [How to use NexPlayer with Azure Media Service](how-to-nex-player.md)
 
 
