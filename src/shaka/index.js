@@ -3,6 +3,13 @@ import BasePlayer from '../js/common.js'
 class ShakaPlayer extends BasePlayer {
   async initPlayer () {
     shaka.polyfill.installAll()
+
+    // Install built-in polyfills to patch browser incompatibilities.
+    const video = document.getElementById('video');
+    const player = new shaka.Player(video);
+    // Attach player to the window to make it easy to access in the JS console.
+    window.player = player;
+
     shaka.log.setLevel(parseInt(this.logLevel))
 
     switch (parseInt(this.logLevel)) {
@@ -24,11 +31,13 @@ class ShakaPlayer extends BasePlayer {
       case 1:
         shaka.log.error = this.interceptLog('ERROR')
         break
+      case 0:
+          shaka.log.error = this.interceptLog('NONE')
+          break
     }
 
     if (this.manifest) {
-      const player = new shaka.Player(this.video)
-      window.player = player
+    
       player.addEventListener('error', this.ErrHandler.bind(this))
 
       if (this.playReadyLicenseUrl || this.widevineLicenseUrl) {
@@ -49,6 +58,11 @@ class ShakaPlayer extends BasePlayer {
           }
         })
       }
+
+      // Force the TTML parser to load - this is related to ISSUE #12 in the docs for Shaka.
+      //shaka.text.TextEngine.registerParser( 'application/mp4', shaka.text.Mp4TtmlParser);
+      shaka.text.TextEngine.registerParser( 'text/vtt', shaka.text.Mp4TtmlParser);
+     
 
       player.setTextTrackVisibility(true)
       if (this.caption) {
@@ -96,10 +110,17 @@ class ShakaPlayer extends BasePlayer {
   // override method
   getPluginsInfo () {
     const plugins = []
-    plugins.Mux = 'v5.6.3'
+    plugins.Mux = 'v6.0.1'
     return plugins
   }
 }
 
-const shakaPlayer = new ShakaPlayer()
-shakaPlayer.initPlayer()
+// Check to see if the browser supports the basic APIs Shaka needs.
+if (shaka.Player.isBrowserSupported()) {
+  // Everything looks good!
+  const shakaPlayer = new ShakaPlayer()
+  shakaPlayer.initPlayer()
+} else {
+  // This browser does not have the minimum set of APIs we need.
+  console.error('Browser not supported!');
+}
