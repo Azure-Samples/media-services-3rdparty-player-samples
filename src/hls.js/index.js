@@ -16,6 +16,8 @@ class HlsPlayer extends BasePlayer {
       const video = document.getElementById('video')
       if (this.caption) {
         document.getElementById('inputvtt').src = this.caption
+      }else{
+        document.getElementById('inputvtt').remove();
       }
 
       const config = {
