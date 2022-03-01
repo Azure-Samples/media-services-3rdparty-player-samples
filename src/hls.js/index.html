@@ -18,7 +18,7 @@
 
     <main class="container px-4 mx-auto font-sans">
       <form method="GET">
-        <input type="hidden" name="loglevel" id="loglevelInput">
+        <input type="hidden" name="loglevel" id="loglevelInput" value="1">
         <h1 class="my-4 text-center text-2xl font-bold">hls.js player with Azure Media Services</h1>
 
         <div class="my-4 p-4 bg-gray-200 rounded shadow">
@@ -80,9 +80,9 @@
               <span class="md:w-1/4 mb-2 md:mb-0 items-center text-sm">
                 <label for="selectLogLevel">Log Level:</label>
                 <select id="selectLogLevel" name="logLevel" class="rounded shadow border-0">
-                  <option id="optionWarning" value="3">INFO</option>
-                  <option id="selectInfo" value="2">WARNING</option>
-                  <option id="selectError" value="1">ERROR</option>
+                  <option id="selectInfo" value="3">INFO</option>
+                  <option id="optionWarning" value="2">WARNING</option>
+                  <option id="selectError" value="1" selected>ERROR</option>
                 </select>
               </span>
 

@@ -180,7 +180,7 @@ class BasePlayer {
     }
 
     if (!this.logLevel) {
-      this.logLevel = '3'
+      this.logLevel = '1'
     }
     this.$('selectLogLevel').value = this.logLevel
   }
