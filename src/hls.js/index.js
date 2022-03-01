@@ -18,7 +18,13 @@ class HlsPlayer extends BasePlayer {
         document.getElementById('inputvtt').src = this.caption
       }
 
-      const config = {}
+      const config = {
+        debug: true,
+        enableWorker: true,
+        lowLatencyMode: true,
+        backBufferLength: 90
+      };
+
       if (this.token) {
         Object.assign(config, {
           xhrSetup: (xhr, url) => {
@@ -48,7 +54,8 @@ class HlsPlayer extends BasePlayer {
       this.hls = new Hls(config)
       this.hls.attachMedia(video)
       this.hls.on(Hls.Events.MEDIA_ATTACHED, () => {
-        this.hls.loadSource(this.manifest)
+        this.hls.loadSource(this.manifest);
+        this.hls.subtitleDisplay = true;
       })
 
       this.attachEvents()
