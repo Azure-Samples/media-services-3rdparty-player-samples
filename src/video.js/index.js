@@ -8,15 +8,41 @@ const Types = {
 
 class VideojsPlayer extends BasePlayer {
   initPlayer () {
-    const videoJS = videojs('video')
+
+    var options = {
+      html5: {
+        vhs: {
+         // Try to use videojs-http-streaming even on platforms that provide some level of HLS support natively. 
+         // There are a number of platforms that technically play back HLS content but aren't very reliable or are
+         //  missing features like CEA-608 captions support. When overrideNative is true, if the platform supports 
+         // Media Source Extensions videojs-http-streaming will take over HLS playback to provide a more consistent experience. 
+         // NOTE: This includes Edge browser. It has a native HLS player that will stall out if you do not do this.
+          overrideNative: true
+        },
+        nativeAudioTracks: false,
+        nativeVideoTracks: false
+      }
+    };
+
+    const videoJS = videojs('video', options, function onPlayerReady() {
+      videojs.log('Your player is ready!');
+    
+      // How about an event listener?
+      this.on('ended', function() {
+        videojs.log('Awww...over so soon?!');
+      });
+    });
 
     const subtitleKind = 'subtitles'
     const subtitleLang = 'eng'
     const subtitleLabel = 'test'
 
-    videojs.Hls.xhr.beforeRequest = this.setupTokenForDecrypt.bind(this)
+    videojs.Vhs.xhr.beforeRequest = this.setupTokenForDecrypt.bind(this)
 
     let typeUrl = Types.hlsType
+    // Get a handle to the VHS tech for HLS playback. See - https://github.com/videojs/http-streaming
+    var vhs = player.tech().vhs;
+
     if (this.format === 'dash') {
       typeUrl = Types.dashType
     }
@@ -44,7 +70,7 @@ class VideojsPlayer extends BasePlayer {
       })
     }
 
-    const logLevelDetailsChosen = 4
+    const logLevelDetailsChosen = 1
 
     if (logLevelDetailsChosen >= 1) {
       videojs.log.error = this.interceptLog('ERROR')
@@ -104,7 +130,7 @@ class VideojsPlayer extends BasePlayer {
   // override method
   getPluginsInfo () {
     const plugins = []
-    plugins['videojs-contrib-eme'] = 'v3.7.0'
+    plugins['videojs-contrib-eme'] = 'v4.0.0'
     return plugins
   }
 }

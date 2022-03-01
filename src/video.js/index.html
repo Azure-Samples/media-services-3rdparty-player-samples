@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, user-scalable=no">
   <link rel="stylesheet" type="text/css" href="../css/style.css">
   <link rel="shortcut icon" type="image/png" href="../images/ams.png">
-  <link href="https://vjs.zencdn.net/7.8.2/video-js.css" rel="stylesheet" />
+  <link href="https://vjs.zencdn.net/7.17.0/video-js.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -26,7 +26,7 @@
       <h1 class="my-4 text-center text-2xl font-bold">Video.js player with Azure Media Services</h1>
 
       <div class="my-4 p-4 bg-gray-200 rounded shadow">
-        <video id="video" class="video-js vjs-default-skin vjs-16-9" controls data-setup="{}" muted autoplay>
+        <video id="video" class="video-js vjs-default-skin vjs-16-9" controls muted autoplay>
         </video>
       </div>
 
@@ -120,7 +120,7 @@
                 <option value="4">DEBUG</option>
                 <option value="3">INFO</option>
                 <option value="2">WARNING</option>
-                <option value="1">ERROR</option>
+                <option value="1" selected>ERROR</option>
               </select>
             </span>
 
@@ -143,9 +143,9 @@
   <footer class="h-16 flex items-center justify-center bg-black">
     <p class="text-gray-500">© Microsoft Corporation 2020</p>
   </footer>
-  <script src="https://vjs.zencdn.net/7.8.2/video.js"></script>
+  <script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
   <!-- update label whenever we update plugin version -->
-  <script src="https://cdn.jsdelivr.net/npm/videojs-contrib-eme@3.7.0/dist/videojs-contrib-eme.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-contrib-eme@4.0.0/dist/videojs-contrib-eme.min.js"></script>
   <script type="module" src="index.js"></script>
 </body>
 
