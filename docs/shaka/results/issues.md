@@ -61,10 +61,13 @@ Shaka does not reproduce DASH CMAF with Widevine using Azure Media Services.
 
 ## Issue #12
 
-HLS with Live transcription
+HLS with Live transcription and IMSC1 in MP4 tracks
 
 Shaka does not reproduce HLS with live transcription.
+There are known issues with parsing the right codec for IMSC1 in MP4 fragments (ISO 14496 part 30).  
+There are some workarounds available, but they are still not perfect.
 
 - The error is reported [here](https://github.com/google/shaka-player/issues/1996).
+- and [here](https://github.com/google/shaka-player/issues/1959)
 
 ------
