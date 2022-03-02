@@ -60,7 +60,11 @@ class ShakaPlayer extends BasePlayer {
       }
 
       // Force the TTML parser to load - this is related to ISSUE #12 in the docs for Shaka.
-      //shaka.text.TextEngine.registerParser( 'application/mp4', shaka.text.Mp4TtmlParser);
+      // shaka.text.TextEngine.registerParser( 'application/mp4', shaka.text.Mp4TtmlParser);
+      // HACK: Note that this is currently a hack for Issue 12 and should be removed at a later point 
+      // The Shaka player appears to assume everything is VTT, and when reading the Azure Media Services HLS+CMAF 
+      // manifest, it is not able to find the correct mime type, due to the lack of file extensions in our delivery format
+      // This is something the team is looking into and may have a fix for in the future. 
       shaka.text.TextEngine.registerParser( 'text/vtt', shaka.text.Mp4TtmlParser);
      
 
