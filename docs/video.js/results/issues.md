@@ -52,10 +52,11 @@ Video.js does not reproduce live stream and low latency on Android.
 
 ## Issue #7
 
-Live streams with DASH CMAF or HLS CMAF
+Live streams with IMSC1 in MP4 fragments
 
-Video.js doesn't show subtitles in live streams with DASH CMAF or HLS CMAF. Also in all browsers, we detected that HLS TS is not working.
+Video.js doesn't show subtitles in live streams with DASH CMAF using IMSC1 in Mp4 fragments. The feature is not currently supported. 
+Video.js will play back content that uses HLS v3 or v4 with VTT text tracks in MP4 fragments, so you can still use a live transcription feed from Azure Media Service as long as you use the /manifest(format=m3u8-aapl) version of the format tag on your streaming locator URL.
 
-- The issues are reported [here](https://github.com/videojs/video.js/issues/4300) and [here](https://github.com/videojs/video.js/issues/5804).
+- The issue was reported [here](https://github.com/videojs/video.js/issues/6353) but has recently been closed.
 
 ------
