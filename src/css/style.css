@@ -135,6 +135,11 @@ video {
   width: 100%;
 }
 
+.videoContainer {
+  position: relative;
+  
+}
+
 @media (min-width: 640px) {
   .container {
     max-width: 640px;

@@ -43,7 +43,7 @@ class DashPlayer extends BasePlayer {
         }
       })
     }
-    var TTMLRenderingDiv = document.querySelector('#ttml-rendering-div')
+ 
     player = dashjs.MediaPlayer().create()
     player.initialize(video, url, this.autoPlay === 'true')
 
@@ -61,9 +61,11 @@ class DashPlayer extends BasePlayer {
       }
     }
 
-    player.setTextDefaultEnabled(true)
-    player.attachTTMLRenderingDiv(TTMLRenderingDiv)
-    player.setProtectionData(protData)
+    
+    player.updateSettings({ streaming: { text: { defaultEnabled: true } } });
+
+    player.attachTTMLRenderingDiv($('#video-caption')[0]);
+    player.setProtectionData(protData);
   }
 
   showEvent (playerEvent, e) {
