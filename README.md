@@ -45,7 +45,7 @@ To see the sample code, please check:
 - [THEOplayer](/src/THEOplayer)
 - [NexPlayer](/src/NexPlayer)
 ## Test results
-  
+
 The samples were tested with VOD and Live content generated with the setup script in the following browsers:
 
 - Windows 10 v1909+
@@ -67,7 +67,7 @@ The samples were tested with VOD and Live content generated with the setup scrip
   - ![safari](docs/icons/safari.png) Safari (v13.1+)
 
 To see the test results, please check:
-  
+
 - [Video.js](/docs/video.js#test-results)
 - [Shaka Player](/docs/shaka#test-results)
 - [hls.js](/docs/hls.js#test-results)
@@ -81,8 +81,8 @@ To see the test results, please check:
 
 To set up your player, follow the below instructions:
 
-- [How to use the Video.js player with Azure Media Services](https://docs.microsoft.com/azure/media-services/latest/how-to-video-js-player)
-- [How to use the Shaka player with Azure Media Services](https://docs.microsoft.com/azure/media-services/latest/how-to-shaka-player)
+- [How to use the Video.js player with Azure Media Services](/src/video.js/README.md)
+- [How to use the Shaka player with Azure Media Services](/src/shaka/README.md)
 - [How to use the hls.js player with Azure Media Services](/docs/hls.js/how-to-hls-js-player.md)
 - [How to use the dash.js player with Azure Media Services](/docs/dash.js/how-to-dash-js-player.md)
 - [How to use the ExoPlayer with Azure Media Services](/docs/exoplayer/how-to-exoplayer.md)
