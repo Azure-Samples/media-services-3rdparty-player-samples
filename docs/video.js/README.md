@@ -10,8 +10,6 @@ Video.js is a web video player built for an HTML5 world. It plays adaptive media
 
 Its official documentation can be found [here](https://docs.videojs.com/).
 
-For detailed instructions on how to implement the player, see [How to use the Video.js player with Azure Media Services](https://docs.microsoft.com/azure/media-services/latest/how-to-video-js-player).
-
 ## Implementation reference sample
 
 For an implementation reference sample please check the following [link](../../src/video.js) which contains a complete implementation of a Video.js Player.

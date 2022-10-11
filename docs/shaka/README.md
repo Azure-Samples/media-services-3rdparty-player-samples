@@ -14,8 +14,6 @@ Its official documentation can be found [here](https://shaka-player-demo.appspot
 
 Shaka DRM documentation: [here](https://shaka-player-demo.appspot.com/docs/api/tutorial-drm-config.html)
 
-For detailed instructions on how to implement the player, see [How to use the Shaka player with Azure Media Services](https://docs.microsoft.com/azure/media-services/latest/how-to-shaka-player).
-
 ## Implementation reference sample
 
 For an implementation reference sample, see [the shaka src folder](./src/shaka) which contains a complete implementation of a Shaka Player.
