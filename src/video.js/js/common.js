@@ -189,6 +189,10 @@ class BasePlayer {
       this.$('selectDash').selected = 'true'
     }
 
+    if (this.format === 'mp4' && this.$('selectMP4')) {
+      this.$('selectMP4').selected = 'true'
+    }
+
     if (!this.logLevel) {
       this.logLevel = '1'
     }

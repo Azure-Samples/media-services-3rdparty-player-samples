@@ -3,7 +3,8 @@ import BasePlayer from '../js/common.js'
 const Types = {
   hlsType: 'application/x-mpegURL',
   dashType: 'application/dash+xml',
-  dashCmaf: 'mpd-time-cmaf'
+  dashCmaf: 'mpd-time-cmaf',
+  mp4Type: 'video/mp4'
 }
 
 class VideojsPlayer extends BasePlayer {
@@ -41,17 +42,21 @@ class VideojsPlayer extends BasePlayer {
 
     let typeUrl = Types.hlsType
     // Get a handle to the VHS tech for HLS playback. See - https://github.com/videojs/http-streaming
-    var vhs = player.tech().vhs;
+    //var vhs = player.tech().vhs;
 
     if (this.format === 'dash') {
       typeUrl = Types.dashType
+    }
+    else if (this.format === 'mp4') {
+      typeUrl = Types.mp4Type
+      this.manifest = this.manifest + this.sastoken;
     }
 
     videoJS.eme()
 
     if (this.playReadyLicenseUrl || this.widevineLicenseUrl || this.fairPlayCertificate) {
       videoJS.src({
-        src: this.manifest,
+        src: manifest ,
         type: typeUrl,
         emeHeaders: { Authorization: 'Bearer=' + this.getInputToken() },
         keySystems: {
@@ -119,6 +124,7 @@ class VideojsPlayer extends BasePlayer {
       options.headers = options.headers || {}
       options.headers.Authorization = 'Bearer=' + this.getInputToken()
     }
+    options.uri = options.uri + this.sastoken;
     return options
   }
 
@@ -135,5 +141,5 @@ class VideojsPlayer extends BasePlayer {
   }
 }
 
-const videojsPlayer = new VideojsPlayer()
-videojsPlayer.initPlayer()
+const videojsPlayer = new VideojsPlayer();
+videojsPlayer.initPlayer();

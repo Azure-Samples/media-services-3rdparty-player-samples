@@ -42,6 +42,7 @@
 
             <option id="selectHls" value="hls">HLS</option>
             <option id="selectDash" value="dash">DASH</option>
+            <option id="selectMP4" value="mp4">MP4</option>
           </select>
         </div>
 
@@ -67,6 +68,15 @@
               Token
             </span>
             <input name="token" id="tokenInput" class="md:w-3/4 h-8 px-2 rounded shadow border-0" placeholder="JWT"
+              disabled>
+          </div>
+
+          <div class="my-2 flex flex-col md:flex-row md:items-center">
+            <span class="md:w-1/4 mb-2 md:mb-0 flex items-center text-sm">
+              <input type="checkbox" id="sastokenCheckbox" class="mr-2">
+              SAS Token
+            </span>
+            <input name="sastoken" id="sastokenInput" class="md:w-3/4 h-8 px-2 rounded shadow border-0" placeholder="JWT"
               disabled>
           </div>
 
@@ -143,7 +153,7 @@
   <footer class="h-16 flex items-center justify-center bg-black">
     <p class="text-gray-500">© Microsoft Corporation 2020</p>
   </footer>
-  <script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
+  <script src="https://vjs.zencdn.net/8.3.0/video.min.js"></script>
   <!-- update label whenever we update plugin version -->
   <script src="https://cdn.jsdelivr.net/npm/videojs-contrib-eme@4.0.0/dist/videojs-contrib-eme.min.js"></script>
   <script type="module" src="index.js"></script>
