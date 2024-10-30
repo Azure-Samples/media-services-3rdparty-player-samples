@@ -10,7 +10,7 @@ urlFragment: "media-services-3rdparty-player-samples"
 
 # Media Services 3rd Party Player Samples
 
-**IMPORTANT NOTE : Azure Media Service has been retired on June 30, 2024. Please see the [retirement guide](https://learn.microsoft.com/en-us/azure/media-services/latest/azure-media-services-retirement).**
+**IMPORTANT NOTE : Azure Media Services have been retired on June 30, 2024. Please see the [retirement guide](https://learn.microsoft.com/azure/media-services/latest/azure-media-services-retirement).**
 
 ## Overview
 
